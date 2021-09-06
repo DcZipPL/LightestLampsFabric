@@ -4,7 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
-import tk.dczippl.lightestlamp.tile.LightAirTileEntity;
+import tk.dczippl.lightestlamp.tile.unported.LightAirTileEntity;
 
 public class ChunkCleanerBlock extends BlockWithEntity
 {

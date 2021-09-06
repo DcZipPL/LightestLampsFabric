@@ -14,7 +14,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
-import tk.dczippl.lightestlamp.tile.AlchemicalLampBlockEntity;
+import tk.dczippl.lightestlamp.tile.unported.AlchemicalLampBlockEntity;
 
 import java.util.List;
 

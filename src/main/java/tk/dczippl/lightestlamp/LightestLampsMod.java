@@ -62,7 +62,7 @@ import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeScreen;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeTile;
-import tk.dczippl.lightestlamp.tile.*;
+import tk.dczippl.lightestlamp.tile.unported.*;
 import tk.dczippl.lightestlamp.util.WorldGenerator;
 import tk.dczippl.lightestlamp.util.network.Networking;
 

@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
+import tk.dczippl.lightestlamp.blocks.entity.GenerableLampBlockEntity;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class GenerableLampBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new GenerableLampBlockEntity(lampType);
+		return new GenerableLampBlockEntity(lampType,waterResistant);
 	}
 
 	@Override

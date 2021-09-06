@@ -1,4 +1,4 @@
-package tk.dczippl.lightestlamp.tile;
+package tk.dczippl.lightestlamp.tile.unported;
 
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
