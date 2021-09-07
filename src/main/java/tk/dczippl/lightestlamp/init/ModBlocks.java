@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
 import tk.dczippl.lightestlamp.blocks.*;
-import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
+//import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
 import static net.minecraft.block.Blocks.*;
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
@@ -68,5 +68,8 @@ public class ModBlocks
     public static Block registerBlock(String id, Block block) {
         SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(LAMPS_TAB)));
         return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
+    }
+
+    public static void init() {
     }
 }

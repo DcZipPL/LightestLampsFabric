@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import tk.dczippl.lightestlamp.Config;
-import tk.dczippl.lightestlamp.init.ModContainers;
 
 public class GasCentrifugeContainer extends Container
 {

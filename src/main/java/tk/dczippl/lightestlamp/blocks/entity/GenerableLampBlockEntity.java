@@ -14,6 +14,7 @@ import tk.dczippl.lightestlamp.init.ModBlocks;
 import java.util.Random;
 
 import static net.minecraft.state.property.Properties.POWERED;
+import static net.minecraft.state.property.Properties.WATERLOGGED;
 
 public class GenerableLampBlockEntity extends BlockEntity implements BlockEntityTicker {
 	private final LampType lampType;
@@ -91,11 +92,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				}
 			} else if (lampType == LampType.BETA) {
 				if (cooldown == 5) {
-					if (world.getRedstonePowerFromNeighbors(pos) > 0) {
-						if (!getBlockState().get(POWERED)) {
-							world.setBlockState(pos, getBlockState().with(POWERED, true));
+					if (world.getReceivedRedstonePower(pos) > 0) {
+						if (!state.get(POWERED)) {
+							world.setBlockState(pos, state.with(POWERED, true));
 
-							BlockPos.getAllInBox(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2), pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos1) ->
+							BlockPos.iterate(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2), pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos1) ->
 							{
 								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
@@ -103,11 +104,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							});
 						}
 					} else {
-						if (getBlockState().get(POWERED))
-							world.setBlockState(pos, getBlockState().with(POWERED, false));
+						if (state.get(POWERED))
+							world.setBlockState(pos, state.with(POWERED, false));
 					}
 
-					if (!getBlockState().get(POWERED)) {
+					if (!state.get(POWERED)) {
 						BlockPos pos1 = pos.offset(Direction.UP, 2);
 						if (isAir(pos1)) {
 							world.setBlockState(pos1, ModBlocks.LIGHT_AIR.getDefaultState());
@@ -150,11 +151,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				}
 			} else if (lampType == LampType.GAMMA) {
 				if (cooldown == 5) {
-					if (world.getRedstonePowerFromNeighbors(pos) > 0) {
-						if (!getBlockState().get(POWERED)) {
-							world.setBlockState(pos, getBlockState().with(POWERED, true));
+					if (world.getReceivedRedstonePower(pos) > 0) {
+						if (!state.get(POWERED)) {
+							world.setBlockState(pos, state.with(POWERED, true));
 
-							BlockPos.getAllInBox(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2), pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos1) ->
+							BlockPos.iterate(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2), pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos1) ->
 							{
 								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
@@ -162,12 +163,12 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							});
 						}
 					} else {
-						if (getBlockState().get(POWERED))
-							world.setBlockState(pos, getBlockState().with(POWERED, false));
+						if (state.get(POWERED))
+							world.setBlockState(pos, state.with(POWERED, false));
 					}
 
-					if (!getBlockState().get(POWERED)) {
-						BlockPos.getAllInBox(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2),
+					if (!state.get(POWERED)) {
+						BlockPos.iterate(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2),
 								pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
@@ -180,11 +181,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				}
 			} else if (lampType == LampType.DELTA) {
 				if (cooldown == 5) {
-					if (world.getRedstonePowerFromNeighbors(pos) > 0) {
-						if (!getBlockState().get(POWERED)) {
-							world.setBlockState(pos, getBlockState().with(POWERED, true));
+					if (world.getReceivedRedstonePower(pos) > 0) {
+						if (!state.get(POWERED)) {
+							world.setBlockState(pos, state.with(POWERED, true));
 
-							BlockPos.getAllInBox(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4), pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos1) ->
+							BlockPos.iterate(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4), pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos1) ->
 							{
 								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
@@ -192,12 +193,12 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							});
 						}
 					} else {
-						if (getBlockState().get(POWERED))
-							world.setBlockState(pos, getBlockState().with(POWERED, false));
+						if (state.get(POWERED))
+							world.setBlockState(pos, state.with(POWERED, false));
 					}
 
-					if (!getBlockState().get(POWERED)) {
-						BlockPos.getAllInBox(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4),
+					if (!state.get(POWERED)) {
+						BlockPos.iterate(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4),
 								pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
@@ -210,11 +211,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				}
 			} else if (lampType == LampType.EPSILON) {
 				if (cooldown == 5) {
-					if (world.getRedstonePowerFromNeighbors(pos) > 0) {
-						if (!getBlockState().get(POWERED)) {
-							world.setBlockState(pos, getBlockState().with(POWERED, true));
+					if (world.getReceivedRedstonePower(pos) > 0) {
+						if (!state.get(POWERED)) {
+							world.setBlockState(pos, state.with(POWERED, true));
 
-							BlockPos.getAllInBox(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5), pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos1) ->
+							BlockPos.iterate(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5), pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos1) ->
 							{
 								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
@@ -222,12 +223,12 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							});
 						}
 					} else {
-						if (getBlockState().get(POWERED))
-							world.setBlockState(pos, getBlockState().with(POWERED, false));
+						if (state.get(POWERED))
+							world.setBlockState(pos, state.with(POWERED, false));
 					}
 
-					if (!getBlockState().get(POWERED)) {
-						BlockPos.getAllInBox(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5),
+					if (!state.get(POWERED)) {
+						BlockPos.iterate(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5),
 								pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
@@ -241,7 +242,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 			} else if (lampType == LampType.ZETA) {
 				//TODO: Change this to DELTA
 				if (cooldown == 14) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 9).offset(Direction.NORTH, 9).offset(Direction.WEST, 9),
+					BlockPos.iterate(pos.offset(Direction.UP, 9).offset(Direction.NORTH, 9).offset(Direction.WEST, 9),
 							pos.offset(Direction.DOWN, 9).offset(Direction.SOUTH, 9).offset(Direction.EAST, 9)).forEach((pos2) ->
 					{
 						if (isAir(pos2)) {
@@ -253,7 +254,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				}
 			} else if (lampType == LampType.ETA) {
 				if (cooldown == 14) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 11).offset(Direction.NORTH, 11).offset(Direction.WEST, 11),
+					BlockPos.iterate(pos.offset(Direction.UP, 11).offset(Direction.NORTH, 11).offset(Direction.WEST, 11),
 							pos.offset(Direction.DOWN, 11).offset(Direction.SOUTH, 11).offset(Direction.EAST, 11)).forEach((pos2) ->
 					{
 						if (isAir(pos2)) {
@@ -267,7 +268,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				Random random = new Random();
 
 				if (cooldown == 20) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 15).offset(Direction.NORTH, 15).offset(Direction.WEST, 15),
+					BlockPos.iterate(pos.offset(Direction.UP, 15).offset(Direction.NORTH, 15).offset(Direction.WEST, 15),
 							pos.offset(Direction.UP, 1).offset(Direction.NORTH, 0).offset(Direction.WEST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -277,7 +278,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 30) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 15).offset(Direction.SOUTH, 15).offset(Direction.WEST, 15),
+					BlockPos.iterate(pos.offset(Direction.UP, 15).offset(Direction.SOUTH, 15).offset(Direction.WEST, 15),
 							pos.offset(Direction.UP, 1).offset(Direction.SOUTH, 1).offset(Direction.WEST, 0)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -287,7 +288,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 40) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 15).offset(Direction.NORTH, 15).offset(Direction.EAST, 15),
+					BlockPos.iterate(pos.offset(Direction.UP, 15).offset(Direction.NORTH, 15).offset(Direction.EAST, 15),
 							pos.offset(Direction.UP, 1).offset(Direction.NORTH, 1).offset(Direction.EAST, 0)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -297,7 +298,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 50) {
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 15).offset(Direction.SOUTH, 15).offset(Direction.EAST, 15),
+					BlockPos.iterate(pos.offset(Direction.UP, 15).offset(Direction.SOUTH, 15).offset(Direction.EAST, 15),
 							pos.offset(Direction.UP, 1).offset(Direction.SOUTH, 0).offset(Direction.EAST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -310,7 +311,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 				//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//---//
 
 				if (cooldown == 60) {
-					BlockPos.getAllInBox(pos.offset(Direction.DOWN, 15).offset(Direction.NORTH, 15).offset(Direction.WEST, 15),
+					BlockPos.iterate(pos.offset(Direction.DOWN, 15).offset(Direction.NORTH, 15).offset(Direction.WEST, 15),
 							pos.offset(Direction.NORTH, 1).offset(Direction.WEST, 0)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -320,7 +321,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 70) {
-					BlockPos.getAllInBox(pos.offset(Direction.DOWN, 15).offset(Direction.SOUTH, 15).offset(Direction.WEST, 15),
+					BlockPos.iterate(pos.offset(Direction.DOWN, 15).offset(Direction.SOUTH, 15).offset(Direction.WEST, 15),
 							pos.offset(Direction.SOUTH, 0).offset(Direction.WEST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -330,7 +331,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 80) {
-					BlockPos.getAllInBox(pos.offset(Direction.DOWN, 15).offset(Direction.NORTH, 15).offset(Direction.EAST, 15),
+					BlockPos.iterate(pos.offset(Direction.DOWN, 15).offset(Direction.NORTH, 15).offset(Direction.EAST, 15),
 							pos.offset(Direction.NORTH, 0).offset(Direction.EAST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -340,7 +341,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 90) {
-					BlockPos.getAllInBox(pos.offset(Direction.DOWN, 15).offset(Direction.SOUTH, 15).offset(Direction.EAST, 15),
+					BlockPos.iterate(pos.offset(Direction.DOWN, 15).offset(Direction.SOUTH, 15).offset(Direction.EAST, 15),
 							pos.offset(Direction.SOUTH, 1).offset(Direction.EAST, 0)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -350,7 +351,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					});
 				}
 				if (cooldown == 100) {
-					BlockPos.getAllInBox(pos.offset(Direction.DOWN, 15),
+					BlockPos.iterate(pos.offset(Direction.DOWN, 15),
 							pos.offset(Direction.DOWN, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -358,7 +359,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
 						}
 					});
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 15),
+					BlockPos.iterate(pos.offset(Direction.UP, 15),
 							pos.offset(Direction.UP, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
@@ -370,7 +371,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
             /*if (!updated)
             {
                 updated = true;
-                BlockPos.getAllInBox(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
+                BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
                     if (isAir(pos1))
                     {
                         world.notifyBlockUpdate(pos1, world.getBlockState(pos1), world.getBlockState(pos1), 3);
@@ -511,7 +512,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
 					}
 
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 1).offset(Direction.NORTH, 1).offset(Direction.WEST, 1), pos.offset(Direction.DOWN, 1).offset(Direction.SOUTH, 1).offset(Direction.EAST, 1)).forEach((pos2) ->
+					BlockPos.iterate(pos.offset(Direction.UP, 1).offset(Direction.NORTH, 1).offset(Direction.WEST, 1), pos.offset(Direction.DOWN, 1).offset(Direction.SOUTH, 1).offset(Direction.EAST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2))
 						{
@@ -528,7 +529,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 			} else if (lampType == LampType.EPSILON){
 				if (cooldown == 5)
 				{
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 3).offset(Direction.NORTH, 3).offset(Direction.WEST, 3),
+					BlockPos.iterate(pos.offset(Direction.UP, 3).offset(Direction.NORTH, 3).offset(Direction.WEST, 3),
 							pos.offset(Direction.DOWN, 3).offset(Direction.SOUTH, 3).offset(Direction.EAST, 3)).forEach((pos2) ->
 					{
 						if (isAir(pos2))
@@ -546,7 +547,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 			} else if (lampType == LampType.OCEAN_BETWEEN){
 				if (cooldown == 5)
 				{
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4),
+					BlockPos.iterate(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4),
 							pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos2) ->
 					{
 						if (isAir(pos2))
@@ -564,7 +565,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 			} else if (lampType == LampType.ZETA){
 				if (cooldown == 5)
 				{
-					BlockPos.getAllInBox(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5),
+					BlockPos.iterate(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5),
 							pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos2) ->
 					{
 						if (isAir(pos2))

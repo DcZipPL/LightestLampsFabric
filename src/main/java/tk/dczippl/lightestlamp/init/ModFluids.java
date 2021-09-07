@@ -36,4 +36,7 @@ public class ModFluids
     public static final ForgeFlowingFluid.Properties test_fluid_properties =
             new ForgeFlowingFluid.Properties(BROMINE_FLUID, BROMINE_FLUID_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(new Color(102,16,0).getRGB()).density(31028).temperature(316).viscosity(600))
                     .bucket(BROMINE_FLUID_BUCKET).block(BROMINE_FLUID_BLOCK);
+
+    public static void init() {
+    }
 }

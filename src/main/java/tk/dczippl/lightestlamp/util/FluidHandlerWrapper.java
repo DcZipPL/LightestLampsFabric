@@ -1,10 +1,7 @@
 package tk.dczippl.lightestlamp.util;
 
-import net.minecraft.util.Direction;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
-
-import javax.annotation.Nonnull;
+import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.NotNull;
 
 public class FluidHandlerWrapper implements IFluidHandler {
 
@@ -23,7 +20,7 @@ public class FluidHandlerWrapper implements IFluidHandler {
         return wrapper.getAllTanks().length;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public FluidStack getFluidInTank(int tank) {
         //TODO: Is tank zero indexed or 1 indexed
@@ -42,7 +39,7 @@ public class FluidHandlerWrapper implements IFluidHandler {
     }
 
     @Override
-    public int fill(@Nonnull FluidStack resource, FluidAction fluidAction) {
+    public int fill(@NotNull FluidStack resource, FluidAction fluidAction) {
         if (side == null || resource.isEmpty()) {
             return 0;
         }
@@ -52,7 +49,7 @@ public class FluidHandlerWrapper implements IFluidHandler {
         return 0;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public FluidStack drain(@Nonnull FluidStack resource, FluidAction fluidAction) {
         if (side == null || resource.isEmpty()) {
@@ -64,7 +61,7 @@ public class FluidHandlerWrapper implements IFluidHandler {
         return FluidStack.EMPTY;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public FluidStack drain(int maxDrain, IFluidHandler.FluidAction fluidAction) {
         if (side == null) {

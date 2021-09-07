@@ -46,4 +46,7 @@ public class ModItems
     public static final Item LANTHANUM_NUGGET = registerItem(new Item(globalSettings), "lanthanum_nugget");
 
     public static final Item GLOWING_DUST_AGGLOMERATIO = registerItem(new Item(globalSettings), "glowing_dust_agglomeratio");
+
+    public static void init() {
+    }
 }

@@ -36,7 +36,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import tk.dczippl.lightestlamp.Config;
-import tk.dczippl.lightestlamp.init.ModContainers;
 import tk.dczippl.lightestlamp.init.ModEffect;
 import tk.dczippl.lightestlamp.init.ModFluids;
 import tk.dczippl.lightestlamp.init.ModTileEntities;

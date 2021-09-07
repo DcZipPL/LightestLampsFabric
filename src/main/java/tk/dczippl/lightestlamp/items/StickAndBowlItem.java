@@ -6,9 +6,9 @@ import net.minecraft.item.Items;
 
 public class StickAndBowlItem extends Item
 {
-    public StickAndBowlItem(Properties properties)
+    public StickAndBowlItem()
     {
-        super(properties.maxDamage(10));
+        super(new Item.Settings().maxDamage(10));
     }
 
     @Override
@@ -17,7 +17,7 @@ public class StickAndBowlItem extends Item
         return true;
     }
 
-    @Override
+    /*@Override
     public ItemStack getContainerItem(ItemStack itemStack)
     {
         ItemStack stack = itemStack.copy();
@@ -25,17 +25,10 @@ public class StickAndBowlItem extends Item
             stack.setDamage(stack.getDamage()+1);
         else stack = new ItemStack(Items.BOWL);
         return stack;
-    }
+    }*/ // TODO: Check if it work
 
     @Override
-    public boolean hasContainerItem(ItemStack stack)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean hasContainerItem()
-    {
+    public boolean hasRecipeRemainder() {
         return true;
     }
 }
