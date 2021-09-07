@@ -1,52 +1,40 @@
 package tk.dczippl.lightestlamp.potion;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import tk.dczippl.lightestlamp.init.ModDamageSources;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectType;
 
-import javax.annotation.Nullable;
-
-public class BrominePoison extends Effect
-{
+public class BrominePoison extends StatusEffect {
     private int liquidColor;
-    public BrominePoison(EffectType typeIn, int liquidColorIn)
-    {
+
+    public BrominePoison(StatusEffectType typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
         liquidColor = liquidColorIn;
     }
 
-    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier)
-    {
-        if (!entityLivingBaseIn.world.isRemote)
+    public void performEffect(LivingEntity entityLivingBaseIn, int amplifier) {
+        if (!entityLivingBaseIn.world.isClient)
             if (amplifier >= 20)
-                entityLivingBaseIn.attackEntityFrom(ModDamageSources.BROMINE, 2.0F);
-            else
-            {
-                entityLivingBaseIn.attackEntityFrom(ModDamageSources.BROMINE, 0.5F * (amplifier+1));
+                entityLivingBaseIn.damage(DamageSource.MAGIC, 2.0F); // TODO: Implement REAL Bromine damage source
+            else {
+                entityLivingBaseIn.damage(DamageSource.MAGIC, 0.5F * (amplifier + 1));
             }
     }
 
     @Override
-    public void affectEntity(@Nullable Entity source, @Nullable Entity indirectSource, LivingEntity entityLivingBaseIn, int amplifier, double health)
-    {
-        this.performEffect(entityLivingBaseIn, amplifier);
-        super.affectEntity(source, indirectSource, entityLivingBaseIn, amplifier, health);
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        this.performEffect(entity, amplifier);
+        super.applyUpdateEffect(entity, amplifier);
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier)
-    {
-        return true;
-    }
-
-    @Override
-    public int getLiquidColor()
-    {
+    public int getColor() {
         return liquidColor;
+    }
+
+    @Override
+    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+        return true;
     }
 }

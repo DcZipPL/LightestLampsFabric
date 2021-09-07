@@ -10,13 +10,13 @@ import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
-public class OmegaChunkCleanerTileEntity extends BlockEntity implements BlockEntityTicker
+public class OmegaChunkCleanerBlockEntity extends BlockEntity implements BlockEntityTicker
 {
     private int cooldown = 0;
 
-    public OmegaChunkCleanerTileEntity()
+    public OmegaChunkCleanerBlockEntity(BlockPos pos, BlockState state)
     {
-        super(ModBlockEntities.OCC_TE);
+        super(ModBlockEntities.OCC_BE, pos, state);
     }
 
     @Override
@@ -151,6 +151,6 @@ public class OmegaChunkCleanerTileEntity extends BlockEntity implements BlockEnt
 
     private boolean isAir(BlockPos pos)
     {
-        return world.getBlockState(pos).getBlock() == Blocks.AIR || world.getBlockState(pos).getBlock() == Blocks.CAVE_AIR || world.getBlockState(pos).getBlock() == ModBlocks.LIGHT_AIR.get();
+        return world.getBlockState(pos).getBlock() == Blocks.AIR || world.getBlockState(pos).getBlock() == Blocks.CAVE_AIR || world.getBlockState(pos).getBlock() == ModBlocks.LIGHT_AIR;
     }
 }

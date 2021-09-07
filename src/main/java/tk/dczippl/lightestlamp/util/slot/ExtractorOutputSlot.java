@@ -1,15 +1,15 @@
 package tk.dczippl.lightestlamp.util.slot;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 public class ExtractorOutputSlot extends OutputSlot
 {
-    public ExtractorOutputSlot(PlayerEntity parPlayer, IInventory parIInventory, int parSlotIndex, int parXDisplayPosition, int parYDisplayPosition)
+    public ExtractorOutputSlot(PlayerEntity parPlayer, Inventory inventory, int parSlotIndex, int parXDisplayPosition, int parYDisplayPosition)
     {
-        super(parPlayer, parIInventory, parSlotIndex, parXDisplayPosition, parYDisplayPosition);
+        super(parPlayer, inventory, parSlotIndex, parXDisplayPosition, parYDisplayPosition);
     }
 
     /**
@@ -19,9 +19,9 @@ public class ExtractorOutputSlot extends OutputSlot
      *            the par item stack
      */
     @Override
-    protected void onCrafting(ItemStack parItemStack)
+    protected void onCrafted(ItemStack parItemStack)
     {
-        if (!thePlayer.world.isRemote)
+        if (!thePlayer.world.isClient)
         {
             int expEarned = getNumOutput();
             float expFactor = 0.0F;
@@ -40,15 +40,6 @@ public class ExtractorOutputSlot extends OutputSlot
                 }
 
                 expEarned = possibleExpEarned;
-            }
-
-            // create experience orbs
-            int expInOrb;
-            while (expEarned > 0)
-            {
-                //expInOrb = EntityXPOrb.getXPSplit(expEarned);
-                //expEarned -= expInOrb;
-                //thePlayer.world.spawnEntity(new EntityXPOrb(thePlayer.world, thePlayer.posX, thePlayer.posY + 0.5D, thePlayer.posZ + 0.5D, expInOrb));
             }
         }
 

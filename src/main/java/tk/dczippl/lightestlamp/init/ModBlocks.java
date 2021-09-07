@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
 import tk.dczippl.lightestlamp.blocks.*;
-//import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
 import static net.minecraft.block.Blocks.*;
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
@@ -61,12 +60,12 @@ public class ModBlocks
     public static final Block XENON_BLOCK = registerBlock("xenon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block RADON_BLOCK = registerBlock("radon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block GLOWING_GLASS_BLOCK = registerBlock("glowing_glass_block", new GlowingGlassBlock());
-    public static final Block GAS_EXTRACTOR = registerBlock("gas_centrifuge", new GasCentrifugeBlock());
+    //public static final Block GLOWSTONE_CENTRIFUGE = registerBlock("glowstone_centrifuge", new GasCentrifugeBlock());
 
     public static final Block OCC = registerBlock("occ", new OmegaChunkCleanerBlock());
 
     public static Block registerBlock(String id, Block block) {
-        SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(LAMPS_TAB)));
+        SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
         return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
     }
 

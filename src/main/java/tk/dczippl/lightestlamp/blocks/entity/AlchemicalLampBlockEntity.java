@@ -11,9 +11,9 @@ import tk.dczippl.lightestlamp.util.BlockUtil;
 
 public class AlchemicalLampBlockEntity extends BlockEntity implements BlockEntityTicker
 {
-    public AlchemicalLampBlockEntity()
+    public AlchemicalLampBlockEntity(BlockPos pos, BlockState state)
     {
-        super(ModBlockEntities.ALCHEMICALLAMP_TE);
+        super(ModBlockEntities.ALCHEMICALLAMP_TE,pos,state);
     }
 
     @Override

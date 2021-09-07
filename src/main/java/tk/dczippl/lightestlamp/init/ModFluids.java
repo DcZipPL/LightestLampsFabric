@@ -1,14 +1,16 @@
 package tk.dczippl.lightestlamp.init;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.*;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import tk.dczippl.lightestlamp.fluid.BromineFluid;
 import tk.dczippl.lightestlamp.fluid.BromineFluidBlock;
 
 import java.awt.*;
@@ -20,23 +22,16 @@ public class ModFluids
     public static final Identifier FLUID_STILL = new Identifier(MOD_ID,"fluid/bromine_still");
     public static final Identifier FLUID_FLOWING = new Identifier(MOD_ID,"fluid/bromine_flow");
 
-    public static FlowingFluid BROMINE_FLUID = FLUIDS.register("bromine_fluid",
-            new ForgeFlowingFluid.Source(ModFluids.test_fluid_properties)
-    );
-    public static FlowingFluid BROMINE_FLUID_FLOWING = FLUIDS.register("bromine_fluid_flowing",
-            new ForgeFlowingFluid.Flowing(ModFluids.test_fluid_properties)
-    );
-
-    public static FlowingFluidBlock BROMINE_FLUID_BLOCK = ModBlocks.registerBlock("bromine_fluid_block",
-            new BromineFluidBlock(BROMINE_FLUID, AbstractBlock.Settings.of(Material.WATER).dropsNothing()));
-    public static Item BROMINE_FLUID_BUCKET = ModItems.register("bromine_fluid_bucket",
-            new BucketItem(BROMINE_FLUID, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1).group(ItemGroup.MISC))
-    );
-
-    public static final ForgeFlowingFluid.Properties test_fluid_properties =
-            new ForgeFlowingFluid.Properties(BROMINE_FLUID, BROMINE_FLUID_FLOWING, FluidAttributes.builder(FLUID_STILL, FLUID_FLOWING).color(new Color(102,16,0).getRGB()).density(31028).temperature(316).viscosity(600))
-                    .bucket(BROMINE_FLUID_BUCKET).block(BROMINE_FLUID_BLOCK);
-
+    public static Block BROMINE;
+    public static FlowableFluid STILL_BROMINE;
+    public static FlowableFluid FLOWING_BROMINE;
+    public static Item BROMINE_BUCKET;
+    
     public static void init() {
+        STILL_BROMINE = Registry.register(Registry.FLUID, new Identifier(MOD_ID, "bromine"), new BromineFluid.Still());
+        FLOWING_BROMINE = Registry.register(Registry.FLUID, new Identifier(MOD_ID, "flowing_bromine"), new BromineFluid.Flowing());
+        BROMINE_BUCKET = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bromine_bucket"),
+                new BucketItem(STILL_BROMINE, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
+        BROMINE = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "acid"), new FluidBlock(STILL_BROMINE, FabricBlockSettings.copy(Blocks.WATER)){});
     }
 }

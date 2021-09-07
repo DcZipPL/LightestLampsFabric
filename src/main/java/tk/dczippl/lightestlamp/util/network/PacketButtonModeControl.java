@@ -1,22 +1,15 @@
 package tk.dczippl.lightestlamp.util.network;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraftforge.fml.network.NetworkEvent;
-import tk.dczippl.lightestlamp.init.ModEffect;
-import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeTile;
-
-import java.util.function.Supplier;
 
 public class PacketButtonModeControl
 {
     private final BlockPos pos;
     private final int type;
 
-    public PacketButtonModeControl(PacketBuffer buf)
+    public PacketButtonModeControl(PacketByteBuf buf)
     {
         pos = buf.readBlockPos();
         type = buf.readInt();
@@ -28,17 +21,17 @@ public class PacketButtonModeControl
         this.type = type;
     }
 
-    public void toBytes(PacketBuffer buf)
+    public void toBytes(PacketByteBuf buf)
     {
         buf.writeBlockPos(pos);
         buf.writeInt(type);
     }
 
-    public void handle(Supplier<NetworkEvent.Context> ctx)
+    /*public void handle(Supplier<NetworkEvent.Context> ctx)
     {
         ctx.get().enqueueWork(() ->
         {
-            TileEntity te = ctx.get().getSender().getServerWorld().getTileEntity(pos);
+            BlockEntity te = ctx.get().getSender().getServerWorld().getTileEntity(pos);
             if (te instanceof GasCentrifugeTile)
             {
                 GasCentrifugeTile gte = ((GasCentrifugeTile) te);
@@ -50,5 +43,5 @@ public class PacketButtonModeControl
             }
         });
         ctx.get().setPacketHandled(true);
-    }
+    }*/
 }

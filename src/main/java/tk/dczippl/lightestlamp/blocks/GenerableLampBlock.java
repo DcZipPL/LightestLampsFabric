@@ -25,8 +25,8 @@ import java.util.List;
 import static net.minecraft.block.Blocks.REDSTONE_LAMP;
 
 public class GenerableLampBlock extends BlockWithEntity {
-	private final LampType lampType;
-	private final boolean waterResistant;
+	public final LampType lampType;
+	public final boolean waterResistant;
 
 	public GenerableLampBlock(LampType lampType, boolean waterResistant) {
 		super(FabricBlockSettings.copyOf(REDSTONE_LAMP).luminance(__ -> 15));
@@ -37,7 +37,7 @@ public class GenerableLampBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new GenerableLampBlockEntity(lampType,waterResistant);
+		return new GenerableLampBlockEntity(lampType,waterResistant,pos, state);
 	}
 
 	@Override

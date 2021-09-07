@@ -1,10 +1,9 @@
 package tk.dczippl.lightestlamp.util.slot;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-//import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.container.Slot;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.slot.Slot;
 
 @SuppressWarnings({"NullableProblems", "WeakerAccess"})
 public abstract class OutputSlot extends Slot
@@ -18,7 +17,7 @@ public abstract class OutputSlot extends Slot
      *
      * @param parPlayer
      *            the par player
-     * @param parIInventory
+     * @param inventory
      *            the par I inventory
      * @param parSlotIndex
      *            the par slot index
@@ -27,33 +26,25 @@ public abstract class OutputSlot extends Slot
      * @param parYDisplayPosition
      *            the par Y display position
      */
-    public OutputSlot(PlayerEntity parPlayer, IInventory parIInventory, int parSlotIndex, int parXDisplayPosition, int parYDisplayPosition)
+    public OutputSlot(PlayerEntity parPlayer, Inventory inventory, int parSlotIndex, int parXDisplayPosition, int parYDisplayPosition)
     {
-        super(parIInventory, parSlotIndex, parXDisplayPosition, parYDisplayPosition);
+        super(inventory, parSlotIndex, parXDisplayPosition, parYDisplayPosition);
         this.thePlayer = parPlayer;
     }
 
-    /**
-     * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
-     *
-     * @param stack
-     *            the stack
-     * @return true, if is item valid
-     */
     @Override
-    public boolean isItemValid(ItemStack stack)
-    {
+    public boolean canInsert(ItemStack stack) {
         return false;
     }
 
-    /**
+    /*/**
      * Decrease the size of the stack in slot by the amount of the int arg. Returns the new stack.
      *
      * @param parAmount
      *            the par amount
      * @return the item stack
      */
-    @Override
+    /*@Override
     public ItemStack decrStackSize(int parAmount)
     {
         if (getHasStack())
@@ -62,33 +53,26 @@ public abstract class OutputSlot extends Slot
         }
 
         return super.decrStackSize(parAmount);
-    }
+    }*/
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see net.minecraft.inventory.Slot#onTake(net.minecraft.entity.player.EntityPlayer, net.minecraft.item.ItemStack)
-     */
     @Override
-    public ItemStack onTake(PlayerEntity playerIn, ItemStack stack)
-    {
-        this.onCrafting(stack);
-        return super.onTake(playerIn, stack);
+    public void onTakeItem(PlayerEntity player, ItemStack stack) {
+        this.onCrafted(stack);
+        super.onTakeItem(player, stack);
     }
 
     /**
      * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item).
      *
-     * @param parItemStack
+     * @param stack
      *            the par item stack
-     * @param parCount
+     * @param amount
      *            the par count
      */
     @Override
-    protected void onCrafting(ItemStack parItemStack, int parCount)
-    {
-        setNumOutput(getNumOutput() + parCount);
-        onCrafting(parItemStack);
+    protected void onCrafted(ItemStack stack, int amount) {
+        setNumOutput(getNumOutput() + amount);
+        onCrafted(stack);
     }
 
     /**
@@ -98,7 +82,7 @@ public abstract class OutputSlot extends Slot
      *            the par item stack
      */
     @Override
-    protected void onCrafting(ItemStack parItemStack)
+    protected void onCrafted(ItemStack parItemStack)
     {
         // override this in your custom slot class
         // should do things like update achievements/advancements and create experience orbs

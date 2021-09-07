@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
+import tk.dczippl.lightestlamp.blocks.entity.ChunkCleanerBlockEntity;
 
 public class ChunkCleanerBlock extends BlockWithEntity
 {
@@ -15,7 +16,7 @@ public class ChunkCleanerBlock extends BlockWithEntity
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new LightAirTileEntity();
+        return new ChunkCleanerBlockEntity(pos, state);
     }
 
     @Override

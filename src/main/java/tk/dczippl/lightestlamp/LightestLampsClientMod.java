@@ -8,7 +8,7 @@ import tk.dczippl.lightestlamp.init.ModBlocks;
 public class LightestLampsClientMod implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        ScreenManager.registerFactory(ModContainers.GAS_CENTRIFUGE, GasCentrifugeScreen::new);
+        //ScreenManager.registerFactory(ModContainers.GAS_CENTRIFUGE, GasCentrifugeScreen::new);
         BlockRenderLayerMapImpl.INSTANCE.putBlock(ModBlocks.JUNGLE_LANTERN, RenderLayer.getCutout());
         BlockRenderLayerMapImpl.INSTANCE.putBlock(ModBlocks.GLOWING_GLASS_BLOCK, RenderLayer.getCutout());
     }

@@ -3,6 +3,7 @@ package tk.dczippl.lightestlamp.blocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static net.minecraft.block.Blocks.REDSTONE_LAMP;
 
-public class AlchemicalLampBlock extends Block
+public class AlchemicalLampBlock extends BlockWithEntity
 {
     public AlchemicalLampBlock()
     {
@@ -30,7 +31,7 @@ public class AlchemicalLampBlock extends Block
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new AlchemicalLampBlockEntity();
+        return new AlchemicalLampBlockEntity(pos, state);
     }
 
     @Override

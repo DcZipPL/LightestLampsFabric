@@ -10,6 +10,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import tk.dczippl.lightestlamp.init.ModMiscs;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ public class FilterItem extends Item
 {
     private String tooltip;
 
-    public FilterItem(String tooltip)
+    public FilterItem(Item.Settings settings, String tooltip)
     {
-        super(new Item.Settings().group(LAMPS_TAB));
+        super(settings);
         this.tooltip = tooltip;
     }
 

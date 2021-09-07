@@ -8,7 +8,7 @@ public class StickAndBowlItem extends Item
 {
     public StickAndBowlItem()
     {
-        super(new Item.Settings().maxDamage(10));
+        super(new Item.Settings().maxCount(1).maxDamage(10));
     }
 
     @Override

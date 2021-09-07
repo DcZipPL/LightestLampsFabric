@@ -43,7 +43,7 @@ public class JungleLanternBlock extends Block implements Waterloggable
     }
 
     @Override
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos
+    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos)
     {
         return Block.createCuboidShape(4,2,4,12,14,12);
     }

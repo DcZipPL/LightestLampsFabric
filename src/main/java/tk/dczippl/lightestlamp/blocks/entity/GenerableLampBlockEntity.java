@@ -157,7 +157,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 
 							BlockPos.iterate(pos.offset(Direction.UP, 2).offset(Direction.NORTH, 2).offset(Direction.WEST, 2), pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos1) ->
 							{
-								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
+								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
 								}
 							});
@@ -172,7 +172,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 								pos.offset(Direction.DOWN, 2).offset(Direction.SOUTH, 2).offset(Direction.EAST, 2)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 							}
 						});
 					}
@@ -187,7 +187,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 
 							BlockPos.iterate(pos.offset(Direction.UP, 4).offset(Direction.NORTH, 4).offset(Direction.WEST, 4), pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos1) ->
 							{
-								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
+								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
 								}
 							});
@@ -202,7 +202,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 								pos.offset(Direction.DOWN, 4).offset(Direction.SOUTH, 4).offset(Direction.EAST, 4)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 							}
 						});
 					}
@@ -217,7 +217,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 
 							BlockPos.iterate(pos.offset(Direction.UP, 5).offset(Direction.NORTH, 5).offset(Direction.WEST, 5), pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos1) ->
 							{
-								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR.get()) {
+								if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR) {
 									world.setBlockState(pos1, Blocks.AIR.getDefaultState());
 								}
 							});
@@ -232,7 +232,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 								pos.offset(Direction.DOWN, 5).offset(Direction.SOUTH, 5).offset(Direction.EAST, 5)).forEach((pos2) ->
 						{
 							if (isAir(pos2)) {
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 							}
 						});
 					}
@@ -246,7 +246,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							pos.offset(Direction.DOWN, 9).offset(Direction.SOUTH, 9).offset(Direction.EAST, 9)).forEach((pos2) ->
 					{
 						if (isAir(pos2)) {
-							world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+							world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 
@@ -258,7 +258,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 							pos.offset(Direction.DOWN, 11).offset(Direction.SOUTH, 11).offset(Direction.EAST, 11)).forEach((pos2) ->
 					{
 						if (isAir(pos2)) {
-							world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+							world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 
@@ -273,7 +273,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -283,7 +283,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -293,7 +293,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -303,7 +303,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -316,7 +316,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -326,7 +326,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -336,7 +336,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -346,7 +346,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 				}
@@ -356,7 +356,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 					BlockPos.iterate(pos.offset(Direction.UP, 15),
@@ -364,7 +364,7 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2) && world.getBlockState(pos2.up()).getBlock() != Blocks.VINE) {
 							if (random.nextInt(20) == 5)
-								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.get().getDefaultState());
+								world.setBlockState(pos2, ModBlocks.LIGHT_AIR.getDefaultState());
 						}
 					});
 
@@ -389,61 +389,61 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					BlockPos pos1 = pos.offset(Direction.UP);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.DOWN);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.NORTH);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.SOUTH);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.WEST);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.EAST);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					cooldown = 0;
@@ -455,72 +455,72 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					BlockPos pos1 = pos.offset(Direction.UP, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.DOWN, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.NORTH, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.SOUTH, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.WEST, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					pos1 = pos.offset(Direction.EAST, 2);
 					if (isAir(pos1))
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 					}
 					else if (world.getBlockState(pos1).getBlock() == Blocks.WATER)
 					{
-						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+						world.setBlockState(pos1, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 					}
 
 					BlockPos.iterate(pos.offset(Direction.UP, 1).offset(Direction.NORTH, 1).offset(Direction.WEST, 1), pos.offset(Direction.DOWN, 1).offset(Direction.SOUTH, 1).offset(Direction.EAST, 1)).forEach((pos2) ->
 					{
 						if (isAir(pos2))
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 						}
 						else if (world.getBlockState(pos2).getBlock() == Blocks.WATER)
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 						}
 					});
 
@@ -534,11 +534,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2))
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 						}
 						else if (world.getBlockState(pos2).getBlock() == Blocks.WATER)
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 						}
 					});
 
@@ -552,11 +552,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2))
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 						}
 						else if (world.getBlockState(pos2).getBlock() == Blocks.WATER)
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 						}
 					});
 
@@ -570,11 +570,11 @@ public class GenerableLampBlockEntity extends BlockEntity implements BlockEntity
 					{
 						if (isAir(pos2))
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,false));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,false));
 						}
 						else if (world.getBlockState(pos2).getBlock() == Blocks.WATER)
 						{
-							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.get().getDefaultState().with(WATERLOGGED,true));
+							world.setBlockState(pos2, ModBlocks.WATERLOGGABLE_LIGHT_AIR.getDefaultState().with(WATERLOGGED,true));
 						}
 					});
 

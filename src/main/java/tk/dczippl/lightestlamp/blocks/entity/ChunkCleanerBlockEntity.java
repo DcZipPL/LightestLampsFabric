@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
@@ -15,9 +16,9 @@ public class ChunkCleanerBlockEntity extends BlockEntity implements BlockEntityT
 {
     private int cooldown = 0;
     
-    public ChunkCleanerBlockEntity()
+    public ChunkCleanerBlockEntity(BlockPos pos, BlockState state)
     {
-        super(ModEntities.CC_BE);
+        super(ModBlockEntities.CC_BE,pos,state);
     }
 
     @Override

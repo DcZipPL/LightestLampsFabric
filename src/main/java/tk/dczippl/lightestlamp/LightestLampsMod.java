@@ -1,25 +1,15 @@
 package tk.dczippl.lightestlamp;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.fabricmc.fabric.impl.blockrenderlayer.BlockRenderLayerMapImpl;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.impl.screenhandler.Networking;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.util.math.Vector3d;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -27,49 +17,33 @@ import net.minecraft.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
+import tk.dczippl.lightestlamp.util.WorldGenerator;
 
-import tk.dczippl.lightestlamp.tile.unported.*;
-
-import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("NullableProblems")
-public class LightestLampsMod
+public class LightestLampsMod implements ModInitializer
 {
     public static final String MOD_ID = "lightestlamp";
 
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup main_group = new ItemGroup("lamps") {
+    public LightestLampsMod(){}
 
-        @Override
-        public ItemStack createIcon()
-        {
-            ItemStack stack = new ItemStack(ModBlocks.OMEGA_LAMP.get());
-            return stack;
-        }
-    };
-    
-    public LightestLampsMod()
-    {
+    /**
+     * Runs the mod initializer.
+     */
+    @Override
+    public void onInitialize() {
+        ModFluids.init();
         ModBlocks.init();
         ModItems.init();
         ModBlockEntities.init();
-        ModFluids.init();
+        WorldGenerator.register();
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        netherOres.add(register("mozaite_ore",Feature.ORE.withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NETHERRACK, ModBlocks.MONAZITE_ORE.get().getDefaultState(),WorldGenerator.MONAZITE_BLOCK_VEINSIZE))
-                .range(84).square().func_242731_b(20)));
-
-        LOGGER.debug(ModBlocks.ANTI_LAMP.get().toString());
-        // some preinit code
-        Networking.registerMessages();
-    }
-
-    @SubscribeEvent
+/*    @SubscribeEvent
     public void onEntityLivingDeath(LivingDeathEvent event)
     {
         if (event.getSource().getDamageType().equals("player"))
@@ -155,40 +129,5 @@ public class LightestLampsMod
             RenderSystem.fogStart((1 - progress) * fog.getFarPlaneDistance() * .75f);
             RenderSystem.fogEnd(fog.getFarPlaneDistance() * (1 - .8f * progress));
         }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void biomeLoad(BiomeLoadingEvent event){
-        BiomeGenerationSettingsBuilder generation = event.getGeneration();
-        if(event.getCategory().equals(Biome.Category.NETHER)){
-            for(ConfiguredFeature<?, ?> ore : netherOres){
-                if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
-            }
-        }
-    }
-
-    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, MOD_ID + ":" + name, configuredFeature);
-    }
-
-    // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
-    // Event bus for receiving Registry Events)
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents
-    {
-
-        @SubscribeEvent
-        public static void registerEffects(final RegistryEvent.Register<Effect> event) {
-            event.getRegistry().registerAll(
-                    ModEffect.BROMINE_POISON
-            );
-        }
-
-        @SubscribeEvent
-        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> containerTypeRegistryEvent)
-        {
-            // register a new container here
-            containerTypeRegistryEvent.getRegistry().register(ModContainers.GAS_CENTRIFUGE);
-        }
-    }
+    }*/
 }
