@@ -32,6 +32,6 @@ public class ModFluids
         FLOWING_BROMINE = Registry.register(Registry.FLUID, new Identifier(MOD_ID, "flowing_bromine"), new BromineFluid.Flowing());
         BROMINE_BUCKET = Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bromine_bucket"),
                 new BucketItem(STILL_BROMINE, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
-        BROMINE = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "acid"), new FluidBlock(STILL_BROMINE, FabricBlockSettings.copy(Blocks.WATER)){});
+        BROMINE = Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "bromine_fluid"), new FluidBlock(STILL_BROMINE, FabricBlockSettings.copy(Blocks.WATER)){});
     }
 }

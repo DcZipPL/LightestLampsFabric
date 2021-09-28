@@ -22,7 +22,7 @@ public class LightAirBlock extends AirBlock
     public LightAirBlock()
     {
         super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
-        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(true)));
+        //this.setDefaultState(this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(true)));
     }
 
     VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);

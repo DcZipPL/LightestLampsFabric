@@ -60,7 +60,7 @@ public class ModBlocks
     public static final Block XENON_BLOCK = registerBlock("xenon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block RADON_BLOCK = registerBlock("radon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block GLOWING_GLASS_BLOCK = registerBlock("glowing_glass_block", new GlowingGlassBlock());
-    //public static final Block GLOWSTONE_CENTRIFUGE = registerBlock("glowstone_centrifuge", new GasCentrifugeBlock());
+    public static final Block GLOWSTONE_CENTRIFUGE = registerBlock("glowstone_centrifuge", new GasCentrifugeBlock());
 
     public static final Block OCC = registerBlock("occ", new OmegaChunkCleanerBlock());
 
