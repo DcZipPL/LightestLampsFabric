@@ -1,6 +1,7 @@
 package tk.dczippl.lightestlamp.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import static net.minecraft.block.Blocks.REDSTONE_LAMP;
 
-public class GenerableLampBlock extends BlockWithEntity {
+public class GenerableLampBlock extends BlockWithEEntity {
 	public final LampType lampType;
 	public final boolean waterResistant;
 

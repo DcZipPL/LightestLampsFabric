@@ -21,7 +21,7 @@ import java.util.List;
 
 import static net.minecraft.block.Blocks.REDSTONE_LAMP;
 
-public class AlchemicalLampBlock extends BlockWithEntity
+public class AlchemicalLampBlock extends BlockWithEEntity
 {
     public AlchemicalLampBlock()
     {
