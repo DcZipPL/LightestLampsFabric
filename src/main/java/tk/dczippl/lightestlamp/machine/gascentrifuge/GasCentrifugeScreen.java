@@ -21,7 +21,7 @@ import java.util.Collections;
 @Environment(EnvType.CLIENT)
 public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandler>
 {
-    public static final Identifier texture = new Identifier(LightestLampsMod.MOD_ID,"textures/gui/container/gas_centrifuge.png");
+    public static final Identifier texture = new Identifier(LightestLampsMod.MOD_ID,"textures/gui/container/glowstone_centrifuge.png");
     private boolean field_214090_m;
     private GasCentrifugeScreenHandler sc;
 

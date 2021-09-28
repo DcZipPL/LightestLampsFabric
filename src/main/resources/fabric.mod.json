@@ -6,14 +6,14 @@
   "name": "Lightest Lamps",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Prefex (DcZipPL)"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://dczippl.tk/",
+    "sources": "https://github.com/DcZipPL/LightestLampsFabric"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/lightestlamp/icon.png",
 
   "environment": "*",
