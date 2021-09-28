@@ -40,7 +40,6 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     
     @Override
     protected void drawForeground(MatrixStack matrixStack, int mouseX, int mouseY) {
-        //super.drawGuiContainerForegroundLayer(matrixStack, x, y);
         int tmp = 75;
         this.textRenderer.draw(matrixStack, this.title, (float)(this.x / 2 - tmp / 2), 6.0F, 4210752);
         this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.y - 96 + 2), 4210752);
@@ -93,7 +92,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     protected void drawBackground(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     
-        MinecraftClient.getInstance().getTextureManager().bindTexture(this.texture);
+        MinecraftClient.getInstance().getTextureManager().bindTexture(texture);
 
         int marginHorizontal = (this.width - this.x) / 2;
         int marginVertical = (this.height - this.y) / 2;

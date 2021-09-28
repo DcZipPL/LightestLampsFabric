@@ -1,16 +1,22 @@
 package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -38,16 +44,29 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient) {
-			//This will call the createScreenHandlerFactory method from BlockWithEntity, which will return our blockEntity casted to
-			//a namedScreenHandlerFactory. If your block class does not extend BlockWithEntity, it needs to implement createScreenHandlerFactory.
-			NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
-			
-			if (screenHandlerFactory != null) {
-				//With this call the server will request the client to open the appropriate Screenhandler
-				player.openHandledScreen(screenHandlerFactory);
-			}
+			//With this call the server will request the client to open the appropriate Screenhandler
+			player.openHandledScreen(handler((BlockPos) pos));
 		}
 		return ActionResult.SUCCESS;
+	}
+	
+	private static NamedScreenHandlerFactory handler(BlockPos pos) {
+		return new ExtendedScreenHandlerFactory() {
+			@Override
+			public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+				buf.writeBlockPos(pos);
+			}
+			
+			@Override
+			public Text getDisplayName() {
+				return new LiteralText("");
+			}
+			
+			@Override
+			public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+				return new GasCentrifugeScreenHandler(syncId, inv);
+			}
+		};
 	}
 
 	@Nullable

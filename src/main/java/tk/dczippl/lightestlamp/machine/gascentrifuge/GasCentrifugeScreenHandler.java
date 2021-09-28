@@ -37,7 +37,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         this.furnaceInventory = furnaceInventoryIn;
         this.delegate = delegate;
         this.world = playerInventoryIn.player.world;
-        this.pos = buf.readBlockPos();
+        if (buf != null) this.pos = buf.readBlockPos(); else this.pos = new BlockPos(0,0,0);
         this.addSlot(new Slot(furnaceInventoryIn, 0, 16, 35));
         this.addSlot(new Slot(furnaceInventoryIn, 1, 41, 35));
         this.addSlot(new FurnaceOutputSlot(playerInventoryIn.player, furnaceInventoryIn, 2, 99, 19));
@@ -62,8 +62,12 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     {
         this(ModMiscs.CENTRIFUGE_SH, i, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(7),packetBuffer);
     }
-    
-    public BlockPos getBlockPos()
+	
+	public GasCentrifugeScreenHandler(int syncId, PlayerInventory inv) {
+        this(ModMiscs.CENTRIFUGE_SH, syncId, inv, new SimpleInventory(6), new ArrayPropertyDelegate(7),null);
+	}
+	
+	public BlockPos getBlockPos()
     {
         return pos;
     }
