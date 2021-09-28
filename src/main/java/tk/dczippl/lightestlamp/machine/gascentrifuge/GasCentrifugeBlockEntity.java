@@ -17,8 +17,10 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.tag.ItemTags;
@@ -44,15 +46,10 @@ import java.util.Random;
 
 public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements SidedInventory, BlockEntityTicker<GasCentrifugeBlockEntity>
 {
-    public GasCentrifugeBlockEntity(BlockEntityType<?> type)
-    {
-        super(type);
+    public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
+        super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
     }
-    public GasCentrifugeBlockEntity()
-    {
-        super(ModBlockEntities.CENTRIFUGE_TE);
-    }
-
+    
     @Override
     protected Text getContainerName()
     {
@@ -61,9 +58,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
     protected ScreenHandler createScreenHandler(int id, PlayerInventory player)
     {
-        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer(8,8));
+        PacketByteBuf buffer = new PacketByteBuf(Unpooled.buffer(8,8));
         buffer.writeBlockPos(pos);
-        return new GasCentrifugeScreenHandler(ModContainers.GAS_CENTRIFUGE,id, player, this, this.furnaceData, buffer);
+        return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.furnaceData, buffer);
     }
 
     /*public FluidTank tank = new FluidTank(4000);*/
@@ -94,7 +91,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                 case 4:
                     return GasCentrifugeBlockEntity.this.liquidMode;
                 case 5:
-                    return GasCentrifugeBlockEntity.this.tank.getFluidAmount();
+                    return -1;
                 case 6:
                     return GasCentrifugeBlockEntity.this.ticksBeforeDumping;
                 default:
@@ -162,23 +159,23 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     public static Map<Item, Integer> getBurnTimes() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
 
-        int multiplier = Config.GLOWSTONE_FUEL_MULTIPLIER.get() >= 2 ? Config.GLOWSTONE_FUEL_MULTIPLIER.get() : 2;
-        //Mekanism compatibility
+        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
+        // ~~Mekanism compatibility~~
         // TODO: move to "techreborn"
-        Tag<Item> refined_glowstones = ItemTags.getTagGroup().getTag(new Identifier("forge:ingots/refined_glowstone"));
+        Tag<Item> refined_glowstones = ItemTags.getTagGroup().getTag(new Identifier("fabric:ingots/refined_glowstone"));
         if (refined_glowstones!=null)
             addItemTagBurnTime(map, refined_glowstones,60*multiplier);
-        Tag<Item> refined_glowstones_block = ItemTags.getTagGroup().getTag(new Identifier("forge:storage_blocks/refined_glowstone"));
+        Tag<Item> refined_glowstones_block = ItemTags.getTagGroup().getTag(new Identifier("fabric:storage_blocks/refined_glowstone"));
         if (refined_glowstones_block!=null)
             addItemTagBurnTime(map, refined_glowstones_block,520*multiplier);
-        Tag<Item> refined_glowstones_nugget = ItemTags.getTagGroup().getTag(new Identifier("forge:nuggets/refined_glowstone"));
+        Tag<Item> refined_glowstones_nugget = ItemTags.getTagGroup().getTag(new Identifier("fabric:nuggets/refined_glowstone"));
         if (refined_glowstones_nugget!=null)
             addItemTagBurnTime(map, refined_glowstones_nugget,5*multiplier);
-        Tag<Item> glowstone_blocks = ItemTags.getTagGroup().getTag(new Identifier("forge:storage_blocks/glowstone"));
+        Tag<Item> glowstone_blocks = ItemTags.getTagGroup().getTag(new Identifier("fabric:storage_blocks/glowstone"));
         if (glowstone_blocks!=null)
             addItemTagBurnTime(map, glowstone_blocks,360*multiplier);
-
-        addItemTagBurnTime(map, Tags.Items.DUSTS_GLOWSTONE,40*multiplier);
+    
+        addItemBurnTime(map, Items.GLOWSTONE_DUST,40*multiplier);
         addItemBurnTime(map, Blocks.GLOWSTONE.asItem(), 160*multiplier);
         addItemBurnTime(map, Blocks.SHROOMLIGHT.asItem(), 240*multiplier);
         return map;
@@ -209,7 +206,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
         this.redstoneMode = nbt.getInt("RedstoneMode");
         this.liquidMode = nbt.getInt("LiquidMode");
-        this.tank.setFluid(new FluidStack(ModFluids.BROMINE_FLUID.get(),nbt.getInt("WasteAmount")));
     }
 
     @Override
@@ -220,7 +216,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         nbt.putInt("CookTimeTotal", this.cookTimeTotal);
         nbt.putInt("RedstoneMode", this.redstoneMode);
         nbt.putInt("LiquidMode", this.liquidMode);
-        nbt.putInt("WasteAmount", this.tank.getFluidAmount());
         Inventories.writeNbt(nbt, this.items);
         return nbt;
     }
@@ -235,42 +230,20 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         }
 
         if (!this.world.isClient) {
-            if (liquidMode == 2)
-            {
-                if (ticksBeforeDumping <= 0)
-                {
-                    if (tank.getFluidAmount() >= 10)
-                    {
-                        world.getNonSpectatingEntities(Entity.class, new Box(pos.offset(Direction.NORTH, 4).offset(Direction.WEST, 4).offset(Direction.UP, 4),
-                                pos.offset(Direction.SOUTH, 4).offset(Direction.EAST, 4).offset(Direction.DOWN, 4))).forEach(entity ->
-                        {
-                            if (entity instanceof LivingEntity)
-                                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(ModMiscs.BROMINE_POISON, 80, 0));
-                        });
-                        tank.drain(10, IFluidHandler.FluidAction.EXECUTE);
-                    }
-                }
-                else
-                {
-                    ticksBeforeDumping--;
-                }
-            }
-
             ItemStack itemstack = this.items.get(1);
             if (this.isBurning() || !itemstack.isEmpty() && !this.items.get(0).isEmpty()) {
                 if (!this.isBurning() && this.canSmelt()) {
                     this.burnTime = this.getBurnTime(itemstack);
-                    //this.recipesUsed = this.burnTime;
                     if (this.isBurning()) {
                         flag1 = true;
-                        if (itemstack.hasContainerItem())
-                            this.items.set(1, itemstack.getContainerItem());
+                        if (itemstack.getItem().hasRecipeRemainder())
+                            this.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
                         else
                         if (!itemstack.isEmpty()) {
                             Item item = itemstack.getItem();
                             itemstack.decrement(1);
                             if (itemstack.isEmpty()) {
-                                this.items.set(1, itemstack.getContainerItem());
+                                this.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
                             }
                         }
                     }
@@ -313,7 +286,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             if (itemstacks[0].isEmpty()&&itemstacks[1].isEmpty()&&itemstacks[2].isEmpty()&&itemstacks[3].isEmpty())
             {
                 return false;
-            } else if (redstoneMode==1&&world.getReceivedRedstonePower(pos)>0||redstoneMode==2&&world.getRedstonePowerFromNeighbors(pos)<1)
+            } else if (redstoneMode==1&&world.getReceivedRedstonePower(pos)>0||redstoneMode==2&&world.getReceivedRedstonePower(pos)<1)
             {
                 return false;
             } else {
@@ -327,7 +300,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                         output0[i] =  true;
                     } else if (!itemstack1.isItemEqual(itemstack)) {
                         output0[i] =  false;
-                    } else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxCountPerStack() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
+                    } else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxCountPerStack() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxCount()) {
                         // Forge fix: make furnace respect stack sizes in furnace recipes
                         output0[i] =  true;
                     } else {
@@ -351,7 +324,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             ItemStack itemstack3 = this.items.get(3);
             ItemStack itemstack4 = this.items.get(4);
             ItemStack itemstack5 = this.items.get(5);
-            TheoreticalFluid theoreticalFluid = GasCentrifugeRecipe.getFluid(items.get(0));
             if (itemstack2.isEmpty()) {
                 this.items.set(2, itemstacks[0].copy());
             } else if (itemstack2.getItem() == itemstacks[0].getItem()) {
@@ -392,13 +364,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
             if (itemstack.getDamage() >= itemstack.getMaxDamage())
                 this.items.set(0, ItemStack.EMPTY);
-
-            if (theoreticalFluid != null)
-            {
-                if (tank.getFluidAmount()<1000&&furnaceData.get(4)==0||tank.getFluidAmount()<4000&&furnaceData.get(4)==1)
-                    //furnaceData.set(5,furnaceData.get(5)+theoreticalFluid.amount);
-                    tank.fill(new FluidStack(ModFluids.BROMINE_FLUID.get(),theoreticalFluid.amount), IFluidHandler.FluidAction.EXECUTE);
-            }
         }
     }
 
@@ -415,21 +380,21 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         return getBurnTime(stack) > 0;
     }
 
-    /*@Override
-    public int[] getSlotsForFace(Direction side) {
+    @Override
+    public int[] getAvailableSlots(Direction side) {
         if (side == Direction.DOWN) {
             return SLOTS_DOWN;
         } else {
             return SLOTS_UP;
         }
-    }*/
+    }
 
     /**
      * Returns true if automation can insert the given item in the given slot from the given side.
      */
     @Override
     public boolean canInsert(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+        return this.isValid(index, itemStackIn);
     }
 
     /**
@@ -507,11 +472,11 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
      * Don't rename this method to canInteractWith due to conflicts with Container
      */
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
+    public boolean canPlayerUse(PlayerEntity player) {
         if (this.world.getBlockEntity(this.pos) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.squaredDistanceTo((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
         }
     }
 
@@ -524,24 +489,21 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
      * guis use Slot.isItemValid
      */
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if (index == 0) {
+    public boolean isValid(int slot, ItemStack stack) {
+        if (slot == 0) {
             return isFilter(stack);
-        } else if (index == 1) {
+        } else if (slot == 1) {
             return isFuel(stack);
         } else {
             return false;
         }
     }
-
+    
     @Override
     public void clear() {
         this.items.clear();
     }
-
-    public void onCrafting(PlayerEntity player) {
-    }
-
+    
     /*net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
             net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
@@ -561,49 +523,4 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         }
         return super.getCapability(capability, facing);
     }*/
-
-    public FluidTank getTank()
-    {
-        return tank;
-    }
-
-    @Override
-    public IFluidTank[] getTankInfo(Direction from)
-    {
-        return new IFluidTank[]{tank};
-    }
-
-    @Override
-    public IFluidTank[] getAllTanks()
-    {
-        return new IFluidTank[]{tank};
-    }
-
-
-    @Override
-    public int fill(Direction from, @NotNull FluidStack resource, IFluidHandler.FluidAction fluidAction) {
-        if (canFill(from, resource)) {
-            return tank.fill(resource, fluidAction);
-        }
-        return 0;
-    }
-
-    @NotNull
-    @Override
-    public FluidStack drain(Direction from, int maxDrain, IFluidHandler.FluidAction fluidAction) {
-        if (canDrain(from, FluidStack.EMPTY)) {
-            return tank.drain(maxDrain, fluidAction);
-        }
-        return FluidStack.EMPTY;
-    }
-
-    @Override
-    public boolean canFill(Direction from, @NotNull FluidStack fluid) {
-        return true;
-    }
-
-    @Override
-    public boolean canDrain(Direction from, @NotNull FluidStack fluid) {
-        return true;
-    }
 }

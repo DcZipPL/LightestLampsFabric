@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
 import tk.dczippl.lightestlamp.blocks.*;
+import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
 import static net.minecraft.block.Blocks.*;
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;

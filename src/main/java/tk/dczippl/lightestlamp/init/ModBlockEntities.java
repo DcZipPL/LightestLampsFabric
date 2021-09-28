@@ -7,6 +7,7 @@ import tk.dczippl.lightestlamp.blocks.entity.AlchemicalLampBlockEntity;
 import tk.dczippl.lightestlamp.blocks.entity.ChunkCleanerBlockEntity;
 import tk.dczippl.lightestlamp.blocks.entity.GenerableLampBlockEntity;
 import tk.dczippl.lightestlamp.blocks.entity.OmegaChunkCleanerBlockEntity;
+import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 
 public class ModBlockEntities
 {
@@ -19,7 +20,7 @@ public class ModBlockEntities
     public static BlockEntityType<OmegaChunkCleanerBlockEntity> OCC_BE = FabricBlockEntityTypeBuilder.create(OmegaChunkCleanerBlockEntity::new,ModBlocks.OCC).build();
 
     public static BlockEntityType<AlchemicalLampBlockEntity> ALCHEMICALLAMP_TE = FabricBlockEntityTypeBuilder.create(AlchemicalLampBlockEntity::new,ModBlocks.ALCHEMICAL_LAMP).build();
-    //public static BlockEntityType<GasCentrifugeTile> CENTRIFUGE_BE = FabricBlockEntityTypeBuilder.create(GasCentrifugeTile::new,ModBlocks.GLOWSTONE_CENTRIFUGE).build();
+    public static BlockEntityType<GasCentrifugeBlockEntity> CENTRIFUGE_BE = FabricBlockEntityTypeBuilder.create(GasCentrifugeBlockEntity::new,ModBlocks.GLOWSTONE_CENTRIFUGE).build();
 
     public static void init() {
     }

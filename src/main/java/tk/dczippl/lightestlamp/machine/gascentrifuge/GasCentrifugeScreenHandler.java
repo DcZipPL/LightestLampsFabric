@@ -4,29 +4,20 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.inventory.container.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.*;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.IntArray;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import tk.dczippl.lightestlamp.Config;
-import tk.dczippl.lightestlamp.init.ModContainers;
+import tk.dczippl.lightestlamp.init.ModMiscs;
+import tk.dczippl.lightestlamp.plugins.Config;
 
 public class GasCentrifugeScreenHandler extends ScreenHandler
 {
@@ -35,11 +26,11 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     public final PropertyDelegate delegate;
     protected final World world;
 
-    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, PacketBuffer buf) {
+    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, PacketByteBuf buf) {
         this(containerTypeIn, id, playerInventoryIn, new SimpleInventory(6), new ArrayPropertyDelegate(7),buf);
     }
 
-    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate, PacketBuffer buf) {
+    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate, PacketByteBuf buf) {
         super(containerTypeIn, id);
         checkSize(furnaceInventoryIn, 6);
         checkDataCount(delegate, 7);
@@ -67,11 +58,11 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         this.addProperties(delegate);
     }
 
-    public GasCentrifugeScreenHandler(int i, PlayerInventory playerInventory, PacketBuffer packetBuffer)
+    public GasCentrifugeScreenHandler(int i, PlayerInventory playerInventory, PacketByteBuf packetBuffer)
     {
-        this(ModContainers.GAS_CENTRIFUGE, i, playerInventory, new Inventory(6), new IntArray(7),packetBuffer);
+        this(ModMiscs.CENTRIFUGE_SH, i, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(7),packetBuffer);
     }
-
+    
     public BlockPos getBlockPos()
     {
         return pos;
@@ -85,16 +76,16 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
      * Determines whether supplied player can use this container
      */
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return this.furnaceInventory.isUsableByPlayer(playerIn);
+    public boolean canUse(PlayerEntity player) {
+        return this.furnaceInventory.canPlayerUse(player);
     }
-
+    
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
      */
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack transferSlot(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasStack()) {
@@ -105,7 +96,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
                     return ItemStack.EMPTY;
                 }
 
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onQuickTransfer(itemstack1, itemstack);
             } else if (index != 1 && index != 0) {
                 if (index >= 3 && index < 30) {
                     if (!this.insertItem(itemstack1, 30, 39, false)) {
@@ -144,7 +135,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     @Environment(EnvType.CLIENT)
     public int getBurnLeftScaled()
     {
-        int multiplier = Config.GLOWSTONE_FUEL_MULTIPLIER.get() >= 2 ? Config.GLOWSTONE_FUEL_MULTIPLIER.get() : 2;
+        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
         return this.delegate.get(0) * 13 / 180 / multiplier;
     }
 

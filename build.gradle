@@ -25,6 +25,15 @@ repositories {
 		name = "BuildCraft"
 		url = "https://mod-buildcraft.com/maven"
 	}
+	maven {
+		name = "dblsaiko"
+		url = "https://maven.dblsaiko.net/"
+	}
+	maven {
+		name = 'Ladysnake Mods'
+		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+	}
+	maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
@@ -36,6 +45,10 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	modImplementation("alexiil.mc.lib:libblockattributes-core:0.9.0")
+	//modImplementation("alexiil.mc.lib:libblockattributes-items:0.9.0")
+	modImplementation("alexiil.mc.lib:libblockattributes-fluids:0.9.0")
+
 	modApi("me.shedaniel.cloth:cloth-config-fabric:5.0.38") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
@@ -45,9 +58,24 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
-	modCompile "alexiil.mc.lib:libblockattributes-core:0.9.0"
-	modCompile "alexiil.mc.lib:libblockattributes-items:0.9.0"
-	modCompile "alexiil.mc.lib:libblockattributes-fluids:0.9.0"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:6.0.279-alpha"
+	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:6.0.279-alpha"
+
+	/*// optional dev env annotation support
+	compileOnly "org.apiguardian:apiguardian-api:1.0.0"
+	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+
+	// Replace modImplementation with modApi if you expose components in your own API
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:3.1.1"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-util:3.1.1"
+	modImplementation "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:3.1.1"
+	// Includes Cardinal Components API as a Jar-in-Jar dependency (optional)
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:3.1.1"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-util:3.1.1"
+	include "io.github.onyxstudios.Cardinal-Components-API:cardinal-components-block:3.1.1"
+
+	modImplementation ("grondag:fluidity-mc117:${project.fluidity_version}") { transitive = false }
+	include "grondag:fluidity-mc117:${project.fluidity_version}"*/
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
