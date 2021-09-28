@@ -32,6 +32,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModFluids;
 import tk.dczippl.lightestlamp.init.ModMiscs;
@@ -580,14 +581,14 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
 
     @Override
-    public int fill(Direction from, @Nonnull FluidStack resource, IFluidHandler.FluidAction fluidAction) {
+    public int fill(Direction from, @NotNull FluidStack resource, IFluidHandler.FluidAction fluidAction) {
         if (canFill(from, resource)) {
             return tank.fill(resource, fluidAction);
         }
         return 0;
     }
 
-    @Nonnull
+    @NotNull
     @Override
     public FluidStack drain(Direction from, int maxDrain, IFluidHandler.FluidAction fluidAction) {
         if (canDrain(from, FluidStack.EMPTY)) {
@@ -597,12 +598,12 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     }
 
     @Override
-    public boolean canFill(Direction from, @Nonnull FluidStack fluid) {
+    public boolean canFill(Direction from, @NotNull FluidStack fluid) {
         return true;
     }
 
     @Override
-    public boolean canDrain(Direction from, @Nonnull FluidStack fluid) {
+    public boolean canDrain(Direction from, @NotNull FluidStack fluid) {
         return true;
     }
 }
