@@ -22,22 +22,20 @@ import tk.dczippl.lightestlamp.plugins.Config;
 public class GasCentrifugeScreenHandler extends ScreenHandler
 {
     private final Inventory furnaceInventory;
-    private final BlockPos pos;
     public final PropertyDelegate delegate;
     protected final World world;
 
-    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, PacketByteBuf buf) {
-        this(containerTypeIn, id, playerInventoryIn, new SimpleInventory(6), new ArrayPropertyDelegate(7),buf);
+    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn) {
+        this(containerTypeIn, id, playerInventoryIn, new SimpleInventory(6), new ArrayPropertyDelegate(7));
     }
 
-    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate, PacketByteBuf buf) {
+    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate) {
         super(containerTypeIn, id);
         checkSize(furnaceInventoryIn, 6);
         checkDataCount(delegate, 7);
         this.furnaceInventory = furnaceInventoryIn;
         this.delegate = delegate;
         this.world = playerInventoryIn.player.world;
-        if (buf != null) this.pos = buf.readBlockPos(); else this.pos = new BlockPos(0,0,0);
         this.addSlot(new Slot(furnaceInventoryIn, 0, 16, 35));
         this.addSlot(new Slot(furnaceInventoryIn, 1, 41, 35));
         this.addSlot(new FurnaceOutputSlot(playerInventoryIn.player, furnaceInventoryIn, 2, 99, 19));
@@ -58,19 +56,9 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         this.addProperties(delegate);
     }
 
-    public GasCentrifugeScreenHandler(int i, PlayerInventory playerInventory, PacketByteBuf packetBuffer)
-    {
-        this(ModMiscs.CENTRIFUGE_SH, i, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(7),packetBuffer);
-    }
-	
 	public GasCentrifugeScreenHandler(int syncId, PlayerInventory inv) {
-        this(ModMiscs.CENTRIFUGE_SH, syncId, inv, new SimpleInventory(6), new ArrayPropertyDelegate(7),null);
+        this(ModMiscs.CENTRIFUGE_SH, syncId, inv, new SimpleInventory(6), new ArrayPropertyDelegate(7));
 	}
-	
-	public BlockPos getBlockPos()
-    {
-        return pos;
-    }
 
     public void clear() {
         this.furnaceInventory.clear();

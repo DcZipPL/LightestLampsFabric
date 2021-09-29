@@ -1,6 +1,6 @@
 {
 	"block.lightestlamp.luminatium_block":"Luminatium Block",
-	"block.lightestlamp.gas_centrifuge":"Gas Centrifuge",
+	"block.lightestlamp.glowstone_centrifuge":"Glowstone Centrifuge",
 	"block.lightestlamp.vanta_black":"Vanta Black",
 
 	"block.lightestlamp.jungle_lantern":"Lamp Fruit",
@@ -123,7 +123,7 @@
 	"tooltip.lightestlamp.book.title3": "Centrifuge Recipes",
 	"tooltip.lightestlamp.book.title4": "More: https://github.com/DcZipPL/lightestlampsmod/wiki",
 
-	"container.gascentrifuge": "Gas Centrifuge",
+	"container.glowstonecentrifuge": "Glowstone Centrifuge",
 
 	"jei.lightestlamp.bromine2": "Created fluid: Boron 2 mb",
 	"jei.lightestlamp.bromine5": "Created fluid: Boron 5 mb",
@@ -133,7 +133,7 @@
 	"jei.lightestlamp.bromine75": "Created fluid: Boron 75 mb",
 	"jei.lightestlamp.instructions.moonshard": "Moon Shards is dropping from any mob during full moon.",
 	"jei.lightestlamp.instructions.mesh": "Lanthanum Mesh + Netherite Ingot (Smithing Table)",
-	"jei.lightestlamp.gascentrifuge": "Gas Centrifuge",
+	"jei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
 
 	"gas.lightestlamp.bromine_vapour": "Bromine Vapor",
 	"crop.lightestlamp.glowing_dust": "Glowing Dust",

@@ -1,0 +1,6 @@
+{
+  "parent": "lightestlamp:block/glowstone_centrifuge",
+  "textures": {
+    "layer0": "lightestlamp:block/glowstone_centrifuge"
+  }
+}

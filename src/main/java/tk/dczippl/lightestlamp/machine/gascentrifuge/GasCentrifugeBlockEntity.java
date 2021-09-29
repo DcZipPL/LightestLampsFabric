@@ -51,9 +51,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
     protected ScreenHandler createScreenHandler(int id, PlayerInventory player)
     {
-        PacketByteBuf buffer = new PacketByteBuf(Unpooled.buffer(8,8));
-        buffer.writeBlockPos(pos);
-        return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.furnaceData, buffer);
+        return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.furnaceData);
     }
 
     /*public FluidTank tank = new FluidTank(4000);*/
