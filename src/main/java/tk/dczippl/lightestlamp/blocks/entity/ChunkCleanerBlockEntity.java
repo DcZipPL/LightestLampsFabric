@@ -12,7 +12,7 @@ import tk.dczippl.lightestlamp.init.ModBlocks;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
-public class ChunkCleanerBlockEntity extends BlockEntity implements BlockEntityTicker
+public class ChunkCleanerBlockEntity extends BlockEntity
 {
     private int cooldown = 0;
     
@@ -21,11 +21,10 @@ public class ChunkCleanerBlockEntity extends BlockEntity implements BlockEntityT
         super(ModBlockEntities.CC_BE,pos,state);
     }
 
-    @Override
-    public void tick(World world, BlockPos pos, BlockState state, BlockEntity blockEntity)
+    public static void tick(World world, BlockPos pos, BlockState state, ChunkCleanerBlockEntity be)
     {
         if (world.isClient) return;
-        if (cooldown >= 1)
+        if (be.cooldown >= 1)
         {
             BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
                 if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR)
@@ -49,7 +48,7 @@ public class ChunkCleanerBlockEntity extends BlockEntity implements BlockEntityT
             world.removeBlockEntity(pos);
             //Recalc Light in nearby chunks
         }
-        cooldown++;
+        be.cooldown++;
     }
 
     private boolean isAir(BlockPos pos)

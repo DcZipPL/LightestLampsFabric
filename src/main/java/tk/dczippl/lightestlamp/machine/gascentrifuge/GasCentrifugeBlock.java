@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -24,6 +26,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import tk.dczippl.lightestlamp.blocks.BlockWithEEntity;
+import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModFluids;
 
 import static net.minecraft.block.Blocks.IRON_BLOCK;
@@ -113,6 +116,12 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	@Override
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
+	}
+	
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, ModBlockEntities.CENTRIFUGE_BE, GasCentrifugeBlockEntity::tick);
 	}
 	
 	@Override

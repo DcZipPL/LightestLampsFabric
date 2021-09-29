@@ -5,6 +5,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Style;
@@ -19,6 +21,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
 import tk.dczippl.lightestlamp.blocks.entity.GenerableLampBlockEntity;
+import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
 import java.util.List;
@@ -51,7 +54,13 @@ public class GenerableLampBlock extends BlockWithEEntity {
 		if (lampType == LampType.OMEGA) world.setBlockState(pos, ModBlocks.OCC.getDefaultState(),3);
 		world.setBlockState(pos, ModBlocks.CHUNK_CLEANER.getDefaultState(),3);
 	}
-
+	
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, ModBlockEntities.GENERAL_LAMP_BE, GenerableLampBlockEntity::tick);
+	}
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		tooltip.add(new TranslatableText("tooltip.lightestlamp.type."+lampType.name().toLowerCase()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));

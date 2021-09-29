@@ -44,7 +44,7 @@ import tk.dczippl.lightestlamp.plugins.Config;
 import java.util.Map;
 import java.util.Random;
 
-public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements SidedInventory, BlockEntityTicker<GasCentrifugeBlockEntity>
+public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements SidedInventory
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
@@ -219,62 +219,61 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         Inventories.writeNbt(nbt, this.items);
         return nbt;
     }
-
-    @Override
-    public void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity blockEntity)
+    
+    public static void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity be)
     {
-        boolean flag = this.isBurning();
+        boolean flag = be.isBurning();
         boolean flag1 = false;
-        if (this.isBurning()) {
-            --this.burnTime;
+        if (be.isBurning()) {
+            --be.burnTime;
         }
-
-        if (!this.world.isClient) {
-            ItemStack itemstack = this.items.get(1);
-            if (this.isBurning() || !itemstack.isEmpty() && !this.items.get(0).isEmpty()) {
-                if (!this.isBurning() && this.canSmelt()) {
-                    this.burnTime = this.getBurnTime(itemstack);
-                    if (this.isBurning()) {
+        
+        if (!be.world.isClient) {
+            ItemStack itemstack = be.items.get(1);
+            if (be.isBurning() || !itemstack.isEmpty() && !be.items.get(0).isEmpty()) {
+                if (!be.isBurning() && be.canSmelt()) {
+                    be.burnTime = be.getBurnTime(itemstack);
+                    if (be.isBurning()) {
                         flag1 = true;
                         if (itemstack.getItem().hasRecipeRemainder())
-                            this.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
+                            be.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
                         else
                         if (!itemstack.isEmpty()) {
                             Item item = itemstack.getItem();
                             itemstack.decrement(1);
                             if (itemstack.isEmpty()) {
-                                this.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
+                                be.items.set(1, new ItemStack(itemstack.getItem().getRecipeRemainder()));
                             }
                         }
                     }
                 }
-
-                if (this.isBurning() && this.canSmelt()) {
-                    ++this.cookTime;
-                    if (this.cookTime == this.cookTimeTotal) {
-                        this.cookTime = 0;
-                        this.cookTimeTotal = getCookTimeTotal();
-                        this.placeItemsInRightSlot();
+                
+                if (be.isBurning() && be.canSmelt()) {
+                    ++be.cookTime;
+                    if (be.cookTime == be.cookTimeTotal) {
+                        be.cookTime = 0;
+                        be.cookTimeTotal = be.getCookTimeTotal();
+                        be.placeItemsInRightSlot();
                         flag1 = true;
                     }
                 } else {
-                    this.cookTime = 0;
+                    be.cookTime = 0;
                 }
-            } else if (!this.isBurning() && this.cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if (!be.isBurning() && be.cookTime > 0) {
+                be.cookTime = MathHelper.clamp(be.cookTime - 2, 0, be.cookTimeTotal);
             }
-
-            if (flag != this.isBurning()) {
+            
+            if (flag != be.isBurning()) {
                 flag1 = true;
-                //this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, Boolean.valueOf(this.isBurning())), 3);
+                //be.world.setBlockState(be.pos, be.world.getBlockState(be.pos).with(AbstractFurnaceBlock.LIT, Boolean.valueOf(be.isBurning())), 3);
             }
         }
-
+        
         if (flag1) {
-            this.markDirty();
+            be.markDirty();
         }
     }
-
+    
     private int getCookTimeTotal()
     {
         return 100;
