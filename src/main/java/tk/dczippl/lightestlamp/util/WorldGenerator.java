@@ -34,6 +34,6 @@ public class WorldGenerator
         RegistryKey<ConfiguredFeature<?, ?>> mozaiteOre = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
                 new Identifier(MOD_ID, "mozaite_ore"));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, mozaiteOre.getValue(), MOZAITE_ORE);
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, mozaiteOre);
+        BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, mozaiteOre);
     }
 }
