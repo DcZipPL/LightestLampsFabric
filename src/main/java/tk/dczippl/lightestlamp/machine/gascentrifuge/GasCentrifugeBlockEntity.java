@@ -5,12 +5,7 @@ import io.netty.buffer.Unpooled;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -30,13 +25,10 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
-import tk.dczippl.lightestlamp.init.ModFluids;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
 import tk.dczippl.lightestlamp.plugins.Config;
@@ -48,6 +40,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
+        items = DefaultedList.ofSize(6, ItemStack.EMPTY);
     }
     
     @Override
@@ -68,7 +61,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_DOWN = new int[]{2, 3, 4, 5};
     //private static final int[] SLOTS_HORIZONTAL = new int[]{1};
-    protected DefaultedList<ItemStack> items = DefaultedList.ofSize(6, ItemStack.EMPTY);
+    protected DefaultedList<ItemStack> items;
     private int ticksBeforeDumping;
     private int burnTime;
     private int fluid;
@@ -466,7 +459,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             this.markDirty();
         }
     }
-
     /**
      * Don't rename this method to canInteractWith due to conflicts with Container
      */

@@ -66,11 +66,4 @@ public class GasCentrifugeRecipe
     public ItemStack left_up_output;
     public ItemStack right_bottom_output;
     public ItemStack left_bottom_output;
-
-    public enum TheoreticalFluidTypes
-    {
-        Water,
-        Lava,
-        Bromine
-    }
 }

@@ -22,7 +22,6 @@ public class LightAirBlock extends AirBlock
     public LightAirBlock()
     {
         super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
-        //this.setDefaultState(this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(true)));
     }
 
     VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -31,7 +30,7 @@ public class LightAirBlock extends AirBlock
         return rs;
     }
 
-    @Nullable
+    /*@Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         return fluidState.isIn(FluidTags.WATER) && fluidState.getLevel() == 8 ? super.getPlacementState(ctx) : null;
@@ -56,5 +55,5 @@ public class LightAirBlock extends AirBlock
 
     public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
         return false;
-    }
+    }*/
 }

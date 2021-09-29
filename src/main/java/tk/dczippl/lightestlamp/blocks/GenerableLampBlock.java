@@ -1,6 +1,7 @@
 package tk.dczippl.lightestlamp.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -9,6 +10,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.StateManager;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
@@ -27,6 +29,7 @@ import tk.dczippl.lightestlamp.init.ModBlocks;
 import java.util.List;
 
 import static net.minecraft.block.Blocks.REDSTONE_LAMP;
+import static net.minecraft.state.property.Properties.POWERED;
 
 public class GenerableLampBlock extends BlockWithEEntity {
 	public final LampType lampType;
@@ -59,6 +62,12 @@ public class GenerableLampBlock extends BlockWithEEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return checkType(type, ModBlockEntities.GENERAL_LAMP_BE, GenerableLampBlockEntity::tick);
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(POWERED);
+		super.appendProperties(builder);
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
@@ -90,17 +91,19 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 
     @Override
     protected void drawBackground(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        com.mojang.blaze3d.systems.RenderSystem.setShader(GameRenderer::getPositionTexShader);
         com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        com.mojang.blaze3d.systems.RenderSystem.setShaderTexture(0, texture);
     
         MinecraftClient.getInstance().getTextureManager().bindTexture(texture);
 
-        int marginHorizontal = (this.width - this.x) / 2;
-        int marginVertical = (this.height - this.y) / 2;
+        int marginHorizontal = (this.width - this.backgroundWidth) / 2;
+        int marginVertical = (this.height - this.backgroundHeight) / 2;
 
-        drawTexture(matrixStack, x, y, 0, 0, this.x, this.y, 256,256);
+        drawTexture(matrixStack, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight, 256,256);
 
-        int i = 0;
-        int j = 0;
+        int i = x;
+        int j = y;
 
         if (((GasCentrifugeScreenHandler)this.sc).func_217061_l()) {
             int k = ((GasCentrifugeScreenHandler)this.sc).getBurnLeftScaled()*2;

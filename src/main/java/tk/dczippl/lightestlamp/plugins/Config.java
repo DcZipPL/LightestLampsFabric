@@ -1,6 +1,7 @@
 package tk.dczippl.lightestlamp.plugins;
 
 import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 
@@ -10,6 +11,8 @@ public class Config implements ConfigData
 {
     @Comment("Glowstone Centrifuge: Glowstone fuel multiplier (Bigger multiplier less fuel used) Min: 2, Max: 20, IntValue")
     public static int glowstone_multiplier = 4;
-    @Comment("Generation of Monazite Ore in nether")
+    @Comment("Generation of Monazite Ore in The Nether")
     public static boolean monazite_gen = true;
+    @Comment("Enable Vanilla Mode (Disable Energy)")
+    public static boolean vanilla_mode = false;
 }
