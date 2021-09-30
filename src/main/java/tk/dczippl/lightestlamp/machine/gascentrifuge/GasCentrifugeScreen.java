@@ -9,14 +9,20 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 import tk.dczippl.lightestlamp.util.network.Networking;
 import tk.dczippl.lightestlamp.util.network.PacketButtonModeControl;
 import tk.dczippl.lightestlamp.util.network.PacketButtonRedstone;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("NullableProblems")
 @Environment(EnvType.CLIENT)
@@ -58,22 +64,22 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
                 redstone_tooltip = "Mode: Redstone on";
                 break;
         }
-        String fluid_tooltip = "Mode: Neutralize Waste";
+        String power_tooltip = "Mode: Neutralize Waste";
         switch (sc.delegate.get(4))
         {
             case 0:
-                fluid_tooltip = "Mode: Neutralize Waste";
+                power_tooltip = "Mode: Normal\nMachine works normally.\nMachine require LV-MV power tier.";
                 break;
             case 1:
-                fluid_tooltip = "Mode: Store";
+                power_tooltip = "Mode: Overclocked\n§6Machine is more efficient but requires more power.\n§6Machine require HV power tier.\n§5Efficiency +100%\n§4Power Consumption: +60%";
                 break;
             case 2:
-                fluid_tooltip = "Mode: Dump (Starts dumping after 3 sec)";
+                power_tooltip = "Mode: Passive Mode\n§6Machine dosn't require any energy.\n§4Efficiency -50%\n§5Power Consumption: -100%";
                 break;
         }
-
-        int marginHorizontal = (width - x) / 2;
-        int marginVertical = (height - y) / 2;
+    
+        int marginHorizontal = (this.width - this.backgroundWidth) / 2;
+        int marginVertical = (this.height - this.backgroundHeight) / 2;
 
         //(marginHorizontal+9 <V>,marginHorizontal+20,marginVertical+9 <V>,marginVertical+20, 0 <V>)
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
@@ -84,11 +90,20 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(x,y, true))
         {
-            renderTooltip(matrixStack, Collections.singletonList(new LiteralText(fluid_tooltip)),x-marginHorizontal+4,y-marginVertical+4);
+            renderTooltip(matrixStack, formatUTooltip(power_tooltip),x-marginHorizontal+4,y-marginVertical+4);
         }
         //renderHoveredToolTip(mouseX-marginHorizontal+4,mouseY-marginVertical+4);
     }
-
+    
+    @SuppressWarnings("SimplifyStreamApiCallChains")
+    private List<Text> formatUTooltip(String utooltip) {
+        return Arrays.stream(utooltip.split("\n")).map(
+                s -> new LiteralText(s).setStyle(Style.EMPTY.withColor(
+                        s.contains("§6") ? Formatting.GRAY : s.contains("§4") ? Formatting.RED : s.contains("§5") ? Formatting.GREEN : Formatting.WHITE
+                ))
+        ).collect(Collectors.toUnmodifiableList());
+    }
+    
     @Override
     protected void drawBackground(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         com.mojang.blaze3d.systems.RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -110,11 +125,15 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
             if (k >= 300)
                 k = 299;
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 151, j + 65 + 12 - k, 203, 118 - k, 9, k + 1);
+            this.drawTexture(matrixStack,i + 41 - k, j + 54, 177 - k, 100, k + 1,  5);
         }
-        int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
-        //Z Y T-Z T-Y W H
-        this.drawTexture(matrixStack,i + 160, j + 65 + 13 - m, 212, 120 - m, 9, m + 1);
+        if (sc.delegate.get(4)!=2){
+            int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
+            //Z Y T-Z T-Y W H
+            this.drawTexture(matrixStack,i + 154, j + 19, 177, 99 - m, 14, m + 1);
+        } else {
+            this.drawTexture(matrixStack,i + 154, j + 19, 218, 99, 14, 50);
+        }
         
         switch (sc.delegate.get(1))
         {
@@ -147,8 +166,8 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int id) {
-        int marginHorizontal = (width - x) / 2;
-        int marginVertical = (height - y) / 2;
+        int marginHorizontal = (this.width - this.backgroundWidth) / 2;
+        int marginVertical = (this.height - this.backgroundHeight) / 2;
         //Main.LOGGER.info("Clicked at: " + mouseX + ":" + mouseY + ":" + id + ", With margin: " + (mouseX - marginHorizontal) + ":" + (mouseY - marginVertical) + ":" + id);
 
         if (mouseX - marginHorizontal >= 9 && mouseX - marginHorizontal <= 20)

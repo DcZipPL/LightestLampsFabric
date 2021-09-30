@@ -51,7 +51,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
     protected ScreenHandler createScreenHandler(int id, PlayerInventory player)
     {
-        return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.furnaceData);
+        return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.dataDelegate);
     }
 
     /*public FluidTank tank = new FluidTank(4000);*/
@@ -62,12 +62,12 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     protected DefaultedList<ItemStack> items;
     private int ticksBeforeDumping;
     private int burnTime;
-    private int fluid;
+    private int temppower;
     private int cookTime;
     private int cookTimeTotal;
     private int redstoneMode;
     private int liquidMode;
-    public final PropertyDelegate furnaceData = new PropertyDelegate() {
+    public final PropertyDelegate dataDelegate = new PropertyDelegate() {
         @Override
         public int get(int index) {
             switch(index) {
@@ -82,7 +82,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                 case 4:
                     return GasCentrifugeBlockEntity.this.liquidMode;
                 case 5:
-                    return -1;
+                    return GasCentrifugeBlockEntity.this.temppower;
                 case 6:
                     return GasCentrifugeBlockEntity.this.ticksBeforeDumping;
                 default:
@@ -109,6 +109,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     GasCentrifugeBlockEntity.this.liquidMode = value;
                     break;
                 case 5:
+                    GasCentrifugeBlockEntity.this.temppower = value;
                     break;
                 case 6:
                     GasCentrifugeBlockEntity.this.ticksBeforeDumping = value;
@@ -124,27 +125,27 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 
     public void setRedstoneMode(int redstoneMode)
     {
-        furnaceData.set(1,redstoneMode);
+        dataDelegate.set(1,redstoneMode);
     }
 
     public int getRedstoneMode()
     {
-        return furnaceData.get(1);
+        return dataDelegate.get(1);
     }
 
     public void setLiquidMode(int liquidMode)
     {
-        furnaceData.set(4,liquidMode);
+        dataDelegate.set(4,liquidMode);
     }
 
     public int getLiquidMode()
     {
-        return furnaceData.get(4);
+        return dataDelegate.get(4);
     }
 
     public void startTicksBeforeDumping()
     {
-        furnaceData.set(6,60);
+        dataDelegate.set(6,60);
     }
 
     public static Map<Item, Integer> getBurnTimes() {
@@ -213,6 +214,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     
     public static void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity be)
     {
+        if (new Random().nextInt(8) == 2)
+            be.dataDelegate.set(5,be.dataDelegate.get(5)+1);
+        
         boolean flag = be.isBurning();
         boolean flag1 = false;
         if (be.isBurning()) {
