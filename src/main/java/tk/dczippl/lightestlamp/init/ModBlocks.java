@@ -1,6 +1,7 @@
 package tk.dczippl.lightestlamp.init;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -19,7 +20,7 @@ public class ModBlocks
     //public static final Block DARK_AIR = registerBlock("dark_air", () -> new DarkAirBlock());
     public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock());
     public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock());
-    public static final Block CLEAR_LAMP = registerBlock("clear_lamp", new RedstoneLampBlock(FabricBlockSettings.copyOf(REDSTONE_LAMP).luminance(15)));
+    public static final Block CLEAR_LAMP = registerBlock("clear_lamp", new RedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block ALPHA_LAMP = registerBlock("alpha_lamp", new GenerableLampBlock(LampType.ALPHA,false));
     public static final Block BETA_LAMP = registerBlock("beta_lamp", new GenerableLampBlock(LampType.BETA,false));
     public static final Block GAMMA_LAMP = registerBlock("gamma_lamp", new GenerableLampBlock(LampType.GAMMA,false));
@@ -51,7 +52,7 @@ public class ModBlocks
     public static final Block RADON_ROD_BLOCK = registerBlock("radon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
             .hardness(1f).resistance(1)));
-    public static final Block MONAZITE_ORE = registerBlock("monazite_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE)));
+    public static final Block MONAZITE_ORE = registerBlock("monazite_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).breakByTool(FabricToolTags.PICKAXES,2)));
     public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
 
     //Glowstones

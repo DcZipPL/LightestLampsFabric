@@ -34,7 +34,6 @@ public class ModItems
     public static final Item ARGON_ROD = registerItem(new Item(globalSettings), "argon_rod");
     public static final Item NEON_ROD = registerItem(new Item(globalSettings), "neon_rod");
     public static final Item CARBON_NANOTUBE = registerItem(new Item(globalSettings), "carbon_nanotube");
-    public static final Item BROMINE_CRYSTAL = registerItem(new Item(globalSettings), "bromine_crystal");
     public static final Item BORON_MESH = registerItem(new Item(new Item.Settings().maxCount(16).group(ModMiscs.LAMPS_TAB)), "lanthanum_mesh");
     public static final Item NETHERITE_MESH = registerItem(new Item(new Item.Settings().maxCount(16).group(ModMiscs.LAMPS_TAB)), "netherite_mesh");
     public static final Item ALCHEMICAL_DUST = registerItem(new Item(globalSettings), "alchemical_dust");
@@ -43,7 +42,6 @@ public class ModItems
     public static final Item NEON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(118).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.neon_filter"), "neon_centrifuge_filter");
     public static final Item ARGON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(105).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.argon_filter"), "argon_centrifuge_filter");
     public static final Item KRYPTON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(83).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.krypton_filter"), "krypton_centrifuge_filter");
-    public static final Item BROMINE_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(31).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.bromine_filter"), "bromine_centrifuge_filter");
     public static final Item XENON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(92).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.xenon_filter"), "xenon_centrifuge_filter");
     public static final Item RADON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(62).group(ModMiscs.LAMPS_TAB),"tooltip.lightestlamp.radon_filter"), "radon_centrifuge_filter");
     public static final Item LANTHANUM_DUST = registerItem(new Item(globalSettings), "lanthanum_dust");

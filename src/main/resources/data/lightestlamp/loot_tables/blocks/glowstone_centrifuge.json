@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lightestlamp:gas_centrifuge"
+          "name": "lightestlamp:glowstone_centrifuge"
         }
       ],
       "conditions": [

@@ -21,8 +21,8 @@ public class GasCentrifugeRecipe
             new ItemStack(ModItems.XENON_FILTER), new ItemStack(Items.GLOWSTONE),new ItemStack(ModItems.KRYPTON_PILE,2),new ItemStack(ModItems.XENON_DUST),new ItemStack(ModItems.XENON_PILE,2),new ItemStack(ModItems.RADON_PILE,1));
     public static final GasCentrifugeRecipe radon = new GasCentrifugeRecipe(
             new ItemStack(ModItems.RADON_FILTER), new ItemStack(Items.GLOWSTONE),new ItemStack(ModItems.XENON_PILE,2),new ItemStack(ModItems.RADON_PILE,3),ItemStack.EMPTY,ItemStack.EMPTY);
-    public static final GasCentrifugeRecipe bromine = new GasCentrifugeRecipe(
-            new ItemStack(ModItems.BROMINE_FILTER), new ItemStack(Items.GLOWSTONE),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);
+    /*public static final GasCentrifugeRecipe bromine = new GasCentrifugeRecipe(
+            new ItemStack(ModItems.BROMINE_FILTER), new ItemStack(Items.GLOWSTONE),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);*/
 
     public GasCentrifugeRecipe(ItemStack top_input, ItemStack bottom_input, ItemStack right_up_output, ItemStack left_up_output, ItemStack right_bottom_output, ItemStack left_bottom_output)
     {
@@ -56,7 +56,7 @@ public class GasCentrifugeRecipe
         recipes.add(krypton);
         recipes.add(xenon);
         recipes.add(radon);
-        recipes.add(bromine);
+        //recipes.add(bromine);
         return recipes;
     }
 

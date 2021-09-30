@@ -2,6 +2,7 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -35,7 +36,7 @@ import static net.minecraft.state.property.Properties.FACING;
 public class GasCentrifugeBlock extends BlockWithEEntity
 {
 	public GasCentrifugeBlock() {
-		super(FabricBlockSettings.copyOf(IRON_BLOCK));
+		super(FabricBlockSettings.copyOf(IRON_BLOCK).breakByTool(FabricToolTags.PICKAXES,2));
 		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
 	}
 	@Nullable
