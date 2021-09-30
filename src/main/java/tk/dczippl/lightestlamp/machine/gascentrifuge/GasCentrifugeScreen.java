@@ -48,7 +48,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     @Override
     protected void drawForeground(MatrixStack matrixStack, int mouseX, int mouseY) {
         int tmp = 75;
-        this.textRenderer.draw(matrixStack, this.title, (float)(this.x / 2 - tmp / 2), 6.0F, 4210752);
+        this.textRenderer.draw(matrixStack, this.title, (float)(this.backgroundWidth / 2 - tmp / 2), 6.0F, 4210752);
         this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.y - 96 + 2), 4210752);
 
         String redstone_tooltip = "Mode: Ignore Redstone";
@@ -68,14 +68,15 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         switch (sc.delegate.get(4))
         {
             case 0:
-                power_tooltip = "Mode: Normal\nMachine works normally.\nMachine require LV-MV power tier.";
+                power_tooltip = "Mode: Passive Mode\n§6Machine dosn't require any energy.\n§4Efficiency -50%\n§5Power Consumption: -100%";
                 break;
             case 1:
                 power_tooltip = "Mode: Overclocked\n§6Machine is more efficient but requires more power.\n§6Machine require HV power tier.\n§5Efficiency +100%\n§4Power Consumption: +60%";
                 break;
             case 2:
-                power_tooltip = "Mode: Passive Mode\n§6Machine dosn't require any energy.\n§4Efficiency -50%\n§5Power Consumption: -100%";
+                power_tooltip = "Mode: Normal\nMachine works normally.\nMachine require LV-MV power tier.";
                 break;
+
         }
     
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
@@ -83,12 +84,12 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 
         //(marginHorizontal+9 <V>,marginHorizontal+20,marginVertical+9 <V>,marginVertical+20, 0 <V>)
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
-        if (checker.checkHover(x,y, true))
+        if (checker.checkHover(mouseX,mouseY, true))
         {
             renderTooltip(matrixStack, Collections.singletonList(new LiteralText(redstone_tooltip)),x-marginHorizontal+4,y-marginVertical+4);
         }
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
-        if (checker.checkHover(x,y, true))
+        if (checker.checkHover(mouseX,mouseY, true))
         {
             renderTooltip(matrixStack, formatUTooltip(power_tooltip),x-marginHorizontal+4,y-marginVertical+4);
         }
