@@ -68,39 +68,37 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         switch (sc.delegate.get(4))
         {
             case 0:
-                power_tooltip = "Mode: Passive Mode\n§6Machine dosn't require any energy.\n§4Efficiency -50%\n§5Power Consumption: -100%";
+                power_tooltip = "Mode: Passive Mode\n§7Machine dosn't require any energy.\n§cEfficiency -50%\n§aPower Consumption: -100%";
                 break;
             case 1:
-                power_tooltip = "Mode: Overclocked\n§6Machine is more efficient but requires more power.\n§6Machine require HV power tier.\n§5Efficiency +100%\n§4Power Consumption: +60%";
+                power_tooltip = "Mode: Overclocked\n§7Machine is more efficient but requires more power.\n§7Machine require HV power tier.\n§aEfficiency +100%\n§cPower Consumption: +60%";
                 break;
             case 2:
-                power_tooltip = "Mode: Normal\nMachine works normally.\nMachine require LV-MV power tier.";
+                power_tooltip = "Mode: Normal\n§7Machine works normally.\n§7Machine require LV-MV power tier.";
                 break;
 
         }
     
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
         int marginVertical = (this.height - this.backgroundHeight) / 2;
-
-        //(marginHorizontal+9 <V>,marginHorizontal+20,marginVertical+9 <V>,marginVertical+20, 0 <V>)
+        
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, Collections.singletonList(new LiteralText(redstone_tooltip)),x-marginHorizontal+4,y-marginVertical+4);
+            renderTooltip(matrixStack, Collections.singletonList(new LiteralText(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
         }
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, formatUTooltip(power_tooltip),x-marginHorizontal+4,y-marginVertical+4);
+            renderTooltip(matrixStack, formatUTooltip(power_tooltip),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
         }
-        //renderHoveredToolTip(mouseX-marginHorizontal+4,mouseY-marginVertical+4);
     }
     
     @SuppressWarnings("SimplifyStreamApiCallChains")
     private List<Text> formatUTooltip(String utooltip) {
         return Arrays.stream(utooltip.split("\n")).map(
                 s -> new LiteralText(s).setStyle(Style.EMPTY.withColor(
-                        s.contains("§6") ? Formatting.GRAY : s.contains("§4") ? Formatting.RED : s.contains("§5") ? Formatting.GREEN : Formatting.WHITE
+                        s.contains("§7") ? Formatting.GRAY : s.contains("§c") ? Formatting.RED : s.contains("§a") ? Formatting.GREEN : Formatting.WHITE
                 ))
         ).collect(Collectors.toUnmodifiableList());
     }
@@ -126,14 +124,14 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
             if (k >= 300)
                 k = 299;
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 41 - k, j + 54, 177 - k, 100, k + 1,  5);
+            this.drawTexture(matrixStack,i + 41 - k, j + 54, 177 + k, 100, k - 1,  5);
         }
         if (sc.delegate.get(4)!=2){
             int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 154, j + 19, 177, 99 - m, 14, m + 1);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m, 177, 99 - m, 14, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 154, j + 19, 218, 99, 14, 50);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 50, 218, 99, 14, 50);
         }
         
         switch (sc.delegate.get(1))
@@ -169,13 +167,11 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     public boolean mouseClicked(double mouseX, double mouseY, int id) {
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
         int marginVertical = (this.height - this.backgroundHeight) / 2;
-        //Main.LOGGER.info("Clicked at: " + mouseX + ":" + mouseY + ":" + id + ", With margin: " + (mouseX - marginHorizontal) + ":" + (mouseY - marginVertical) + ":" + id);
-
+        
         if (mouseX - marginHorizontal >= 9 && mouseX - marginHorizontal <= 20)
         {
             if (mouseY - marginVertical >= 9 && mouseY - marginVertical <= 20)
             {
-                //Main.LOGGER.info("redstone button clicked!");
                 if (sc.delegate.get(1) == 2)
                 {
                     sc.delegate.set(1, 0);
@@ -189,7 +185,6 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         {
             if (mouseY - marginVertical >= 9 && mouseY - marginVertical <= 20)
             {
-                //Main.LOGGER.info("redstone button clicked!");
                 if (sc.delegate.get(4) == 2)
                 {
                     sc.delegate.set(4, 0);
@@ -216,8 +211,5 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         public boolean checkHover(double mouseX, double mouseY,boolean simulate){
             return mouseX >= buttonX0 && mouseY >= buttonY1 && mouseX <= buttonX1 && mouseY <= buttonY0;
         }
-        /*public boolean checkHoverLegacy(double mouseX, double mouseY, double buttonX0, double buttonX1,double buttonY0, double buttonY1){
-            return mouseX >= this.field_230690_l_ && mouseY >= this.field_230691_m_ && mouseX < this.field_230690_l_ + this.field_230688_j_ && mouseY < this.field_230691_m_ + this.field_230689_k_;
-        }*/
     }
 }

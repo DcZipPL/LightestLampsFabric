@@ -214,8 +214,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     
     public static void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity be)
     {
-        if (new Random().nextInt(8) == 2)
-            be.dataDelegate.set(5,be.dataDelegate.get(5)+1);
+        be.dataDelegate.set(5,be.dataDelegate.get(5)+1);
         
         boolean flag = be.isBurning();
         boolean flag1 = false;
