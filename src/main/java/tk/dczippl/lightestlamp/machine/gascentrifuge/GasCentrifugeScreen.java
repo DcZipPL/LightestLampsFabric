@@ -15,6 +15,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 import tk.dczippl.lightestlamp.util.Networking;
 
@@ -127,7 +128,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
             //Z Y T-Z T-Y W H
             this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 14, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 154, j + 19 + 1 - 3, 218, 99 - 1 - 50, 14, 50);
+            this.drawTexture(matrixStack,i + 153, j + 19 + 1 - 2, 218, 99 - 1 - 50, 14, 50);
         }
         
         switch (sc.delegate.get(1))
@@ -174,10 +175,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
                 } else {
                     sc.delegate.set(1, sc.delegate.get(1)+1);
                 }
-    
-                PacketByteBuf buf = PacketByteBufs.create();
-                buf.writeBlockPos(sc.getPos());
-                ClientPlayNetworking.send(Networking.TOGGLEBUTTONS_CHANNEL, buf);
+                Networking.sendToggledButtonMessage(0,sc.getPos());
             }
         }
         if (mouseX - marginHorizontal >= 25 && mouseX - marginHorizontal <= 36)
@@ -190,13 +188,14 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
                 } else {
                     sc.delegate.set(4, sc.delegate.get(4)+1);
                 }
-                //Networking.INSTANCE.sendToServer(new PacketButtonModeControl(sc.getBlockPos(),0));
+                Networking.sendToggledButtonMessage(1,sc.getPos());
             }
         }
 
-        return super.mouseClicked(mouseX, mouseY, id); //Forge, Call parent to release buttons
+        return super.mouseClicked(mouseX, mouseY, id);
     }
-
+    
+    @SuppressWarnings("InnerClassMayBeStatic")
     public class HoverChecker{
         double buttonX0,buttonX1,buttonY0,buttonY1;
 
