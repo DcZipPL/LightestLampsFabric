@@ -60,7 +60,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     private static final int[] SLOTS_DOWN = new int[]{2, 3, 4, 5};
     //private static final int[] SLOTS_HORIZONTAL = new int[]{1};
     protected DefaultedList<ItemStack> items;
-    private int ticksBeforeDumping;
+    private int burnTimeTotal;
     private int burnTime;
     private int temppower;
     private int cookTime;
@@ -84,7 +84,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                 case 5:
                     return GasCentrifugeBlockEntity.this.temppower;
                 case 6:
-                    return GasCentrifugeBlockEntity.this.ticksBeforeDumping;
+                    return GasCentrifugeBlockEntity.this.burnTimeTotal;
                 default:
                     return 0;
             }
@@ -112,7 +112,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     GasCentrifugeBlockEntity.this.temppower = value;
                     break;
                 case 6:
-                    GasCentrifugeBlockEntity.this.ticksBeforeDumping = value;
+                    GasCentrifugeBlockEntity.this.burnTimeTotal = value;
                     break;
             }
 
@@ -227,6 +227,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             if (be.isBurning() || !itemstack.isEmpty() && !be.items.get(0).isEmpty()) {
                 if (!be.isBurning() && be.canSmelt()) {
                     be.burnTime = be.getBurnTime(itemstack);
+                    be.burnTimeTotal = be.getBurnTime(itemstack);
                     if (be.isBurning()) {
                         flag1 = true;
                         if (itemstack.getItem().hasRecipeRemainder())

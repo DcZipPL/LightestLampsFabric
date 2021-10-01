@@ -128,7 +128,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     public int getBurnLeftScaled()
     {
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        return this.delegate.get(0) * 13 / 180 / multiplier;
+        return (this.delegate.get(0)*10 /*/ 180*/ / multiplier / (delegate.get(6)+1))*20;
     }
 
     @Environment(EnvType.CLIENT)

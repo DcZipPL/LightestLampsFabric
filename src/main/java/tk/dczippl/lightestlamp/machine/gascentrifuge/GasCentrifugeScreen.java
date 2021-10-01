@@ -1,6 +1,5 @@
 package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -9,15 +8,11 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.LightestLampsMod;
-import tk.dczippl.lightestlamp.util.network.Networking;
-import tk.dczippl.lightestlamp.util.network.PacketButtonModeControl;
-import tk.dczippl.lightestlamp.util.network.PacketButtonRedstone;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -124,14 +119,14 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
             if (k >= 300)
                 k = 299;
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 41 - k, j + 54, 177 + k, 100, k - 1,  5);
+            this.drawTexture(matrixStack,i + 41 + 17 - k, j + 54, 194 - k, 100, k + 1,  5);
         }
         if (sc.delegate.get(4)!=2){
             int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m, 177, 99 - m, 14, m + 1);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1, 177, 99 - m - 1, 14, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 154, j + 19 + 50, 218, 99, 14, 50);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 1, 218, 99 - 1, 14, 50);
         }
         
         switch (sc.delegate.get(1))

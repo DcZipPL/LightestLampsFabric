@@ -28,7 +28,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import tk.dczippl.lightestlamp.blocks.BlockWithEEntity;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
-import tk.dczippl.lightestlamp.init.ModFluids;
 
 import static net.minecraft.block.Blocks.IRON_BLOCK;
 import static net.minecraft.state.property.Properties.FACING;
