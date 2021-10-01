@@ -1,25 +1,15 @@
 package tk.dczippl.lightestlamp;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.impl.screenhandler.Networking;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.util.math.Vector3d;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
+import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import tk.dczippl.lightestlamp.util.WorldGenerator;
-
-import java.util.Random;
+import tk.dczippl.lightestlamp.util.Networking;
 
 @SuppressWarnings("NullableProblems")
 public class LightestLampsMod implements ModInitializer
@@ -36,6 +26,30 @@ public class LightestLampsMod implements ModInitializer
      */
     @Override
     public void onInitialize() {
+        ServerPlayNetworking.registerGlobalReceiver(Networking.TOGGLEBUTTONS_CHANNEL, (client, handler, ctx, buf, responseSender) -> {
+            // Read packet data on the event loop
+            BlockPos target = buf.readBlockPos();
+            int type = buf.readInt();
+        
+            client.execute(() -> {
+                // Everything in this lambda is run on the thread
+                BlockEntity be = ctx.player.getServerWorld().getBlockEntity(target);
+                if (be instanceof GasCentrifugeBlockEntity gbe) {
+                    if (type == 0) {
+                        if (gbe.getRedstoneMode() >= 2)
+                            gbe.setRedstoneMode(0);
+                        else
+                            gbe.setRedstoneMode(gbe.getRedstoneMode() + 1);
+                    } else {
+                        if (gbe.getLiquidMode()>=2)
+                            gbe.setLiquidMode(0);
+                        else
+                            gbe.setLiquidMode(gbe.getLiquidMode()+1);
+                    }
+                }
+            });
+        });
+        
         ModFluids.init();
         ModBlocks.init();
         ModItems.init();

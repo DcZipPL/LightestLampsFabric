@@ -3,6 +3,7 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 import com.google.common.collect.Maps;
 import io.netty.buffer.Unpooled;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -18,6 +19,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.text.Text;
@@ -29,6 +31,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
+import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
 import tk.dczippl.lightestlamp.plugins.Config;
@@ -36,7 +39,7 @@ import tk.dczippl.lightestlamp.plugins.Config;
 import java.util.Map;
 import java.util.Random;
 
-public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements SidedInventory
+public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
@@ -152,21 +155,13 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         Map<Item, Integer> map = Maps.newLinkedHashMap();
 
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        // ~~Mekanism compatibility~~
-        // TODO: move to "techreborn"
-        Tag<Item> refined_glowstones = ItemTags.getTagGroup().getTag(new Identifier("fabric:ingots/refined_glowstone"));
-        if (refined_glowstones!=null)
-            addItemTagBurnTime(map, refined_glowstones,60*multiplier);
-        Tag<Item> refined_glowstones_block = ItemTags.getTagGroup().getTag(new Identifier("fabric:storage_blocks/refined_glowstone"));
-        if (refined_glowstones_block!=null)
-            addItemTagBurnTime(map, refined_glowstones_block,520*multiplier);
-        Tag<Item> refined_glowstones_nugget = ItemTags.getTagGroup().getTag(new Identifier("fabric:nuggets/refined_glowstone"));
-        if (refined_glowstones_nugget!=null)
-            addItemTagBurnTime(map, refined_glowstones_nugget,5*multiplier);
-        Tag<Item> glowstone_blocks = ItemTags.getTagGroup().getTag(new Identifier("fabric:storage_blocks/glowstone"));
-        if (glowstone_blocks!=null)
-            addItemTagBurnTime(map, glowstone_blocks,360*multiplier);
+        
+        Tag<Item> glowstone_small_dusts = ItemTags.getTagGroup().getTag(new Identifier("c:glowstone_small_dusts"));
+        if (glowstone_small_dusts!=null)
+            addItemTagBurnTime(map, glowstone_small_dusts,10*multiplier);
     
+        addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
+        addItemBurnTime(map, Items.GLOW_BERRIES,60*multiplier);
         addItemBurnTime(map, Items.GLOWSTONE_DUST,40*multiplier);
         addItemBurnTime(map, Blocks.GLOWSTONE.asItem(), 160*multiplier);
         addItemBurnTime(map, Blocks.SHROOMLIGHT.asItem(), 240*multiplier);
@@ -495,6 +490,17 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     @Override
     public void clear() {
         this.items.clear();
+    }
+    
+    /**
+     * Writes additional server -&gt; client screen opening data to the buffer.
+     *
+     * @param player the player that is opening the screen
+     * @param buf    the packet buffer
+     */
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
     
     /*net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =

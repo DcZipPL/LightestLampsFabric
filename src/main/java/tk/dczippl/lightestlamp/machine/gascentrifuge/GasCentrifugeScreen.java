@@ -2,17 +2,21 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.LightestLampsMod;
+import tk.dczippl.lightestlamp.util.Networking;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -66,12 +70,11 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
                 power_tooltip = "Mode: Passive Mode\n§7Machine dosn't require any energy.\n§cEfficiency -50%\n§aPower Consumption: -100%";
                 break;
             case 1:
-                power_tooltip = "Mode: Overclocked\n§7Machine is more efficient but requires more power.\n§7Machine require HV power tier.\n§aEfficiency +100%\n§cPower Consumption: +60%";
-                break;
-            case 2:
                 power_tooltip = "Mode: Normal\n§7Machine works normally.\n§7Machine require LV-MV power tier.";
                 break;
-
+            case 2:
+                power_tooltip = "Mode: Overclocked\n§7Machine is more efficient but requires more power.\n§7Machine require HV power tier.\n§aEfficiency +100%\n§cPower Consumption: +60%";
+                break;
         }
     
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
@@ -115,18 +118,16 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         int j = y;
 
         if (((GasCentrifugeScreenHandler)this.sc).func_217061_l()) {
-            int k = ((GasCentrifugeScreenHandler)this.sc).getBurnLeftScaled()*2;
-            if (k >= 300)
-                k = 299;
+            int k = ((GasCentrifugeScreenHandler)this.sc).getBurnLeftScaled();
             //Z Y T-Z T-Y W H
             this.drawTexture(matrixStack,i + 41 + 17 - k, j + 54, 194 - k, 100, k + 1,  5);
         }
-        if (sc.delegate.get(4)!=2){
+        if (sc.delegate.get(4)!=0){
             int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1, 177, 99 - m - 1, 14, m + 1);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 14, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 154, j + 19 + 1, 218, 99 - 1, 14, 50);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 1 - 3, 218, 99 - 1 - 50, 14, 50);
         }
         
         switch (sc.delegate.get(1))
@@ -173,7 +174,10 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
                 } else {
                     sc.delegate.set(1, sc.delegate.get(1)+1);
                 }
-                //Networking.INSTANCE.sendToServer(new PacketButtonRedstone(sc.getBlockPos(),0));
+    
+                PacketByteBuf buf = PacketByteBufs.create();
+                buf.writeBlockPos(sc.getPos());
+                ClientPlayNetworking.send(Networking.TOGGLEBUTTONS_CHANNEL, buf);
             }
         }
         if (mouseX - marginHorizontal >= 25 && mouseX - marginHorizontal <= 36)

@@ -36,7 +36,7 @@
 	"block.lightestlamp.glowing_glass_block":"Glowing Glass",
 	"block.lightestlamp.debug_chunk_cleaner":"Chunk Cleaner (Debug)",
 	"block.lightestlamp.occ":"OCC Chunk Cleaner (Debug)",
-	"block.lightestlamp.monazite_ore":"Monazite Ore",
+	"block.lightestlamp.monazite_ore":"Lanthanum Ore",
 
 	"item.lightestlamp.glowing_dust_agglomeratio":"Glowing Dust Agglomeratio",
 
@@ -55,6 +55,7 @@
 	"item.lightestlamp.written_book": "Lightest Lamps Guide",
 	"item.lightestlamp.carbon_nanotube": "Carbon Nano Tube",
 	"item.lightestlamp.alchemical_dust":"Alchemical Dust",
+	"item.lightestlamp.glow_lichen_fiber":"Glow Lichen Fiber",
 	"item.lightestlamp.stickandbowl":"Bowl and Stick",
 	"item.lightestlamp.moon_shard":"Moon Shard",
 	"item.lightestlamp.lanthanum_dust":"Lanthanum Dust",
@@ -123,7 +124,7 @@
 	"tooltip.lightestlamp.book.title3": "Centrifuge Recipes",
 	"tooltip.lightestlamp.book.title4": "More: https://github.com/DcZipPL/lightestlampsmod/wiki",
 
-	"container.glowstonecentrifuge": "Glowstone Centrifuge",
+	"container.gascentrifuge": "Glowstone Centrifuge",
 
 	"jei.lightestlamp.bromine2": "Created fluid: Boron 2 mb",
 	"jei.lightestlamp.bromine5": "Created fluid: Boron 5 mb",

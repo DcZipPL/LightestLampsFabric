@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "lightestlamp:item/bromine_crystal"
+    "layer0": "lightestlamp:item/glow_lichen_fiber"
   }
 }

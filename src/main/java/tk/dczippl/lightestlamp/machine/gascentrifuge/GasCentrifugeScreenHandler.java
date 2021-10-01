@@ -22,12 +22,10 @@ import tk.dczippl.lightestlamp.plugins.Config;
 public class GasCentrifugeScreenHandler extends ScreenHandler
 {
     private final Inventory furnaceInventory;
-    public final PropertyDelegate delegate;
+    private BlockPos pos;
     protected final World world;
-
-    protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn) {
-        this(containerTypeIn, id, playerInventoryIn, new SimpleInventory(6), new ArrayPropertyDelegate(7));
-    }
+    public final PropertyDelegate delegate;
+    public final PlayerEntity player;
 
     protected GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate) {
         super(containerTypeIn, id);
@@ -35,7 +33,9 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         checkDataCount(delegate, 7);
         this.furnaceInventory = furnaceInventoryIn;
         this.delegate = delegate;
+        pos = BlockPos.ORIGIN;
         this.world = playerInventoryIn.player.world;
+        this.player = playerInventoryIn.player;
         this.addSlot(new Slot(furnaceInventoryIn, 0, 16, 35));
         this.addSlot(new Slot(furnaceInventoryIn, 1, 41, 35));
         this.addSlot(new FurnaceOutputSlot(playerInventoryIn.player, furnaceInventoryIn, 2, 99, 19));
@@ -56,10 +56,16 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         this.addProperties(delegate);
     }
 
-	public GasCentrifugeScreenHandler(int syncId, PlayerInventory inv) {
+	public GasCentrifugeScreenHandler(int syncId, PlayerInventory inv, PacketByteBuf buf) {
         this(ModMiscs.CENTRIFUGE_SH, syncId, inv, new SimpleInventory(6), new ArrayPropertyDelegate(7));
+        pos = buf.readBlockPos();
 	}
-
+    
+    public GasCentrifugeScreenHandler(ScreenHandlerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, Inventory furnaceInventoryIn, PropertyDelegate delegate, PacketByteBuf buf) {
+        this(containerTypeIn,id,playerInventoryIn,furnaceInventoryIn,delegate);
+        pos = buf.readBlockPos();
+    }
+    
     public void clear() {
         this.furnaceInventory.clear();
     }
@@ -128,7 +134,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     public int getBurnLeftScaled()
     {
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        return (this.delegate.get(0)*10 /*/ 180*/ / multiplier / (delegate.get(6)+1))*20;
+        return (int)((this.delegate.get(0) / (delegate.get(6)+0.01f))*18);
     }
 
     @Environment(EnvType.CLIENT)
@@ -140,5 +146,9 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     @Environment(EnvType.CLIENT)
     public boolean func_217061_l() {
         return this.delegate.get(0) > 0;
+    }
+    
+    public BlockPos getPos() {
+        return pos;
     }
 }
