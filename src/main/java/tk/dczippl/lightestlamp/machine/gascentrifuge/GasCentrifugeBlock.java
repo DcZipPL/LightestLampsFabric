@@ -3,6 +3,7 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -18,6 +19,7 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -34,9 +36,11 @@ import static net.minecraft.state.property.Properties.FACING;
 
 public class GasCentrifugeBlock extends BlockWithEEntity
 {
+	public static final BooleanProperty MODERN = BooleanProperty.of("modern");
+	
 	public GasCentrifugeBlock() {
 		super(FabricBlockSettings.copyOf(IRON_BLOCK).breakByTool(FabricToolTags.PICKAXES,2));
-		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH));
+		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(MODERN, FabricLoader.getInstance().isModLoaded("techreborn")));
 	}
 	@Nullable
 	@Override
@@ -62,7 +66,7 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	@Nullable
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		return this.getDefaultState().with(FACING, ctx.getVerticalPlayerLookDirection().getOpposite());
+		return this.getDefaultState().with(FACING, ctx.getVerticalPlayerLookDirection().getOpposite()).with(MODERN, FabricLoader.getInstance().isModLoaded("techreborn"));
 	}
 	
 	/**
@@ -115,5 +119,6 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		super.appendProperties(builder);
 		builder.add(FACING);
+		builder.add(MODERN);
 	}
 }

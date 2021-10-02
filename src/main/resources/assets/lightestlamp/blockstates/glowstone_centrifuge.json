@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "modern=false": {
       "model": "lightestlamp:block/glowstone_centrifuge"
+    },
+    "modern=true": {
+      "model": "techreborn:block/glowstone_centrifuge"
     }
   }
 }

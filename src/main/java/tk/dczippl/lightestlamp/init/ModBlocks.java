@@ -40,7 +40,7 @@ public class ModBlocks
 
     //Other lamps
 
-    public static final Block ANTI_LAMP = registerBlock("anti_lamp", new GenerableLampBlock(LampType.ANTI,false));
+    //public static final Block ANTI_LAMP = registerBlock("anti_lamp", new GenerableLampBlock(LampType.ANTI,false));
     public static final Block JUNGLE_LANTERN = registerBlock("jungle_lantern", new JungleLanternBlock());
 
     //Other Blocks

@@ -126,9 +126,9 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         if (sc.delegate.get(4)!=0){
             int m = ((GasCentrifugeScreenHandler)this.sc).getLiquidScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 14, m + 1);
+            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 13, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 153, j + 19 + 1 - 2, 218, 99 - 1 - 50, 14, 50);
+            this.drawTexture(matrixStack,i + 153, j + 19 + 1 - 3, 218, 99 - 1 - 50, 14, 51);
         }
         
         switch (sc.delegate.get(1))
