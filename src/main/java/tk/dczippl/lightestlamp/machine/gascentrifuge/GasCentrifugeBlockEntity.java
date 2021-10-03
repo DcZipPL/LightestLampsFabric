@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
+import net.fabricmc.fabric.impl.transfer.transaction.TransactionManagerImpl;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -30,16 +31,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
 import tk.dczippl.lightestlamp.plugins.Config;
-import tk.dczippl.lightestlamp.util.SimpleEnergyStorage;
 
 import java.util.Map;
 import java.util.Random;
 
+@SuppressWarnings("UnstableApiUsage")
 public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
@@ -216,8 +218,8 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     }
                 }
                 
-                if (be.isBurning() && be.canSmelt() && (be.energyStorage.amount > (24) || be.powerMode == 0)) {
-                    if (be.powerMode != 0) be.energyStorage.extract(be.powerMode == 2 ? 24*1.6f : 24);
+                if (be.isBurning() && be.canSmelt() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
+                    if (be.powerMode != 0) be.energyStorage.amount -= (be.powerMode == 2 ? (int)(14*1.6f) : 14);
                     be.cookTime += be.getEfficiency();
                     if ((int)be.cookTime >= be.cookTimeTotal) {
                         be.cookTime = 0;

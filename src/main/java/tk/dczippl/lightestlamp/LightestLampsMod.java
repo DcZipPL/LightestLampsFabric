@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import tk.dczippl.lightestlamp.plugins.Config;
+import tk.dczippl.lightestlamp.plugins.EnergyIntegration;
 import tk.dczippl.lightestlamp.util.WorldGenerator;
 import tk.dczippl.lightestlamp.util.Networking;
 
@@ -74,5 +75,7 @@ public class LightestLampsMod implements ModInitializer
         ModItems.init();
         ModBlockEntities.init();
         WorldGenerator.register();
+    
+        EnergyIntegration.register();
     }
 }

@@ -65,7 +65,9 @@ dependencies {
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:6.0.279-alpha"
 	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:6.0.279-alpha"
 
-	include modApi('teamreborn:energy:0.1.1')
+	modImplementation("RebornCore:RebornCore-1.17:${project.RebornCore_version}")
+	modRuntime("TechReborn:TechReborn-1.17:${project.TechReborn_version}")
+	include modApi('teamreborn:energy:2.0.0-beta1')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
