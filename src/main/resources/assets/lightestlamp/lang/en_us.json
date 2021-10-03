@@ -126,7 +126,8 @@
 
 	"container.gascentrifuge": "Glowstone Centrifuge",
 
-	"rei.lightestlamp.instructions.moonshard": "Moon Shards is dropping from any mob during full moon.",
+	"rei.obtainingmoonshard": "Obtaining Moon Shard",
+	"rei.lightestlamp.instructions.moonshard": "Moon Shards have a chance to drop from any entity during full moon.",
 	"rei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
 
 	"gas.lightestlamp.bromine_vapour": "Bromine Vapor",

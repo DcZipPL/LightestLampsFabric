@@ -62,7 +62,7 @@ dependencies {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:6.0.279-alpha"
+	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:6.0.279-alpha"
 	modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:6.0.279-alpha"
 
 	modImplementation("RebornCore:RebornCore-1.17:${project.RebornCore_version}")

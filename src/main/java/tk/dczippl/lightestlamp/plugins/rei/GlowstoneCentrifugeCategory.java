@@ -54,13 +54,13 @@ public class GlowstoneCentrifugeCategory implements DisplayCategory<GlowstoneCen
 		Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 24);
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
-		widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y - 17)));
+		widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 13)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61 + 30, startPoint.y)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 30)));
 		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61 + 30, startPoint.y + 30)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x - 14, startPoint.y + 5)).entries(display.getInputEntries().get(0)).markInput());
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5)).entries(display.getInputEntries().get(1)).markInput());
+		widgets.add(Widgets.createSlot(new Point(startPoint.x - 14, startPoint.y + 13)).entries(display.getInputEntries().get(0)).markInput());
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 13)).entries(display.getInputEntries().get(1)).markInput());
 		
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y)).entries(display.getOutputEntries().get(0)).disableBackground().markInput());
 		widgets.add(Widgets.createSlot(new Point(startPoint.x + 61 + 30, startPoint.y)).entries(display.getOutputEntries().get(1)).disableBackground().markInput());
