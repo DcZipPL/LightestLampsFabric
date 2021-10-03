@@ -18,8 +18,8 @@ import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 public class ModBlocks
 {
     //public static final Block DARK_AIR = registerBlock("dark_air", () -> new DarkAirBlock());
-    public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock());
-    public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock());
+    public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock(),false);
+    public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock(),false);
     public static final Block CLEAR_LAMP = registerBlock("clear_lamp", new RedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block ALPHA_LAMP = registerBlock("alpha_lamp", new GenerableLampBlock(LampType.ALPHA,false));
     public static final Block BETA_LAMP = registerBlock("beta_lamp", new GenerableLampBlock(LampType.BETA,false));
@@ -68,6 +68,12 @@ public class ModBlocks
 
     public static Block registerBlock(String id, Block block) {
         SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
+        return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
+    }
+    
+    public static Block registerBlock(String id, Block block, boolean hasItem) {
+        if (hasItem)
+            SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
         return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
     }
 
