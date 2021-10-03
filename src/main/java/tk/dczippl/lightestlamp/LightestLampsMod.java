@@ -4,21 +4,18 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.condition.TimeCheckLootCondition;
 import net.minecraft.loot.entry.EmptyEntry;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
+import tk.dczippl.lightestlamp.plugins.Config;
 import tk.dczippl.lightestlamp.util.WorldGenerator;
 import tk.dczippl.lightestlamp.util.Networking;
 
@@ -62,10 +59,11 @@ public class LightestLampsMod implements ModInitializer
                         else
                             gbe.setRedstoneMode(gbe.getRedstoneMode() + 1);
                     } else {
-                        if (gbe.getLiquidMode()>=2)
-                            gbe.setLiquidMode(0);
+                        if (Config.vanilla_mode) gbe.setPowerMode(0);
+                        if (gbe.getPowerMode()>=2)
+                            gbe.setPowerMode(0);
                         else
-                            gbe.setLiquidMode(gbe.getLiquidMode()+1);
+                            gbe.setPowerMode(gbe.getPowerMode()+1);
                     }
                 }
             });

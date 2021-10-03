@@ -47,9 +47,9 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     
     @Override
     protected void drawForeground(MatrixStack matrixStack, int mouseX, int mouseY) {
-        int tmp = 75;
-        this.textRenderer.draw(matrixStack, this.title, (float)(this.backgroundWidth / 2 - tmp / 2), 6.0F, 4210752);
-        this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.y - 96 + 2), 4210752);
+        int tmp = 162;
+        this.textRenderer.draw(matrixStack, this.title, (float)(this.backgroundWidth / 2 - tmp / 2), -12.0F, 4210752);
+        this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.backgroundHeight - 96 + 2), 4210752);
 
         String redstone_tooltip = "Mode: Ignore Redstone";
         switch (sc.delegate.get(1))

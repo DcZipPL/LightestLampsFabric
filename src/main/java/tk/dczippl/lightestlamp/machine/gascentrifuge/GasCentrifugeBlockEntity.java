@@ -1,9 +1,9 @@
 package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import com.google.common.collect.Maps;
-import io.netty.buffer.Unpooled;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -35,6 +35,7 @@ import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
 import tk.dczippl.lightestlamp.plugins.Config;
+import tk.dczippl.lightestlamp.util.SimpleEnergyStorage;
 
 import java.util.Map;
 import java.util.Random;
@@ -45,6 +46,8 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
         items = DefaultedList.ofSize(6, ItemStack.EMPTY);
     }
+    
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1600, 128, 0);
     
     @Override
     protected Text getContainerName()
@@ -65,58 +68,35 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     protected DefaultedList<ItemStack> items;
     private int burnTimeTotal;
     private int burnTime;
-    private int temppower;
-    private int cookTime;
+    private float cookTime;
     private int cookTimeTotal;
     private int redstoneMode;
-    private int liquidMode;
+    private int powerMode;
     public final PropertyDelegate dataDelegate = new PropertyDelegate() {
         @Override
         public int get(int index) {
-            switch(index) {
-                case 0:
-                    return GasCentrifugeBlockEntity.this.burnTime;
-                case 1:
-                    return GasCentrifugeBlockEntity.this.redstoneMode;
-                case 2:
-                    return GasCentrifugeBlockEntity.this.cookTime;
-                case 3:
-                    return GasCentrifugeBlockEntity.this.cookTimeTotal;
-                case 4:
-                    return GasCentrifugeBlockEntity.this.liquidMode;
-                case 5:
-                    return GasCentrifugeBlockEntity.this.temppower;
-                case 6:
-                    return GasCentrifugeBlockEntity.this.burnTimeTotal;
-                default:
-                    return 0;
-            }
+            return switch (index) {
+                case 0 -> GasCentrifugeBlockEntity.this.burnTime;
+                case 1 -> GasCentrifugeBlockEntity.this.redstoneMode;
+                case 2 -> (int) GasCentrifugeBlockEntity.this.cookTime;
+                case 3 -> GasCentrifugeBlockEntity.this.cookTimeTotal;
+                case 4 -> GasCentrifugeBlockEntity.this.powerMode;
+                case 5 -> (int) GasCentrifugeBlockEntity.this.energyStorage.amount;
+                case 6 -> GasCentrifugeBlockEntity.this.burnTimeTotal;
+                default -> 0;
+            };
         }
 
         @Override
         public void set(int index, int value) {
-            switch(index) {
-                case 0:
-                    GasCentrifugeBlockEntity.this.burnTime = value;
-                    break;
-                case 1:
-                    GasCentrifugeBlockEntity.this.redstoneMode = value;
-                    break;
-                case 2:
-                    GasCentrifugeBlockEntity.this.cookTime = value;
-                    break;
-                case 3:
-                    GasCentrifugeBlockEntity.this.cookTimeTotal = value;
-                    break;
-                case 4:
-                    GasCentrifugeBlockEntity.this.liquidMode = value;
-                    break;
-                case 5:
-                    GasCentrifugeBlockEntity.this.temppower = value;
-                    break;
-                case 6:
-                    GasCentrifugeBlockEntity.this.burnTimeTotal = value;
-                    break;
+            switch (index) {
+                case 0 -> GasCentrifugeBlockEntity.this.burnTime = value;
+                case 1 -> GasCentrifugeBlockEntity.this.redstoneMode = value;
+                case 2 -> GasCentrifugeBlockEntity.this.cookTime = value;
+                case 3 -> GasCentrifugeBlockEntity.this.cookTimeTotal = value;
+                case 4 -> GasCentrifugeBlockEntity.this.powerMode = value;
+                case 5 -> GasCentrifugeBlockEntity.this.energyStorage.amount = value;
+                case 6 -> GasCentrifugeBlockEntity.this.burnTimeTotal = value;
             }
 
         }
@@ -136,12 +116,12 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         return dataDelegate.get(1);
     }
 
-    public void setLiquidMode(int liquidMode)
+    public void setPowerMode(int mode)
     {
-        dataDelegate.set(4,liquidMode);
+        dataDelegate.set(4,mode);
     }
 
-    public int getLiquidMode()
+    public int getPowerMode()
     {
         return dataDelegate.get(4);
     }
@@ -189,28 +169,26 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         this.items = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
         Inventories.readNbt(nbt, this.items);
         this.burnTime = nbt.getInt("BurnTime");
-        this.cookTime = nbt.getInt("CookTime");
+        this.cookTime = nbt.getFloat("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
         this.redstoneMode = nbt.getInt("RedstoneMode");
-        this.liquidMode = nbt.getInt("LiquidMode");
+        this.powerMode = nbt.getInt("LiquidMode");
     }
 
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         nbt.putInt("BurnTime", this.burnTime);
-        nbt.putInt("CookTime", this.cookTime);
+        nbt.putFloat("CookTime", this.cookTime);
         nbt.putInt("CookTimeTotal", this.cookTimeTotal);
         nbt.putInt("RedstoneMode", this.redstoneMode);
-        nbt.putInt("LiquidMode", this.liquidMode);
+        nbt.putInt("LiquidMode", this.powerMode);
         Inventories.writeNbt(nbt, this.items);
         return nbt;
     }
     
     public static void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity be)
     {
-        be.dataDelegate.set(5,be.dataDelegate.get(5)+1);
-        
         boolean flag = be.isBurning();
         boolean flag1 = false;
         if (be.isBurning()) {
@@ -238,9 +216,10 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     }
                 }
                 
-                if (be.isBurning() && be.canSmelt()) {
-                    ++be.cookTime;
-                    if (be.cookTime == be.cookTimeTotal) {
+                if (be.isBurning() && be.canSmelt() && (be.energyStorage.amount > (24) || be.powerMode == 0)) {
+                    if (be.powerMode != 0) be.energyStorage.extract(be.powerMode == 2 ? 24*1.6f : 24);
+                    be.cookTime += be.getEfficiency();
+                    if ((int)be.cookTime >= be.cookTimeTotal) {
                         be.cookTime = 0;
                         be.cookTimeTotal = be.getCookTimeTotal();
                         be.placeItemsInRightSlot();
@@ -262,6 +241,10 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         if (flag1) {
             be.markDirty();
         }
+    }
+    
+    private float getEfficiency() {
+        return powerMode == 0 ? 0.5f : powerMode == 1 ? 1f : 2f;
     }
     
     private int getCookTimeTotal()
