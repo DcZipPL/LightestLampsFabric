@@ -126,15 +126,8 @@
 
 	"container.gascentrifuge": "Glowstone Centrifuge",
 
-	"jei.lightestlamp.bromine2": "Created fluid: Boron 2 mb",
-	"jei.lightestlamp.bromine5": "Created fluid: Boron 5 mb",
-	"jei.lightestlamp.bromine10": "Created fluid: Boron 10 mb",
-	"jei.lightestlamp.bromine15": "Created fluid: Boron 15 mb",
-	"jei.lightestlamp.bromine50": "Created fluid: Boron 50 mb",
-	"jei.lightestlamp.bromine75": "Created fluid: Boron 75 mb",
-	"jei.lightestlamp.instructions.moonshard": "Moon Shards is dropping from any mob during full moon.",
-	"jei.lightestlamp.instructions.mesh": "Lanthanum Mesh + Netherite Ingot (Smithing Table)",
-	"jei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
+	"rei.lightestlamp.instructions.moonshard": "Moon Shards is dropping from any mob during full moon.",
+	"rei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
 
 	"gas.lightestlamp.bromine_vapour": "Bromine Vapor",
 	"crop.lightestlamp.glowing_dust": "Glowing Dust",

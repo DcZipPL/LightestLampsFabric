@@ -1,10 +1,19 @@
 package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
+import com.google.common.collect.Maps;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.tag.ItemTags;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.init.ModItems;
+import tk.dczippl.lightestlamp.plugins.Config;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class GasCentrifugeRecipe
 {
@@ -66,4 +75,32 @@ public class GasCentrifugeRecipe
     public ItemStack left_up_output;
     public ItemStack right_bottom_output;
     public ItemStack left_bottom_output;
+    
+    public static Map<Item, Integer> getBurnTimes() {
+        Map<Item, Integer> map = Maps.newLinkedHashMap();
+        
+        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
+        
+        Tag<Item> glowstone_small_dusts = ItemTags.getTagGroup().getTag(new Identifier("c:glowstone_small_dusts"));
+        if (glowstone_small_dusts!=null)
+            addItemTagBurnTime(map, glowstone_small_dusts,10*multiplier);
+        
+        addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
+        addItemBurnTime(map, Items.GLOW_BERRIES,60*multiplier);
+        addItemBurnTime(map, Items.GLOWSTONE_DUST,40*multiplier);
+        addItemBurnTime(map, Blocks.GLOWSTONE.asItem(), 160*multiplier);
+        addItemBurnTime(map, Blocks.SHROOMLIGHT.asItem(), 240*multiplier);
+        return map;
+    }
+    
+    private static void addItemTagBurnTime(Map<Item, Integer> map, Tag<Item> itemTag, int p_213992_2_) {
+        for(Item item : itemTag.values()) {
+            map.put(item, p_213992_2_);
+        }
+        
+    }
+    
+    private static void addItemBurnTime(Map<Item, Integer> map, Item itemProvider, int burnTimeIn) {
+        map.put(itemProvider, burnTimeIn);
+    }
 }

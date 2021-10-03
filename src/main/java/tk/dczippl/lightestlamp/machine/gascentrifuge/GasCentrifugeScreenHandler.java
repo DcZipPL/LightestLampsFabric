@@ -15,6 +15,7 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.plugins.Config;
@@ -134,7 +135,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     public int getBurnLeftScaled()
     {
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        return (int)((this.delegate.get(0) / (delegate.get(6)+0.01f))*18);
+        return MathHelper.clamp((int)((this.delegate.get(0) / (delegate.get(6)+0.01f))*18),0,80);
     }
 
     @Environment(EnvType.CLIENT)

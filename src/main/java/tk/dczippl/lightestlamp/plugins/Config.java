@@ -13,8 +13,8 @@ public class Config implements ConfigData
     public static int glowstone_multiplier = 4;
     @Comment("Generation of Monazite Ore in The Nether")
     public static boolean monazite_gen = true;
-    @Comment("Enable Vanilla Mode (Disable Energy)")
+    @Comment("Enable Vanilla Mode (Disable Energy and Passive mode penalty)")
     public static boolean vanilla_mode = false;
-    @Comment("Power mode by default")
+    @Comment("Power mode by default. Disable when you are using vanilla_mode.")
     public static boolean power_as_default = true;
 }

@@ -64,7 +64,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         switch (sc.delegate.get(4))
         {
             case 0:
-                power_tooltip = "Mode: Passive Mode\n§7Machine dosn't require any energy.\n§cEfficiency -50%\n§aPower Consumption: -100%";
+                power_tooltip = "Mode: Passive Mode\n§7Machine dosn't require any energy.\n§cEfficiency -80%\n§aPower Consumption: -100%";
                 break;
             case 1:
                 power_tooltip = "Mode: Normal\n§7Machine works normally.\n§7Machine require LV-MV power tier.";

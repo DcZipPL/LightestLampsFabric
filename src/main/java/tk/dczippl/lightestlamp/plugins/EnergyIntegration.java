@@ -16,7 +16,7 @@ public class EnergyIntegration {
 		if (FabricLoader.getInstance().isModLoaded("team_reborn_energy")) {
 			LOGGER.debug("Trying to register Reborn Energy Handler.");
 			try {
-				if (RebornEnergyRegister.register()) {
+				if (RebornEnergyIntegration.register()) {
 					registered = true;
 				}
 			} catch (Throwable error) {
@@ -33,7 +33,7 @@ public class EnergyIntegration {
 	}
 }
 
-class RebornEnergyRegister {
+class RebornEnergyIntegration {
 	static boolean register() {
 		EnergyStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
 					if (blockEntity instanceof GasCentrifugeBlockEntity be) return be.energyStorage;

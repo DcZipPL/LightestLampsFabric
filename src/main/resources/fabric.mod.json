@@ -26,6 +26,9 @@
     ],
     "modmenu": [
       "tk.dczippl.lightestlamp.plugins.ModMenuIntegration"
+    ],
+    "rei_plugins": [
+      "tk.dczippl.lightestlamp.plugins.rei.LLREIPlugin"
     ]
   },
   "mixins": [

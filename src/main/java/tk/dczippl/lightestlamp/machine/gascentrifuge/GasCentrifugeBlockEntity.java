@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Random;
 
 import static tk.dczippl.lightestlamp.plugins.Config.power_as_default;
+import static tk.dczippl.lightestlamp.plugins.Config.vanilla_mode;
 
 @SuppressWarnings("UnstableApiUsage")
 public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory
@@ -136,34 +137,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         dataDelegate.set(6,60);
     }
 
-    public static Map<Item, Integer> getBurnTimes() {
-        Map<Item, Integer> map = Maps.newLinkedHashMap();
-
-        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        
-        Tag<Item> glowstone_small_dusts = ItemTags.getTagGroup().getTag(new Identifier("c:glowstone_small_dusts"));
-        if (glowstone_small_dusts!=null)
-            addItemTagBurnTime(map, glowstone_small_dusts,10*multiplier);
-    
-        addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
-        addItemBurnTime(map, Items.GLOW_BERRIES,60*multiplier);
-        addItemBurnTime(map, Items.GLOWSTONE_DUST,40*multiplier);
-        addItemBurnTime(map, Blocks.GLOWSTONE.asItem(), 160*multiplier);
-        addItemBurnTime(map, Blocks.SHROOMLIGHT.asItem(), 240*multiplier);
-        return map;
-    }
-
-    private static void addItemTagBurnTime(Map<Item, Integer> map, Tag<Item> itemTag, int p_213992_2_) {
-        for(Item item : itemTag.values()) {
-            map.put(item, p_213992_2_);
-        }
-
-    }
-
-    private static void addItemBurnTime(Map<Item, Integer> map, Item itemProvider, int burnTimeIn) {
-        map.put(itemProvider, burnTimeIn);
-    }
-
     private boolean isBurning() {
         return this.burnTime > 0;
     }
@@ -196,7 +169,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     {
         boolean flag = be.isBurning();
         boolean flag1 = false;
-        if (be.isBurning()) {
+        if (be.isBurning() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
             --be.burnTime;
         }
         
@@ -249,7 +222,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     }
     
     private float getEfficiency() {
-        return powerMode == 0 ? 0.5f : powerMode == 1 ? 1f : 2f;
+        return !vanilla_mode ? (powerMode == 0 ? 0.2f : powerMode == 1 ? 1f : 2f) : 1f;
     }
     
     private int getCookTimeTotal()
@@ -349,7 +322,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             return 0;
         } else {
             Item item = stack.getItem();
-            return getBurnTimes().getOrDefault(item, 0);
+            return GasCentrifugeRecipe.getBurnTimes().getOrDefault(item, 0);
         }
     }
 
