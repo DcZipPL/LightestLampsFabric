@@ -138,9 +138,9 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     }
 
     @Environment(EnvType.CLIENT)
-    public int getLiquidScaled()
+    public float getPowerScaled()
     {
-        return this.delegate.get(5) / 50;
+        return this.delegate.get(5) / 33f;
     }
 
     @Environment(EnvType.CLIENT)

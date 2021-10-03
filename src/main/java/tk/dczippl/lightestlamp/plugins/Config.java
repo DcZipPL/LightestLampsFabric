@@ -15,4 +15,6 @@ public class Config implements ConfigData
     public static boolean monazite_gen = true;
     @Comment("Enable Vanilla Mode (Disable Energy)")
     public static boolean vanilla_mode = false;
+    @Comment("Power mode by default")
+    public static boolean power_as_default = true;
 }

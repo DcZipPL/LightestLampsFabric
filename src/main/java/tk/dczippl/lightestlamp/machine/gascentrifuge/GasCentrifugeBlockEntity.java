@@ -41,12 +41,15 @@ import tk.dczippl.lightestlamp.plugins.Config;
 import java.util.Map;
 import java.util.Random;
 
+import static tk.dczippl.lightestlamp.plugins.Config.power_as_default;
+
 @SuppressWarnings("UnstableApiUsage")
 public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
         items = DefaultedList.ofSize(6, ItemStack.EMPTY);
+        if (power_as_default) powerMode = 1;
     }
     
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1600, 128, 0);
