@@ -130,8 +130,11 @@
 	"rei.lightestlamp.instructions.moonshard": "Moon Shards have a chance to drop from any entity during full moon.",
 	"rei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
 
-	"gas.lightestlamp.bromine_vapour": "Bromine Vapor",
-	"crop.lightestlamp.glowing_dust": "Glowing Dust",
+	"text.autoconfig.lightest-lamps.title": "Lightest Lamps (Configuration)",
+	"text.autoconfig.lightest-lamps.option.glowstone_multiplier": "Glowstone (Fuel) multiplier",
+	"text.autoconfig.lightest-lamps.option.monazite_gen": "Allow generation of Lanthanum Ore",
+	"text.autoconfig.lightest-lamps.option.vanilla_mode": "Vanilla mode",
+	"text.autoconfig.lightest-lamps.option.power_as_default": "Power mode as default",
 
 	"effect.lightestlamp.bromine_poison": "Bromine Poison",
 

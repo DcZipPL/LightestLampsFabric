@@ -4,13 +4,14 @@
   "version": "${version}",
 
   "name": "Lightest Lamps",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Lightest Lamps adds a lot of lamps that have bigger light range and special ones.",
   "authors": [
     "Prefex (DcZipPL)"
   ],
   "contact": {
     "homepage": "https://dczippl.tk/",
-    "sources": "https://github.com/DcZipPL/LightestLampsFabric"
+    "sources": "https://github.com/DcZipPL/LightestLampsFabric",
+    "issues": "https://github.com/DcZipPL/LightestLampsFabric/issues"
   },
 
   "license": "MIT",

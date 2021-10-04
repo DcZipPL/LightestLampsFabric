@@ -1,5 +1,7 @@
 package tk.dczippl.lightestlamp;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -35,6 +37,8 @@ public class LightestLampsMod implements ModInitializer
      */
     @Override
     public void onInitialize() {
+        AutoConfig.register(Config.class, JanksonConfigSerializer::new);
+        
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
             if (id.toString().contains(":entities")){
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
