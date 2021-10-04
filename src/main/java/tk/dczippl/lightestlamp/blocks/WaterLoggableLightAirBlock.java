@@ -21,7 +21,7 @@ public class WaterLoggableLightAirBlock extends Block implements Waterloggable
 {
     public WaterLoggableLightAirBlock() {
         super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
-        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(true)));
+        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
     }
 
     VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -57,5 +57,10 @@ public class WaterLoggableLightAirBlock extends Block implements Waterloggable
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
         builder.add(WATERLOGGED);
+    }
+    
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.INVISIBLE;
     }
 }
