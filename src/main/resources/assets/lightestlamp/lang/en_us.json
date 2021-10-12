@@ -37,6 +37,7 @@
 	"block.lightestlamp.debug_chunk_cleaner":"Chunk Cleaner (Debug)",
 	"block.lightestlamp.occ":"OCC Chunk Cleaner (Debug)",
 	"block.lightestlamp.monazite_ore":"Lanthanum Ore",
+	"block.lightestlamp.raw_lanthanum_block":"Raw Lanthanum Block",
 
 	"item.lightestlamp.glowing_dust_agglomeratio":"Glowing Dust Agglomeratio",
 
@@ -61,6 +62,7 @@
 	"item.lightestlamp.lanthanum_dust":"Lanthanum Dust",
 	"item.lightestlamp.lanthanum_ingot":"Lanthanum Ingot",
 	"item.lightestlamp.lanthanum_nugget":"Lanthanum Nugget",
+	"item.lightestlamp.raw_lanthanum":"Raw Lanthanum",
 
 	"item.lightestlamp.neon_dust":"Neon Dust",
 	"item.lightestlamp.krypton_dust":"Krypton Dust",
@@ -97,6 +99,7 @@
 	"tooltip.lightestlamp.type.eta": "Type: η (26 Blocks Light)",
 	"tooltip.lightestlamp.type.omega": "Type: Ω (30 Blocks Light)",
 	"tooltip.lightestlamp.type.energetic": "Type: Energetic (12-48 Blocks Light)",
+	"tooltip.lightestlamp.type.ocean_between": "Type: ε-ζ (22 Blocks Light)",
 	"tooltip.lightestlamp.type.energetic.energy_required": "Redstone Required",
 	"tooltip.lightestlamp.type.energetic.min_range": "Min Energy: 16 FE per tick",
 	"tooltip.lightestlamp.type.energetic.max_range": "Max Energy: 8.000 FE per tick",
@@ -142,5 +145,5 @@
 
 	"fluid.lightestlamp.bromine_fluid": "Bromine",
 
-	"itemGroup.lamps": "Lamps"
+	"itemGroup.lightestlamps.lamps": "Lamps"
 }

@@ -53,6 +53,7 @@ public class ModBlocks
     public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
             .hardness(1f).resistance(1)));
     public static final Block MONAZITE_ORE = registerBlock("monazite_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).breakByTool(FabricToolTags.PICKAXES,2)));
+    public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).breakByTool(FabricToolTags.PICKAXES,2)));
     public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
 
     //Glowstones

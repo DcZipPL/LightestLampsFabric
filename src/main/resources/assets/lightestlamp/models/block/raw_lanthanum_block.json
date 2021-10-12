@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "lightestlamp:block/anti_lamp"
+        "all": "lightestlamp:block/raw_lanthanum_block"
     }
 }

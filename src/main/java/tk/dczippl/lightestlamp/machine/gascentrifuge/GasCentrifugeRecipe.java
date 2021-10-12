@@ -65,7 +65,6 @@ public class GasCentrifugeRecipe
         recipes.add(krypton);
         recipes.add(xenon);
         recipes.add(radon);
-        //recipes.add(bromine);
         return recipes;
     }
 

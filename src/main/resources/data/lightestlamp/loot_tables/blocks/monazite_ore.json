@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lightestlamp:monazite_ore"
+          "name": "lightestlamp:raw_lanthanum"
         }
       ],
       "conditions": [

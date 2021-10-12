@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "anti_lamp",
+      "name": "raw_lanthanum_block",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "lightestlamp:anti_lamp"
+          "name": "lightestlamp:raw_lanthanum_block"
         }
       ]
     }
