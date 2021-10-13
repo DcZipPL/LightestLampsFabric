@@ -134,7 +134,7 @@
 	"rei.lightestlamp.glowstonecentrifuge": "Glowstone Centrifuge",
 
 	"text.autoconfig.lightest-lamps.title": "Lightest Lamps (Configuration)",
-	"text.autoconfig.lightest-lamps.option.glowstone_multiplier": "Glowstone (Fuel) multiplier",
+	"text.autoconfig.lightest-lamps.option.glowstone_multiplier": "Glowstonez (Fuel) multiplier",
 	"text.autoconfig.lightest-lamps.option.monazite_gen": "Allow generation of Lanthanum Ore",
 	"text.autoconfig.lightest-lamps.option.vanilla_mode": "Vanilla mode",
 	"text.autoconfig.lightest-lamps.option.power_as_default": "Power mode as default",
@@ -145,5 +145,5 @@
 
 	"fluid.lightestlamp.bromine_fluid": "Bromine",
 
-	"itemGroup.lightestlamps.lamps": "Lamps"
+	"itemGroup.lightestlamp.lamps": "Lamps"
 }
