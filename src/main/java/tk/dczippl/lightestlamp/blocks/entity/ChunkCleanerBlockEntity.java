@@ -26,20 +26,7 @@ public class ChunkCleanerBlockEntity extends BlockEntity
         if (world.isClient) return;
         if (be.cooldown >= 1)
         {
-            BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
-                if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR)
-                {
-                    world.setBlockState(pos1, Blocks.AIR.getDefaultState());
-                }
-                else if (world.getBlockState(pos1).getBlock() == ModBlocks.WATERLOGGABLE_LIGHT_AIR && !world.getBlockState(pos1).get(WATERLOGGED))
-                {
-                    world.setBlockState(pos1, Blocks.AIR.getDefaultState());
-                }
-                else if (world.getBlockState(pos1).getBlock() == ModBlocks.WATERLOGGABLE_LIGHT_AIR && world.getBlockState(pos1).get(WATERLOGGED))
-                {
-                    world.setBlockState(pos1, Blocks.WATER.getDefaultState());
-                }
-            });
+            refreshLight(world,pos,state);
             /*BlockPos.iterate(pos.offset(Direction.UP, 19).offset(Direction.NORTH,19).offset(Direction.WEST,19), pos.offset(Direction.DOWN,19).offset(Direction.SOUTH,19).offset(Direction.EAST,19)).forEach((pos1) -> {
                 if (isAir(pos1))
                     world.notifyBlockUpdate(pos1,world.getBlockState(pos1),world.getBlockState(pos1),3);
@@ -50,7 +37,24 @@ public class ChunkCleanerBlockEntity extends BlockEntity
         }
         be.cooldown++;
     }
-
+    
+    public static void refreshLight(World world, BlockPos pos, BlockState state) {
+        BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
+            if (world.getBlockState(pos1).getBlock() == ModBlocks.LIGHT_AIR)
+            {
+                world.setBlockState(pos1, Blocks.AIR.getDefaultState());
+            }
+            else if (world.getBlockState(pos1).getBlock() == ModBlocks.WATERLOGGABLE_LIGHT_AIR && !world.getBlockState(pos1).get(WATERLOGGED))
+            {
+                world.setBlockState(pos1, Blocks.AIR.getDefaultState());
+            }
+            else if (world.getBlockState(pos1).getBlock() == ModBlocks.WATERLOGGABLE_LIGHT_AIR && world.getBlockState(pos1).get(WATERLOGGED))
+            {
+                world.setBlockState(pos1, Blocks.WATER.getDefaultState());
+            }
+        });
+    }
+    
     private boolean isAir(BlockPos pos)
     {
         return world.getBlockState(pos).getBlock() == Blocks.AIR || world.getBlockState(pos).getBlock() == Blocks.CAVE_AIR || world.getBlockState(pos).getBlock() == ModBlocks.LIGHT_AIR;

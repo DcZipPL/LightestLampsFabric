@@ -42,7 +42,7 @@ public class LightestLampsMod implements ModInitializer
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
             if (id.toString().contains(":entities")){
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootNumberProvider.create(1)).with(EmptyEntry.Serializer().weight(10))
+                        .rolls(ConstantLootNumberProvider.create(1)).with(EmptyEntry.Serializer().weight(4))
                         .with(ItemEntry.builder(ModItems.MOON_SHARD).weight(2)).withCondition(TimeCheckLootCondition.create(BoundedIntUnaryOperator.create(12000,24000)).build());
     
                 table.pool(poolBuilder);
