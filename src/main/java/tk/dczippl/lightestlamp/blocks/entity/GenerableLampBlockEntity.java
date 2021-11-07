@@ -4,6 +4,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -11,6 +12,7 @@ import tk.dczippl.lightestlamp.blocks.LampType;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
+import java.util.Properties;
 import java.util.Random;
 
 import static net.minecraft.state.property.Properties.POWERED;
@@ -20,6 +22,8 @@ public class GenerableLampBlockEntity extends BlockEntity{
 	private final LampType lampType;
 	private final boolean waterResistant;
 	private int cooldown = 0;
+	
+	protected boolean prevState;
 
 	public GenerableLampBlockEntity(LampType lampType, boolean waterResistant, BlockPos pos, BlockState currState) {
 		super(ModBlockEntities.GENERAL_LAMP_BE,pos,currState);
@@ -34,7 +38,14 @@ public class GenerableLampBlockEntity extends BlockEntity{
 	
 	public static void tick(World world, BlockPos pos, BlockState state, GenerableLampBlockEntity be) {
 		if (world.isClient) return;
-
+		
+		if (be.prevState != state.get(POWERED)){
+			be.prevState = state.get(POWERED);
+			if (!state.get(POWERED)){
+				ChunkCleanerBlockEntity.refreshLight(world, pos, state);
+			}
+		}
+		
 		be.cooldown++;
 
 		if (!be.waterResistant) {
