@@ -7,11 +7,13 @@ import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.loot.condition.TimeCheckLootCondition;
 import net.minecraft.loot.entry.EmptyEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +33,9 @@ public class LightestLampsMod implements ModInitializer
     public static final Logger LOGGER = LogManager.getLogger();
 
     public LightestLampsMod(){}
-
+    
+    private static final Identifier ZOMBIE_LOOT_TABLE_ID = EntityType.ZOMBIE.getLootTableId();
+    
     /**
      * Runs the mod initializer.
      */
@@ -42,10 +46,12 @@ public class LightestLampsMod implements ModInitializer
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
             if (id.toString().contains(":entities")){
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootNumberProvider.create(1)).with(EmptyEntry.Serializer().weight(4))
-                        .with(ItemEntry.builder(ModItems.MOON_SHARD).weight(2)).withCondition(TimeCheckLootCondition.create(BoundedIntUnaryOperator.create(12000,24000)).build());
+                        .rolls(ConstantLootNumberProvider.create(1))
+                        .with(ItemEntry.builder(ModItems.MOON_SHARD).weight(1))
+                        // Chance of generation per roll is entry weight divided by the total weight of all entries in the pool
+                    .with(EmptyEntry.Serializer().weight(4));
     
-                table.pool(poolBuilder);
+                table.pool(poolBuilder.withCondition(TimeCheckLootCondition.create(BoundedIntUnaryOperator.create(12000,24000)).build()));
             }
         });
         
