@@ -3,12 +3,12 @@ package tk.dczippl.lightestlamp.potion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class BrominePoison extends StatusEffect {
     private int liquidColor;
 
-    public BrominePoison(StatusEffectType typeIn, int liquidColorIn) {
+    public BrominePoison(StatusEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
         liquidColor = liquidColorIn;
     }

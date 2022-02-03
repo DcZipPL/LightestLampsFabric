@@ -154,7 +154,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         nbt.putInt("BurnTime", this.burnTime);
         nbt.putFloat("CookTime", this.cookTime);
@@ -162,7 +162,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         nbt.putInt("RedstoneMode", this.redstoneMode);
         nbt.putInt("LiquidMode", this.powerMode);
         Inventories.writeNbt(nbt, this.items);
-        return nbt;
     }
     
     public static void tick(World world, BlockPos pos, BlockState state, GasCentrifugeBlockEntity be)

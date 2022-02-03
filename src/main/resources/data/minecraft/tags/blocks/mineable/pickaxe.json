@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values": [
+		"lightestlamp:lanthanum_ore",
+		"lightestlamp:raw_lanthanum_block",
+		"lightestlamp:glowstone_centrifuge"
+	]
+}

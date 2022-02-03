@@ -39,7 +39,7 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	public static final BooleanProperty MODERN = BooleanProperty.of("modern");
 	
 	public GasCentrifugeBlock() {
-		super(FabricBlockSettings.copyOf(IRON_BLOCK).breakByTool(FabricToolTags.PICKAXES,2));
+		super(FabricBlockSettings.copyOf(IRON_BLOCK).requiresTool());
 		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(MODERN, FabricLoader.getInstance().isModLoaded("techreborn")));
 	}
 	@Nullable

@@ -62,7 +62,7 @@ public class LightestLampsMod implements ModInitializer
         
             client.execute(() -> {
                 // Everything in this lambda is run on the thread
-                BlockEntity be = ctx.player.getServerWorld().getBlockEntity(target);
+                BlockEntity be = ctx.player.getWorld().getBlockEntity(target);
                 if (be instanceof GasCentrifugeBlockEntity gbe) {
                     if (type == 0) {
                         if (gbe.getRedstoneMode() >= 2)

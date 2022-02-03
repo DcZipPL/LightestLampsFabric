@@ -35,7 +35,7 @@ public class ModBlocks
     public static final Block DEEP_OCEAN_LANTERN = registerBlock("deep_ocean_lantern", new GenerableLampBlock(LampType.OCEAN_BETWEEN,true));
     public static final Block ABYSSAL_LANTERN = registerBlock("abyssal_lantern", new GenerableLampBlock(LampType.ZETA,true));
     public static final Block ALCHEMICAL_LAMP = registerBlock("alchemical_lamp", new AlchemicalLampBlock());
-    //public static final Block SPOTLIGHT = registerBlock("spotlight", () -> new AlchemicalLampBlock());
+    public static final Block SPOTLIGHT = registerBlock("spotlight", new SpotlightBlock());
     public static final Block CHUNK_CLEANER = registerBlock("debug_chunk_cleaner", new ChunkCleanerBlock());
 
     //Other lamps
@@ -52,9 +52,9 @@ public class ModBlocks
     public static final Block RADON_ROD_BLOCK = registerBlock("radon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
             .hardness(1f).resistance(1)));
-    public static final Block MONAZITE_ORE = registerBlock("monazite_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).breakByTool(FabricToolTags.PICKAXES,2)));
-    public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).breakByTool(FabricToolTags.PICKAXES,2)));
-    public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block LANTHANUM_ORE = registerBlock("lanthanum_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).requiresTool()));
+    public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).requiresTool()));
+    //public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
 
     //Glowstones
     public static final Block NEON_BLOCK = registerBlock("neon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));

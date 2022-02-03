@@ -22,6 +22,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -68,8 +69,8 @@ public class JungleLanternBlock extends Block implements Waterloggable
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         BlockState blockState = super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-        if (!blockState.isAir()) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        if (!blockState.isAir()) { // TODO: Fix this
+            //world.getFluidTickScheduler().scheduleTick(new OrderedTick<Fluid>(Fluids.WATER, pos, Fluids.WATER.getTickRate(world)));
         }
 
         return blockState;
