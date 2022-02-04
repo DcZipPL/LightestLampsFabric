@@ -8,7 +8,7 @@
   ],
   "key": {
     "G": {
-      "tag": "lightestlamp:glowstone_dusts"
+      "tag": "c:glowstone_dusts"
     },
     "#": {
       "item": "minecraft:glass"

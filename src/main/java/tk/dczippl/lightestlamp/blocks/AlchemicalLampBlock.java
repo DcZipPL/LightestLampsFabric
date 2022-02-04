@@ -5,12 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -44,8 +42,15 @@ public class AlchemicalLampBlock extends BlockWithEEntity
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(new TranslatableText("tooltip.lightestlamp.type.alchemical").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
-        tooltip.add(new TranslatableText("tooltip.lightestlamp.always_active").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+        if (Screen.hasShiftDown()){
+            tooltip.add(new TranslatableText("tooltip.lightestlamp.type.alchemical_full").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+            tooltip.add(new TranslatableText("tooltip.lightestlamp.always_active").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+        }else{
+            tooltip.add(new TranslatableText("tooltip.lightestlamp.type.alchemical").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+            tooltip.add(new TranslatableText("tooltip.lightestlamp.always_active").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+            tooltip.add(new LiteralText(""));
+            tooltip.add(new TranslatableText("tooltip.lightestlamp.hold0").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))).append(new TranslatableText("tooltip.lightestlamp.hold1").setStyle(Style.EMPTY.withColor(Formatting.AQUA))).append(new TranslatableText("tooltip.lightestlamp.hold2").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY)))));
+        }
 
         super.appendTooltip(stack, world, tooltip, options);
     }

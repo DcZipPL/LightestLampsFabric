@@ -1,0 +1,20 @@
+{
+  "type": "alloy_forgery:forging",
+  "inputs": [
+    {
+      "tag": "c:lanthanum_ores"
+    }
+  ],
+  "output": {
+    "id": "lightestlamp:lanthanum_ingot",
+    "count": 2
+  },
+  "overrides": {
+    "3+": {
+      "id": "lightestlamp:lanthanum_ingot",
+      "count": 3
+    }
+  },
+  "min_forge_tier": 1,
+  "fuel_per_tick": 5
+}

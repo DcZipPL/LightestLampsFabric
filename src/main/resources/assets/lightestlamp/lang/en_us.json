@@ -89,7 +89,7 @@
 
 	"item.lightestlamp.bromine_fluid_bucket":"Bromine Bucket",
 
-	"tooltip.lightestlamp.underwater": "Works underwater.",
+	"tooltip.lightestlamp.underwater": "Works Underwater",
 	"tooltip.lightestlamp.type.alpha": "Type: α (16 Blocks Light)",
 	"tooltip.lightestlamp.type.beta": "Type: β (17 Blocks Light)",
 	"tooltip.lightestlamp.type.gamma": "Type: γ (18 Blocks Light)",
@@ -105,6 +105,11 @@
 	"tooltip.lightestlamp.type.energetic.max_range": "Max Energy: 8.000 FE per tick",
 	"tooltip.lightestlamp.type.antimatter": "Antimatter",
 	"tooltip.lightestlamp.type.alchemical": "Interdiction",
+	"tooltip.lightestlamp.type.alchemical_full": "Interdiction: Pushes mobs away from lamp area",
+	"tooltip.lightestlamp.soul_lamp": "Soul Light",
+	"tooltip.lightestlamp.soul_lamp_full": "Soul Light: Scares nether creatures",
+	"tooltip.lightestlamp.analog": "Analog",
+	"tooltip.lightestlamp.analog_full": "Analog: Lamp has more states than two",
 	"tooltip.lightestlamp.always_active": "Always Active",
 	"tooltip.lightestlamp.inverted": "Redstone Inverted",
 	"tooltip.lightestlamp.penetration": "Light Penetration",
@@ -118,14 +123,10 @@
 	"tooltip.lightestlamp.xenon_filter": "Xenon",
 	"tooltip.lightestlamp.radon_filter": "Radon",
 	"tooltip.lightestlamp.bromine_filter": "Bromine",
-	"tooltip.lightestlamp.chemlib.detected": "Please convert this to chemlib version in crafting grid.",
 	"tooltip.lightestlamp.lamp.wip": "[WIP]",
-	"tooltip.lightestlamp.book.link": "Lightest Lamps Wiki: https://github.com/DcZipPL/lightestlampsmod/wiki",
-	"tooltip.lightestlamp.book.title0": "Block Types",
-	"tooltip.lightestlamp.book.title1": "Moon shards",
-	"tooltip.lightestlamp.book.title2": "Centrifuge Modes",
-	"tooltip.lightestlamp.book.title3": "Centrifuge Recipes",
-	"tooltip.lightestlamp.book.title4": "More: https://github.com/DcZipPL/lightestlampsmod/wiki",
+	"tooltip.lightestlamp.hold0": "Hold ",
+	"tooltip.lightestlamp.hold1": "Shift",
+	"tooltip.lightestlamp.hold2": " for full description.",
 
 	"container.gascentrifuge": "Glowstone Centrifuge",
 

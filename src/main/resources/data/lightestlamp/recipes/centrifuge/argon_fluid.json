@@ -1,0 +1,23 @@
+{
+  "type": "modern_industrialization:centrifuge",
+  "eu": 10,
+  "duration": 800,
+  "item_inputs": {
+    "item": "lightestlamp:argon_dust",
+    "amount": 12
+  },
+    "item_outputs": [
+      {
+        "item": "lightestlamp:lanthanum_dust",
+        "amount": 1
+      }
+    ],
+
+  "fluid_outputs": [
+    {
+      "fluid" : "modern_industrialization:argon",
+      "amount": 500,
+      "probability" : 1
+    }
+  ]
+}

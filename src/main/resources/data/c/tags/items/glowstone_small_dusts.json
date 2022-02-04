@@ -1,10 +1,10 @@
 {
   "replace": false,
   "values": [
-    "lightestlamp:neon_small_dust",
-    "lightestlamp:argon_small_dust",
-    "lightestlamp:krypton_small_dust",
-    "lightestlamp:xenon_small_dust",
-    "lightestlamp:radon_small_dust"
+    "lightestlamp:neon_pile",
+    "lightestlamp:argon_pile",
+    "lightestlamp:krypton_pile",
+    "lightestlamp:xenon_pile",
+    "lightestlamp:radon_pile"
   ]
 }
