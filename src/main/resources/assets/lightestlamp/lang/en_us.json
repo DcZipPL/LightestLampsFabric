@@ -36,7 +36,7 @@
 	"block.lightestlamp.glowing_glass_block":"Glowing Glass",
 	"block.lightestlamp.debug_chunk_cleaner":"Chunk Cleaner (Debug)",
 	"block.lightestlamp.occ":"OCC Chunk Cleaner (Debug)",
-	"block.lightestlamp.monazite_ore":"Lanthanum Ore",
+	"block.lightestlamp.lanthanum_ore":"Lanthanum Ore",
 	"block.lightestlamp.raw_lanthanum_block":"Raw Lanthanum Block",
 
 	"item.lightestlamp.glowing_dust_agglomeratio":"Glowing Dust Agglomeratio",
@@ -75,7 +75,7 @@
 	"item.lightestlamp.krypton_small_dust":"Krypton Pile",
 	"item.lightestlamp.xenon_pile":"Xenon Pile",
 	"item.lightestlamp.radon_pile":"Radon Pile",
-	"item.lightestlamp.lanthanum_pile":"Lanthanum Pile",
+	"item.lightestlamp.lanthanum_small_dust":"Lanthanum Pile",
 
 	"item.lightestlamp.neon_rod":"Neon Rod",
 	"item.lightestlamp.krypton_rod":"Krypton Rod",
