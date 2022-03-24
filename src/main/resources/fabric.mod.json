@@ -32,9 +32,6 @@
       "tk.dczippl.lightestlamp.plugins.rei.LLREIPlugin"
     ]
   },
-  "mixins": [
-    "lightestlamp.mixins.json"
-  ],
 
   "depends": {
     "fabricloader": ">=0.12.10",

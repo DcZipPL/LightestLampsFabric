@@ -8,13 +8,16 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraft.loot.condition.TimeCheckLootCondition;
 import net.minecraft.loot.entry.EmptyEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
@@ -33,8 +36,8 @@ public class LightestLampsMod implements ModInitializer
     public static final Logger LOGGER = LogManager.getLogger();
 
     public LightestLampsMod(){}
-    
-    private static final Identifier ZOMBIE_LOOT_TABLE_ID = EntityType.ZOMBIE.getLootTableId();
+
+    public static final TagKey<Item> GLOWSTONE_SMALL_DUSTS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "glowstone_small_dusts"));
     
     /**
      * Runs the mod initializer.

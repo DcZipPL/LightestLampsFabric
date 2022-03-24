@@ -8,12 +8,18 @@ import net.minecraft.item.Items;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryEntryList;
 import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.plugins.Config;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static tk.dczippl.lightestlamp.LightestLampsMod.GLOWSTONE_SMALL_DUSTS;
 
 public class GasCentrifugeRecipe
 {
@@ -79,10 +85,9 @@ public class GasCentrifugeRecipe
         Map<Item, Integer> map = Maps.newLinkedHashMap();
         
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
-        
-        Tag<Item> glowstone_small_dusts = ItemTags.getTagGroup().getTag(new Identifier("c:glowstone_small_dusts"));
-        if (glowstone_small_dusts!=null)
-            addItemTagBurnTime(map, glowstone_small_dusts,10*multiplier);
+
+        Optional<RegistryEntryList.Named<Item>> glowstone_small_dusts = Registry.ITEM.getEntryList(GLOWSTONE_SMALL_DUSTS);
+        glowstone_small_dusts.ifPresent(registryEntries -> addItemTagBurnTime(map, registryEntries.getStorage().right().orElseGet(ArrayList::new).stream().map(RegistryEntry::value).toList(), 10 * multiplier));
         
         addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
         addItemBurnTime(map, Items.GLOW_BERRIES,60*multiplier);
@@ -92,9 +97,9 @@ public class GasCentrifugeRecipe
         return map;
     }
     
-    private static void addItemTagBurnTime(Map<Item, Integer> map, Tag<Item> itemTag, int p_213992_2_) {
-        for(Item item : itemTag.values()) {
-            map.put(item, p_213992_2_);
+    private static void addItemTagBurnTime(Map<Item, Integer> map, List<Item> itemTag, int burnTimeIn) {
+        for(Item item : itemTag) {
+            map.put(item, burnTimeIn);
         }
         
     }

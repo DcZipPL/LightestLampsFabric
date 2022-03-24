@@ -9,12 +9,15 @@ import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.decorator.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
 import java.util.ArrayList;
@@ -26,15 +29,16 @@ public class WorldGenerator
 {
     protected record CoreOre(Identifier id, int veinsPerChunk, int veinSize, int minOffset, int maxY, BlockState ore, RuleTest rule){
         public ConfiguredFeature<?, ?> create(){
-            return Feature.ORE
-                    .configure(new OreFeatureConfig(
+            return new ConfiguredFeature(Feature.ORE,
+                    new OreFeatureConfig(
                             rule,
                             ore,
                             veinSize));
         }
 
         public PlacedFeature createPlaced(){
-            return create().withPlacement(List.of(
+            return new PlacedFeature(RegistryEntry.of(create()),
+                    List.of(
                     CountPlacementModifier.of(veinsPerChunk),
                     SquarePlacementModifier.of(),
                     HeightRangePlacementModifier.uniform(
