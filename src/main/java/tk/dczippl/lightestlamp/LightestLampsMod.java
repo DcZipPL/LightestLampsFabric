@@ -52,7 +52,7 @@ public class LightestLampsMod implements ModInitializer
                         .rolls(ConstantLootNumberProvider.create(1))
                         .with(ItemEntry.builder(ModItems.MOON_SHARD).weight(1))
                         // Chance of generation per roll is entry weight divided by the total weight of all entries in the pool
-                    .with(EmptyEntry.Serializer().weight(4));
+                    .with(EmptyEntry.builder().weight(4));
     
                 table.pool(poolBuilder.withCondition(TimeCheckLootCondition.create(BoundedIntUnaryOperator.create(12000,24000)).build()));
             }

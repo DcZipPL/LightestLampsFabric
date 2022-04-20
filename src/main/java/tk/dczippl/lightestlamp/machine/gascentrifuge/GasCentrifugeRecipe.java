@@ -7,10 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.tag.Tag;
+import net.minecraft.util.Holder;
+import net.minecraft.util.HolderSet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryEntryList;
 import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.plugins.Config;
 
@@ -86,8 +86,9 @@ public class GasCentrifugeRecipe
         
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
 
-        Optional<RegistryEntryList.Named<Item>> glowstone_small_dusts = Registry.ITEM.getEntryList(GLOWSTONE_SMALL_DUSTS);
-        glowstone_small_dusts.ifPresent(registryEntries -> addItemTagBurnTime(map, registryEntries.getStorage().right().orElseGet(ArrayList::new).stream().map(RegistryEntry::value).toList(), 10 * multiplier));
+        Optional<HolderSet.NamedSet<Item>> glowstone_small_dusts = Registry.ITEM.getTag(GLOWSTONE_SMALL_DUSTS);
+        // method_40248 -> getStorage()
+        glowstone_small_dusts.ifPresent(registryEntries -> addItemTagBurnTime(map, registryEntries.method_40248().right().orElseGet(ArrayList::new).stream().map(Holder::value).toList(), 10 * multiplier));
         
         addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
         addItemBurnTime(map, Items.GLOW_BERRIES,60*multiplier);

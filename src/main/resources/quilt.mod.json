@@ -1,0 +1,61 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "${maven_group}",
+		"id": "lightestlamp",
+		"version": "${version}",
+		"metadata": {
+			"name": "Lightest Lamps",
+			"description": "Lightest Lamps adds a lot of lamps that have bigger light range and special ones.",
+			"contributors": {
+				"Prefex (DcZipPL)": "Owner"
+			},
+			"contact": {
+				"homepage": "https://dczippl.tk/",
+				"sources": "https://github.com/DcZipPL/LightestLampsFabric",
+				"issues": "https://github.com/DcZipPL/LightestLampsFabric/issues"
+			},
+			"icon": "assets/lightestlamp/icon.png",
+			"license": "MIT"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": [
+			  "tk.dczippl.lightestlamp.LightestLampsMod"
+			],
+			"client": [
+			  "tk.dczippl.lightestlamp.LightestLampsClientMod"
+			],
+			"modmenu": [
+			  "tk.dczippl.lightestlamp.plugins.ModMenuIntegration"
+			],
+			"rei_plugins": [
+			  "tk.dczippl.lightestlamp.plugins.rei.LLREIPlugin"
+			]
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=${loader_version}"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": "${quilted_fabric_api_version}"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=${minecraft_version}"
+			},
+			{
+				"id": "cloth-config2",
+				"versions": "*"
+			}
+		]
+	},
+	"mixin": [
+		"examplemod.mixins.json"
+	],
+	"minecraft": {
+		"environment": "*"
+	}
+}

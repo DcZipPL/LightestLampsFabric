@@ -6,16 +6,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.util.Holder;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.CountPlacementModifier;
 import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
+import net.minecraft.world.gen.decorator.InSquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
@@ -36,10 +37,10 @@ public class WorldGenerator
         }
 
         public PlacedFeature createPlaced(){
-            return new PlacedFeature(RegistryEntry.of(create()),
+            return new PlacedFeature(Holder.createDirect(create()),
                     List.of(
                     CountPlacementModifier.create(veinsPerChunk),
-                    SquarePlacementModifier.create(),
+                    InSquarePlacementModifier.getInstance(),
                     HeightRangePlacementModifier.createUniform(
                             YOffset.aboveBottom(minOffset),
                             YOffset.fixed(maxY)),
