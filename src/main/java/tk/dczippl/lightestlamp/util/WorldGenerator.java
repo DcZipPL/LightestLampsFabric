@@ -2,9 +2,7 @@ package tk.dczippl.lightestlamp.util;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.util.Holder;
 import net.minecraft.util.Identifier;

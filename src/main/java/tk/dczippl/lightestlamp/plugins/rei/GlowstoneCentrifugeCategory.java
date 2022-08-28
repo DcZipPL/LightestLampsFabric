@@ -11,10 +11,8 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GlowstoneCentrifugeCategory implements DisplayCategory<GlowstoneCentrifugeDisplay> {
@@ -35,7 +33,7 @@ public class GlowstoneCentrifugeCategory implements DisplayCategory<GlowstoneCen
 	 */
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("rei.lightestlamp.glowstonecentrifuge");
+		return Text.translatable("rei.lightestlamp.glowstonecentrifuge");
 	}
 	
 	@Override

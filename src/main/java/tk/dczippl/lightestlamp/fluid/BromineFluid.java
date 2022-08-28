@@ -32,6 +32,11 @@ public abstract class BromineFluid extends AbstractFluid {
 
 	public static class Flowing extends BromineFluid {
 		@Override
+		public boolean isSource(FluidState state) {
+			return false;
+		}
+
+		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
@@ -41,22 +46,17 @@ public abstract class BromineFluid extends AbstractFluid {
 		public int getLevel(FluidState fluidState) {
 			return fluidState.get(LEVEL);
 		}
-
-		@Override
-		public boolean isStill(FluidState fluidState) {
-			return false;
-		}
 	}
 
 	public static class Still extends BromineFluid {
 		@Override
-		public int getLevel(FluidState fluidState) {
-			return 8;
+		public boolean isSource(FluidState state) {
+			return true;
 		}
 
 		@Override
-		public boolean isStill(FluidState fluidState) {
-			return true;
+		public int getLevel(FluidState fluidState) {
+			return 8;
 		}
 	}
 }

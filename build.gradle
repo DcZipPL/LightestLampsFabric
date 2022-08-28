@@ -52,9 +52,9 @@ dependencies {
 	// Quilted Fabric API will automatically pull in the correct QSL version.
 	modImplementation libs.quilted.fabric.api
 
-	modImplementation("me.shedaniel.cloth:cloth-config-fabric:6.2.57")
-	modImplementation "com.terraformersmc:modmenu:3.2.3"
-	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:8.2.471"
+	modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config}")
+	modImplementation "com.terraformersmc:modmenu:${project.mod_menu}"
+	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei}"
 	modImplementation "TechReborn:TechReborn-${project.tech_reborn}"
 	include(modApi("teamreborn:energy:${project.energy_version}"))
 }
@@ -116,8 +116,8 @@ modrinth {
 	projectId = "lightest-lamps" // This can be the project ID or the slug. Either will work!
 	versionNumber = project.version // You don't need to set this manually. Will fail if Modrinth has this version already
 	versionType = "release" // This is the default -- can also be `beta` or `alpha`
-	uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
-	gameVersions = ["1.18.2"] // Must be an array, even with only one version
+	uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+	gameVersions = ["1.19", "1.19.1", "1.19.2"] // Must be an array, even with only one version
 	loaders = ["quilt"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
 	dependencies { // A special DSL for creating dependencies
 		// scope.type

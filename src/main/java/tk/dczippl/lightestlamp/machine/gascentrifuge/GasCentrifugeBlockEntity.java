@@ -14,32 +14,23 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-//import team.reborn.energy.api.base.SimpleEnergyStorage;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
-import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
-import tk.dczippl.lightestlamp.plugins.Config;
 
-import java.util.Map;
 import java.util.Random;
 
 import static tk.dczippl.lightestlamp.plugins.Config.power_as_default;
@@ -59,7 +50,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     @Override
     protected Text getContainerName()
     {
-        return new TranslatableText("container.gascentrifuge");
+        return Text.translatable("container.gascentrifuge");
     }
 
     protected ScreenHandler createScreenHandler(int id, PlayerInventory player)

@@ -9,6 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 
@@ -22,7 +23,7 @@ public class BromineFluidBlock extends FluidBlock
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
+    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, RandomGenerator random)
     {
         worldIn.getNonSpectatingEntities(Entity.class, new Box(pos.offset(Direction.NORTH, 4).offset(Direction.WEST, 4).offset(Direction.UP, 4),
                 pos.offset(Direction.SOUTH, 4).offset(Direction.EAST, 4).offset(Direction.DOWN, 4))).forEach(entity ->

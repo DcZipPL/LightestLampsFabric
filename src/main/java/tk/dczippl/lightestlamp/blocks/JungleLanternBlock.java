@@ -15,14 +15,12 @@ import net.minecraft.tag.FluidTags;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.tick.OrderedTick;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -56,7 +54,7 @@ public class JungleLanternBlock extends Block implements Waterloggable
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(new TranslatableText("tooltip.lightestlamp.speed_grow").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+        tooltip.add(Text.translatable("tooltip.lightestlamp.speed_grow").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
 
         super.appendTooltip(stack, world, tooltip, options);
     }

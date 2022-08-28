@@ -7,7 +7,6 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -80,7 +79,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, Collections.singletonList(new LiteralText(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
+            renderTooltip(matrixStack, Collections.singletonList(Text.literal(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4); // TODO: Translate this
         }
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
@@ -92,7 +91,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     @SuppressWarnings("SimplifyStreamApiCallChains")
     private List<Text> formatUTooltip(String utooltip) {
         return Arrays.stream(utooltip.split("\n")).map(
-                s -> new LiteralText(s).setStyle(Style.EMPTY.withColor(
+                s -> Text.literal(s).setStyle(Style.EMPTY.withColor(
                         s.contains("§7") ? Formatting.GRAY : s.contains("§c") ? Formatting.RED : s.contains("§a") ? Formatting.GREEN : Formatting.WHITE
                 ))
         ).collect(Collectors.toUnmodifiableList());
