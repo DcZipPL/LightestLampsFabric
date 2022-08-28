@@ -1,6 +1,5 @@
 package tk.dczippl.lightestlamp.blocks;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import tk.dczippl.lightestlamp.blocks.entity.AlchemicalLampBlockEntity;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 
@@ -25,7 +25,7 @@ public class AlchemicalLampBlock extends BlockWithEEntity
 {
     public AlchemicalLampBlock()
     {
-        super(FabricBlockSettings.copyOf(REDSTONE_LAMP).luminance(__ -> 15));
+        super(QuiltBlockSettings.copyOf(REDSTONE_LAMP).luminance(__ -> 15));
     }
 
     @Nullable

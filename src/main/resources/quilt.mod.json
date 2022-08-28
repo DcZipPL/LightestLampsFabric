@@ -1,7 +1,7 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "${maven_group}",
+		"group": "tk.dczippl.lightestlamp",
 		"id": "lightestlamp",
 		"version": "${version}",
 		"metadata": {
@@ -23,7 +23,7 @@
 			"init": [
 			  "tk.dczippl.lightestlamp.LightestLampsMod"
 			],
-			"client": [
+			"client_init": [
 			  "tk.dczippl.lightestlamp.LightestLampsClientMod"
 			],
 			"modmenu": [
@@ -36,15 +36,15 @@
 		"depends": [
 			{
 				"id": "quilt_loader",
-				"versions": ">=${loader_version}"
+				"versions": ">=0.16.0-"
 			},
 			{
 				"id": "quilted_fabric_api",
-				"versions": "${quilted_fabric_api_version}"
+				"versions": ">=1.0.0-"
 			},
 			{
 				"id": "minecraft",
-				"versions": ">=${minecraft_version}"
+				"versions": ">=1.18.2"
 			},
 			{
 				"id": "cloth-config2",
@@ -53,7 +53,6 @@
 		]
 	},
 	"mixin": [
-		"examplemod.mixins.json"
 	],
 	"minecraft": {
 		"environment": "*"

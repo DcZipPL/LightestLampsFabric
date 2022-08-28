@@ -1,6 +1,5 @@
 package tk.dczippl.lightestlamp.blocks;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -22,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import tk.dczippl.lightestlamp.blocks.entity.GenerableLampBlockEntity;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModBlocks;
@@ -36,7 +36,7 @@ public class GenerableLampBlock extends BlockWithEEntity {
 	public final boolean waterResistant;
 
 	public GenerableLampBlock(LampType lampType, boolean waterResistant) {
-		super(FabricBlockSettings.copyOf(REDSTONE_LAMP).luminance(__ -> 15));
+		super(QuiltBlockSettings.copyOf(REDSTONE_LAMP).luminance(__ -> 15));
 		this.lampType = lampType;
 		this.waterResistant = waterResistant;
 	}

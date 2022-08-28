@@ -1,6 +1,5 @@
 package tk.dczippl.lightestlamp.blocks;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
@@ -13,6 +12,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 
 import static net.minecraft.state.property.Properties.WATERLOGGED;
 
@@ -21,7 +21,7 @@ public class LightAirBlock extends AirBlock
 {
     public LightAirBlock()
     {
-        super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
+        super(QuiltBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
     }
 
     VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);

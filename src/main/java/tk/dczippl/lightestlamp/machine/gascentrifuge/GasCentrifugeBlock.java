@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import tk.dczippl.lightestlamp.blocks.BlockWithEEntity;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 
@@ -32,7 +33,7 @@ public class GasCentrifugeBlock extends BlockWithEEntity
 	public static final BooleanProperty MODERN = BooleanProperty.of("modern");
 	
 	public GasCentrifugeBlock() {
-		super(FabricBlockSettings.copyOf(IRON_BLOCK).requiresTool());
+		super(QuiltBlockSettings.copyOf(IRON_BLOCK).requiresTool());
 		this.setDefaultState(this.getDefaultState().with(FACING, Direction.NORTH).with(MODERN, FabricLoader.getInstance().isModLoaded("techreborn")));
 	}
 	@Nullable

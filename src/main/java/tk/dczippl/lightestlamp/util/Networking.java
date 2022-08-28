@@ -1,10 +1,10 @@
 package tk.dczippl.lightestlamp.util;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 
 public class Networking

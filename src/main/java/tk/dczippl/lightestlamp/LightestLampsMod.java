@@ -2,7 +2,6 @@ package tk.dczippl.lightestlamp;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -20,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import tk.dczippl.lightestlamp.init.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import tk.dczippl.lightestlamp.plugins.Config;
@@ -43,7 +44,7 @@ public class LightestLampsMod implements ModInitializer
      * Runs the mod initializer.
      */
     @Override
-    public void onInitialize() {
+    public void onInitialize(ModContainer mod) {
         AutoConfig.register(Config.class, JanksonConfigSerializer::new);
         
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
