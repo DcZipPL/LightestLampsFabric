@@ -34,7 +34,6 @@ public class LLREIPlugin implements REIClientPlugin {
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.krypton));
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.xenon));
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.radon));
-		addDescription(registry, ModItems.MOON_SHARD, "rei.lightestlamp.instructions.moonshard");
 	}
 	
 	private static void addDescription(DisplayRegistry registry, Item itemDefinition, String... message) {

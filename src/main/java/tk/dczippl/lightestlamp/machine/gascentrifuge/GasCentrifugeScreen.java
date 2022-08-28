@@ -5,6 +5,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Style;
@@ -46,40 +47,26 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         this.textRenderer.draw(matrixStack, this.title, (float)(this.backgroundWidth / 2 - tmp / 2), -12.0F, 4210752);
         this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.backgroundHeight - 96 + 2), 4210752);
 
-        String redstone_tooltip = "Mode: Ignore Redstone";
-        switch (sc.delegate.get(1))
-        {
-            case 0:
-                redstone_tooltip = "Mode: Ignore Redstone";
-                break;
-            case 1:
-                redstone_tooltip = "Mode: Redstone off";
-                break;
-            case 2:
-                redstone_tooltip = "Mode: Redstone on";
-                break;
-        }
-        String power_tooltip = "Mode: Neutralize Waste";
-        switch (sc.delegate.get(4))
-        {
-            case 0:
-                power_tooltip = "Mode: Passive Mode\n§7Machine dosn't require any energy.\n§cEfficiency -80%\n§aPower Consumption: -100%";
-                break;
-            case 1:
-                power_tooltip = "Mode: Normal\n§7Machine works normally.\n§7Machine require LV-MV power tier.";
-                break;
-            case 2:
-                power_tooltip = "Mode: Overclocked\n§7Machine is more efficient but requires more power.\n§7Machine require HV power tier.\n§aEfficiency +100%\n§cPower Consumption: +60%";
-                break;
-        }
-    
+        String redstone_tooltip = switch (sc.delegate.get(1)) {
+            case 0 -> "tooltip.lightestlamp.machine.redstone_ignore";
+            case 1 -> "tooltip.lightestlamp.machine.redstone_off";
+            case 2 -> "tooltip.lightestlamp.machine.redstone_on";
+            default -> "tooltip.lightestlamp.machine.redstone_na";
+        };
+        String power_tooltip = switch (sc.delegate.get(4)) {
+            case 0 -> "tooltip.lightestlamp.machine.passive_mode";
+            case 1 -> "tooltip.lightestlamp.machine.normal_mode";
+            case 2 -> "tooltip.lightestlamp.machine.overclock_mode";
+            default -> "tooltip.lightestlamp.machine.mode_na";
+        };
+
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
         int marginVertical = (this.height - this.backgroundHeight) / 2;
         
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, Collections.singletonList(Text.literal(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4); // TODO: Translate this
+            renderTooltip(matrixStack, Collections.singletonList(Text.translatable(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
         }
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
@@ -90,7 +77,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     
     @SuppressWarnings("SimplifyStreamApiCallChains")
     private List<Text> formatUTooltip(String utooltip) {
-        return Arrays.stream(utooltip.split("\n")).map(
+        return Arrays.stream(I18n.translate(utooltip).replace("Format error: ","*").split("¬")).map(
                 s -> Text.literal(s).setStyle(Style.EMPTY.withColor(
                         s.contains("§7") ? Formatting.GRAY : s.contains("§c") ? Formatting.RED : s.contains("§a") ? Formatting.GREEN : Formatting.WHITE
                 ))

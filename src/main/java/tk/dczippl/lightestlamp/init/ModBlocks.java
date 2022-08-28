@@ -8,6 +8,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.SimpleRegistry;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import tk.dczippl.lightestlamp.blocks.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
@@ -46,23 +47,23 @@ public class ModBlocks
 
     //Other Blocks
 
-    public static final Block NEON_ROD_BLOCK = registerBlock("neon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(10)));
-    public static final Block ARGON_ROD_BLOCK = registerBlock("argon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(10)));
-    public static final Block KRYPTON_ROD_BLOCK = registerBlock("krypton_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(14)));
-    public static final Block XENON_ROD_BLOCK = registerBlock("xenon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(14)));
-    public static final Block RADON_ROD_BLOCK = registerBlock("radon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
+    public static final Block NEON_ROD_BLOCK = registerBlock("neon_rod_block", new PillarBlock(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(10)));
+    public static final Block ARGON_ROD_BLOCK = registerBlock("argon_rod_block", new PillarBlock(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(10)));
+    public static final Block KRYPTON_ROD_BLOCK = registerBlock("krypton_rod_block", new PillarBlock(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(14)));
+    public static final Block XENON_ROD_BLOCK = registerBlock("xenon_rod_block", new PillarBlock(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(14)));
+    public static final Block RADON_ROD_BLOCK = registerBlock("radon_rod_block", new PillarBlock(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(QuiltBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
             .hardness(1f).resistance(1)));
-    public static final Block LANTHANUM_ORE = registerBlock("lanthanum_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).requiresTool()));
-    public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).requiresTool()));
+    public static final Block LANTHANUM_ORE = registerBlock("lanthanum_ore", new Block(QuiltBlockSettings.copyOf(IRON_ORE).requiresTool()));
+    public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(QuiltBlockSettings.copyOf(RAW_IRON_BLOCK).requiresTool()));
     //public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
 
     //Glowstones
-    public static final Block NEON_BLOCK = registerBlock("neon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block ARGON_BLOCK = registerBlock("argon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block KRYPTON_BLOCK = registerBlock("krypton_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block XENON_BLOCK = registerBlock("xenon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block RADON_BLOCK = registerBlock("radon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block NEON_BLOCK = registerBlock("neon_block", new Block(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block ARGON_BLOCK = registerBlock("argon_block", new Block(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block KRYPTON_BLOCK = registerBlock("krypton_block", new Block(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block XENON_BLOCK = registerBlock("xenon_block", new Block(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
+    public static final Block RADON_BLOCK = registerBlock("radon_block", new Block(QuiltBlockSettings.copyOf(GLOWSTONE).luminance(15)));
     public static final Block GLOWING_GLASS_BLOCK = registerBlock("glowing_glass_block", new GlowingGlassBlock());
     public static final Block GLOWSTONE_CENTRIFUGE = registerBlock("glowstone_centrifuge", new GasCentrifugeBlock());
 
