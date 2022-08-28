@@ -32,6 +32,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 //import team.reborn.energy.api.base.SimpleEnergyStorage;
+import team.reborn.energy.api.base.SimpleEnergyStorage;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
@@ -53,7 +54,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
         if (power_as_default) powerMode = 1;
     }
     
-    //public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1600, 128, 0);
+    public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1600, 128, 0);
     
     @Override
     protected Text getContainerName()
@@ -87,7 +88,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                 case 2 -> (int) GasCentrifugeBlockEntity.this.cookTime;
                 case 3 -> GasCentrifugeBlockEntity.this.cookTimeTotal;
                 case 4 -> GasCentrifugeBlockEntity.this.powerMode;
-                //case 5 -> (int) GasCentrifugeBlockEntity.this.energyStorage.amount;
+                case 5 -> (int) GasCentrifugeBlockEntity.this.energyStorage.amount;
                 case 6 -> GasCentrifugeBlockEntity.this.burnTimeTotal;
                 default -> 0;
             };
@@ -101,7 +102,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                 case 2 -> GasCentrifugeBlockEntity.this.cookTime = value;
                 case 3 -> GasCentrifugeBlockEntity.this.cookTimeTotal = value;
                 case 4 -> GasCentrifugeBlockEntity.this.powerMode = value;
-                //case 5 -> GasCentrifugeBlockEntity.this.energyStorage.amount = value;
+                case 5 -> GasCentrifugeBlockEntity.this.energyStorage.amount = value;
                 case 6 -> GasCentrifugeBlockEntity.this.burnTimeTotal = value;
             }
 
@@ -168,9 +169,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     {
         boolean flag = be.isBurning();
         boolean flag1 = false;
-        //if (be.isBurning() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
+        if (be.isBurning() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
             --be.burnTime;
-        //}
+        }
         
         if (!be.world.isClient) {
             ItemStack itemstack = be.items.get(1);
@@ -193,8 +194,8 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     }
                 }
                 
-                //if (be.isBurning() && be.canSmelt() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
-                    //if (be.powerMode != 0) be.energyStorage.amount -= (be.powerMode == 2 ? (int)(14*1.6f) : 14);
+                if (be.isBurning() && be.canSmelt() && (be.energyStorage.amount > (14*1.6f) || be.powerMode == 0)) {
+                    if (be.powerMode != 0) be.energyStorage.amount -= (be.powerMode == 2 ? (int)(14*1.6f) : 14);
                     be.cookTime += be.getEfficiency();
                     if ((int)be.cookTime >= be.cookTimeTotal) {
                         be.cookTime = 0;
@@ -202,9 +203,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                         be.placeItemsInRightSlot();
                         flag1 = true;
                     }
-                //} else {
+                } else {
                     be.cookTime = 0;
-                //}
+                }
             } else if (!be.isBurning() && be.cookTime > 0) {
                 be.cookTime = MathHelper.clamp(be.cookTime - 2, 0, be.cookTimeTotal);
             }
@@ -250,11 +251,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     } else if (!itemstack1.isItemEqual(itemstack)) {
                         output0[i] =  false;
                     } else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxCountPerStack() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxCount()) {
-                        // Forge fix: make furnace respect stack sizes in furnace recipes
                         output0[i] =  true;
                     } else {
                         output0[i] =  itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxCount();
-                        // Forge fix: make furnace respect stack sizes in furnace recipes
                     }
                 }
                 return output0[0]&&output0[1]&&output0[2]&&output0[3];
@@ -462,24 +461,4 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeBlockPos(pos);
     }
-    
-    /*net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
-            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-    @Override
-    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
-        }
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-        {
-            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.orEmpty(capability, LazyOptional.of(() -> new FluidHandlerWrapper(this, facing)));
-        }
-        return super.getCapability(capability, facing);
-    }*/
 }

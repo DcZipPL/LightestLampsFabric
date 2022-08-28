@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 //import team.reborn.energy.api.EnergyStorage;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.loader.api.QuiltLoader;
+import team.reborn.energy.api.EnergyStorage;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 
@@ -36,11 +37,11 @@ public class EnergyIntegration {
 
 class RebornEnergyIntegration {
 	static boolean register() {
-		//EnergyStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
-		//			if (blockEntity instanceof GasCentrifugeBlockEntity be) return be.energyStorage;
-		//			else return null;
-		//		},
-		//		ModBlockEntities.CENTRIFUGE_BE);
+		EnergyStorage.SIDED.registerForBlockEntities((blockEntity, context) -> {
+					if (blockEntity instanceof GasCentrifugeBlockEntity be) return be.energyStorage;
+					else return null;
+				},
+				ModBlockEntities.CENTRIFUGE_BE);
 		return true;
 	}
 }
