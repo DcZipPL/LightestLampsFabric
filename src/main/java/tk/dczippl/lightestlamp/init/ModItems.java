@@ -17,7 +17,7 @@ public class ModItems
     
     public static final Item GLOW_LICHEN_FIBER = registerItem(new Item(globalSettings), "glow_lichen_fiber");
     public static final Item CHORUS_FIBER = registerItem(new Item(globalSettings), "chorus_fiber");
-    public static final Item MOON_SHARD = registerItem(new Item(globalSettings), "moon_shard");
+    //public static final Item MOON_SHARD = registerItem(new Item(globalSettings), "moon_shard");
     public static final Item KRYPTON_PILE = registerItem(new Item(globalSettings), "krypton_small_dust");
     public static final Item RADON_DUST = registerItem(new Item(globalSettings), "radon_dust");
     public static final Item XENON_DUST = registerItem(new Item(globalSettings), "xenon_dust");
