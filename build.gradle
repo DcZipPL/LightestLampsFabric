@@ -123,7 +123,8 @@ modrinth {
 		// scope.type
 		// The scope can be `required`, `optional`, `incompatible`, or `embedded`
 		// The type can either be `project` or `version`
-		required.project "cloth-config" // Creates a new required dependency on Fabric API
-		required.project "qsl" // Creates a new required dependency on Fabric API
+		optional.project "roughly-enough-items"
+		required.project "cloth-config"
+		required.project "qsl"
 	}
 }
