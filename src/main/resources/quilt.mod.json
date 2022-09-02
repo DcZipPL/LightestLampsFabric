@@ -29,7 +29,7 @@
 			"modmenu": [
 			  "tk.dczippl.lightestlamp.plugins.ModMenuIntegration"
 			],
-			"rei_plugins": [
+			"rei_client": [
 			  "tk.dczippl.lightestlamp.plugins.rei.LLREIPlugin"
 			]
 		},
@@ -44,7 +44,7 @@
 			},
 			{
 				"id": "minecraft",
-				"versions": ">=1.18.2"
+				"versions": "~1.19"
 			},
 			{
 				"id": "cloth-config2",
