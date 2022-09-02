@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -59,8 +60,7 @@ dependencies {
 	optionalDependency "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	//optionalDependency ("RebornCore:RebornCore-1.18:${project.RebornCore_version}")
-	//modLocalRuntime ("TechReborn:TechReborn-1.18:${project.TechReborn_version}")
+	optionalDependency ("TechReborn:TechReborn-1.19:${project.TechReborn_version}")
 	include modApi('teamreborn:energy:2.2.0')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
@@ -130,5 +130,23 @@ publishing {
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
+	}
+}
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN") // This is the default. Remember to have the MODRINTH_TOKEN environment variable set or else this will fail, or set it to whatever you want - just make sure it stays private!
+	projectId = "lightest-lamps" // This can be the project ID or the slug. Either will work!
+	versionNumber = project.version // You don't need to set this manually. Will fail if Modrinth has this version already
+	versionType = "release" // This is the default -- can also be `beta` or `alpha`
+	uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+	gameVersions = ["1.19", "1.19.1", "1.19.2"] // Must be an array, even with only one version
+	loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
+	dependencies { // A special DSL for creating dependencies
+		// scope.type
+		// The scope can be `required`, `optional`, `incompatible`, or `embedded`
+		// The type can either be `project` or `version`
+		optional.project "roughly-enough-items"
+		required.project "cloth-config"
+		required.project "fabric-api"
 	}
 }
