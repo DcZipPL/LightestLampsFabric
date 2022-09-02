@@ -14,7 +14,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -72,12 +71,12 @@ public class GenerableLampBlock extends BlockWithEEntity {
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-		tooltip.add(new TranslatableText("tooltip.lightestlamp.type."+lampType.name().toLowerCase()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+		tooltip.add(Text.translatable("tooltip.lightestlamp.type."+lampType.name().toLowerCase()).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
 
-		if (waterResistant) 		tooltip.add(new TranslatableText("tooltip.lightestlamp.underwater").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
-		if (lampType.ordinal() > 2) tooltip.add(new TranslatableText("tooltip.lightestlamp.penetration").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
-		if (lampType.ordinal() > 4) tooltip.add(new TranslatableText("tooltip.lightestlamp.always_active").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
-		else 						tooltip.add(new TranslatableText("tooltip.lightestlamp.inverted").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+		if (waterResistant) 		tooltip.add(Text.translatable("tooltip.lightestlamp.underwater").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+		if (lampType.ordinal() > 2) tooltip.add(Text.translatable("tooltip.lightestlamp.penetration").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+		if (lampType.ordinal() > 4) tooltip.add(Text.translatable("tooltip.lightestlamp.always_active").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+		else 						tooltip.add(Text.translatable("tooltip.lightestlamp.inverted").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
 
 		super.appendTooltip(stack, world, tooltip, options);
 	}

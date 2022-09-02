@@ -8,7 +8,7 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.DefaultInformationDisplay;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 import tk.dczippl.lightestlamp.init.ModItems;
@@ -34,13 +34,12 @@ public class LLREIPlugin implements REIClientPlugin {
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.krypton));
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.xenon));
 		registry.add(new GlowstoneCentrifugeDisplay(GasCentrifugeRecipe.radon));
-		addDescription(registry, ModItems.MOON_SHARD, "rei.lightestlamp.instructions.moonshard");
 	}
 	
 	private static void addDescription(DisplayRegistry registry, Item itemDefinition, String... message) {
 		DefaultInformationDisplay info = DefaultInformationDisplay.createFromEntry(EntryStacks.of(itemDefinition),
-				new TranslatableText("rei.obtainingmoonshard"));
-		info.lines(Arrays.stream(message).map(TranslatableText::new).collect(Collectors.toList()));
+				Text.translatable("rei.obtainingmoonshard"));
+		info.lines(Arrays.stream(message).map(Text::translatable).collect(Collectors.toList()));
 		registry.add(info);
 	}
 }

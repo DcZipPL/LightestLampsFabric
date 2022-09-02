@@ -17,16 +17,16 @@ public class ModItems
     
     public static final Item GLOW_LICHEN_FIBER = registerItem(new Item(globalSettings), "glow_lichen_fiber");
     public static final Item CHORUS_FIBER = registerItem(new Item(globalSettings), "chorus_fiber");
-    public static final Item MOON_SHARD = registerItem(new Item(globalSettings), "moon_shard");
-    public static final Item KRYPTON_PILE = registerItem(new Item(globalSettings), "krypton_small_dust");
+    //public static final Item MOON_SHARD = registerItem(new Item(globalSettings), "moon_shard");
     public static final Item RADON_DUST = registerItem(new Item(globalSettings), "radon_dust");
     public static final Item XENON_DUST = registerItem(new Item(globalSettings), "xenon_dust");
     public static final Item KRYPTON_DUST = registerItem(new Item(globalSettings), "krypton_dust");
     public static final Item ARGON_DUST = registerItem(new Item(globalSettings), "argon_dust");
-    public static final Item NEON_DUST = registerItem(new Item(globalSettings), "neon_dust");
     public static final Item RADON_PILE = registerItem(new Item(globalSettings), "radon_pile");
     public static final Item XENON_PILE = registerItem(new Item(globalSettings), "xenon_pile");
+    public static final Item KRYPTON_PILE = registerItem(new Item(globalSettings), "krypton_pile");
     public static final Item ARGON_PILE = registerItem(new Item(globalSettings), "argon_pile");
+    public static final Item NEON_DUST = registerItem(new Item(globalSettings), "neon_dust");
     public static final Item NEON_PILE = registerItem(new Item(globalSettings), "neon_pile");
     public static final Item EMPTY_ROD = registerItem(new Item(globalSettings), "empty_rod");
     public static final Item RADON_ROD = registerItem(new Item(globalSettings), "radon_rod");

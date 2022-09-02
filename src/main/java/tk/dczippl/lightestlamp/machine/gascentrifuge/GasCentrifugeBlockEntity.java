@@ -21,11 +21,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -58,7 +54,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     @Override
     protected Text getContainerName()
     {
-        return new TranslatableText("container.gascentrifuge");
+        return Text.translatable("container.gascentrifuge");
     }
 
     protected ScreenHandler createScreenHandler(int id, PlayerInventory player)

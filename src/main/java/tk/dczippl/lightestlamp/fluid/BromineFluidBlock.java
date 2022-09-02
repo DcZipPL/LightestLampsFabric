@@ -9,10 +9,9 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModMiscs;
-
-import java.util.Random;
 
 public class BromineFluidBlock extends FluidBlock
 {

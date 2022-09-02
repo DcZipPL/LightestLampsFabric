@@ -21,11 +21,11 @@ public class DescRedstoneLampBlock extends RedstoneLampBlock {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         if (Screen.hasShiftDown()){
-            tooltip.add(new TranslatableText(desc+"_full").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+            tooltip.add(Text.translatable(desc+"_full").setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
         }else{
-            tooltip.add(new TranslatableText(desc).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
-            tooltip.add(new LiteralText(""));
-            tooltip.add(new TranslatableText("tooltip.lightestlamp.hold0").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))).append(new TranslatableText("tooltip.lightestlamp.hold1").setStyle(Style.EMPTY.withColor(Formatting.AQUA))).append(new TranslatableText("tooltip.lightestlamp.hold2").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY)))));
+            tooltip.add(Text.translatable(desc).setStyle(Style.EMPTY.withColor(Formatting.GRAY)));
+            tooltip.add(Text.literal(""));
+            tooltip.add(Text.translatable("tooltip.lightestlamp.hold0").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))).append(Text.translatable("tooltip.lightestlamp.hold1").setStyle(Style.EMPTY.withColor(Formatting.AQUA))).append(Text.translatable("tooltip.lightestlamp.hold2").setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY)))));
         }
         super.appendTooltip(stack, world, tooltip, options);
     }

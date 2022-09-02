@@ -6,11 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import tk.dczippl.lightestlamp.init.ModMiscs;
 
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class FilterItem extends Item
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(this.tooltip).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+        tooltip.add(Text.translatable(this.tooltip).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
 
         super.appendTooltip(stack, world, tooltip, context);
     }

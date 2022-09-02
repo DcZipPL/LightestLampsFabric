@@ -3,17 +3,9 @@ package tk.dczippl.lightestlamp;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.loot.condition.TimeCheckLootCondition;
-import net.minecraft.loot.entry.EmptyEntry;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.operator.BoundedIntUnaryOperator;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -45,18 +37,6 @@ public class LightestLampsMod implements ModInitializer
     @Override
     public void onInitialize() {
         AutoConfig.register(Config.class, JanksonConfigSerializer::new);
-        
-        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
-            if (id.toString().contains(":entities")){
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ModItems.MOON_SHARD).weight(1))
-                        // Chance of generation per roll is entry weight divided by the total weight of all entries in the pool
-                    .with(EmptyEntry.Serializer().weight(4));
-    
-                table.pool(poolBuilder.withCondition(TimeCheckLootCondition.create(BoundedIntUnaryOperator.create(12000,24000)).build()));
-            }
-        });
         
         ServerPlayNetworking.registerGlobalReceiver(Networking.TOGGLEBUTTONS_CHANNEL, (client, handler, ctx, buf, responseSender) -> {
             // Read packet data on the event loop
