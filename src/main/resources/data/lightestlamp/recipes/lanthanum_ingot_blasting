@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "lightestlamp:raw_lanthanum"
+    },
+    "result": "lightestlamp:lanthanum_ingot",
+    "experience": 0.8,
+    "cookingtime": 100
+}
