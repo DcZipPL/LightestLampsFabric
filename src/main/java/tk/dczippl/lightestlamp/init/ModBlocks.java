@@ -4,10 +4,10 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.SimpleRegistry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.SimpleRegistry;
 import tk.dczippl.lightestlamp.blocks.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
@@ -16,7 +16,6 @@ import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 
 public class ModBlocks
 {
-    //public static final Block DARK_AIR = registerBlock("dark_air", () -> new DarkAirBlock());
     public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock(),false);
     public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock(),false);
     public static final Block CLEAR_LAMP = registerBlock("clear_lamp", new RedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));

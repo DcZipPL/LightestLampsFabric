@@ -2,7 +2,7 @@ package tk.dczippl.lightestlamp.init;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 import tk.dczippl.lightestlamp.LightestLampsMod;
 import tk.dczippl.lightestlamp.blocks.GenerableLampBlock;
 import tk.dczippl.lightestlamp.blocks.entity.AlchemicalLampBlockEntity;

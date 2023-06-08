@@ -1,12 +1,7 @@
 package tk.dczippl.lightestlamp.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.SimpleRegistry;
-import tk.dczippl.lightestlamp.LightestLampsMod;
 import tk.dczippl.lightestlamp.items.*;
 
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
@@ -17,7 +12,6 @@ public class ModItems
     
     public static final Item GLOW_LICHEN_FIBER = registerItem(new Item(globalSettings), "glow_lichen_fiber");
     public static final Item CHORUS_FIBER = registerItem(new Item(globalSettings), "chorus_fiber");
-    //public static final Item MOON_SHARD = registerItem(new Item(globalSettings), "moon_shard");
     public static final Item RADON_DUST = registerItem(new Item(globalSettings), "radon_dust");
     public static final Item XENON_DUST = registerItem(new Item(globalSettings), "xenon_dust");
     public static final Item KRYPTON_DUST = registerItem(new Item(globalSettings), "krypton_dust");

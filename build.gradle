@@ -50,7 +50,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	optionalDependency("me.shedaniel.cloth:cloth-config-fabric:6.2.57")
+	optionalDependency("me.shedaniel.cloth:cloth-config-fabric:11.0.99")
 
 	modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}") // Fix refmap crash
 
@@ -60,7 +60,7 @@ dependencies {
 	optionalDependency "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	optionalDependency ("TechReborn:TechReborn-1.19:${project.TechReborn_version}")
+	optionalDependency ("TechReborn:TechReborn-1.20:${project.TechReborn_version}")
 	include modApi('teamreborn:energy:2.2.0')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
@@ -139,7 +139,7 @@ modrinth {
 	versionNumber = project.version // You don't need to set this manually. Will fail if Modrinth has this version already
 	versionType = "release" // This is the default -- can also be `beta` or `alpha`
 	uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
-	gameVersions = ["1.19", "1.19.1", "1.19.2"] // Must be an array, even with only one version
+	gameVersions = ["1.20", "1.19", "1.19.1", "1.19.2"] // Must be an array, even with only one version
 	loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
 	dependencies { // A special DSL for creating dependencies
 		// scope.type

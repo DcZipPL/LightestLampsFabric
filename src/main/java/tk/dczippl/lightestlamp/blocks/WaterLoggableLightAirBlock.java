@@ -6,8 +6,8 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.state.StateManager;
-import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -20,7 +20,7 @@ import static net.minecraft.state.property.Properties.WATERLOGGED;
 public class WaterLoggableLightAirBlock extends Block implements Waterloggable
 {
     public WaterLoggableLightAirBlock() {
-        super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
+        super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing());
         this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
     }
 

@@ -3,17 +3,12 @@ package tk.dczippl.lightestlamp.init;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import tk.dczippl.lightestlamp.fluid.BromineFluid;
-import tk.dczippl.lightestlamp.fluid.BromineFluidBlock;
-
-import java.awt.*;
 
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 

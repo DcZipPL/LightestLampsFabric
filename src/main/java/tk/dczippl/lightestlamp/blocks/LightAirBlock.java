@@ -2,26 +2,16 @@ package tk.dczippl.lightestlamp.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
-
-import static net.minecraft.state.property.Properties.WATERLOGGED;
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class LightAirBlock extends AirBlock
 {
     public LightAirBlock()
     {
-        super(FabricBlockSettings.of(Material.AIR).air().luminance(15).nonOpaque().dropsNothing());
+        super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing());
     }
 
     VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
