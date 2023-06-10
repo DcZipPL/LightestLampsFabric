@@ -2,11 +2,9 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -25,7 +23,6 @@ import java.util.stream.Collectors;
 public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandler>
 {
     public static final Identifier texture = new Identifier(LightestLampsMod.MOD_ID,"textures/gui/container/glowstone_centrifuge.png");
-    private boolean field_214090_m;
     private GasCentrifugeScreenHandler sc;
 
     public GasCentrifugeScreen(GasCentrifugeScreenHandler screenContainer, PlayerInventory inv, Text titleIn)
@@ -35,17 +32,17 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.drawMouseoverTooltip(matrixStack, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float partialTicks) {
+        this.renderBackground(context);
+        super.render(context, mouseX, mouseY, partialTicks);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
-    protected void drawForeground(MatrixStack matrixStack, int mouseX, int mouseY) {
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         int tmp = 162;
-        this.textRenderer.draw(matrixStack, this.title, (float)(this.backgroundWidth / 2 - tmp / 2), -12.0F, 4210752);
-        this.textRenderer.draw(matrixStack, this.playerInventoryTitle, 8.0F, (float)(this.backgroundHeight - 96 + 2), 4210752);
+        context.drawText(textRenderer, this.title, this.backgroundWidth / 2 - tmp / 2, -12, 4210752, false);
+        context.drawText(textRenderer, this.playerInventoryTitle, 8, this.backgroundHeight - 96 + 2, 4210752, false);
 
         String redstone_tooltip = switch (sc.delegate.get(1)) {
             case 0 -> "tooltip.lightestlamp.machine.redstone_ignore";
@@ -66,12 +63,12 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, Collections.singletonList(Text.translatable(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
+            context.drawTooltip(textRenderer, Collections.singletonList(Text.translatable(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
         }
         checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
         if (checker.checkHover(mouseX,mouseY, true))
         {
-            renderTooltip(matrixStack, formatUTooltip(power_tooltip),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
+            context.drawTooltip(textRenderer, formatUTooltip(power_tooltip),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
         }
     }
 
@@ -85,17 +82,12 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        com.mojang.blaze3d.systems.RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        com.mojang.blaze3d.systems.RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        com.mojang.blaze3d.systems.RenderSystem.setShaderTexture(0, texture);
-
-        MinecraftClient.getInstance().getTextureManager().bindTexture(texture);
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
 
         int marginHorizontal = (this.width - this.backgroundWidth) / 2;
         int marginVertical = (this.height - this.backgroundHeight) / 2;
 
-        drawTexture(matrixStack, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight, 256,256);
+        context.drawTexture(texture, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight, 256,256);
 
         int i = x;
         int j = y;
@@ -103,43 +95,43 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
         if (((GasCentrifugeScreenHandler)this.sc).func_217061_l()) {
             int k = ((GasCentrifugeScreenHandler)this.sc).getBurnLeftScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 41 + 17 - k, j + 54, 194 - k, 100, k + 1,  5);
+            context.drawTexture(texture,i + 41 + 17 - k, j + 54, 194 - k, 100, k + 1,  5);
         }
         if (sc.delegate.get(4)!=0){
             int m = (int)((GasCentrifugeScreenHandler)this.sc).getPowerScaled();
             //Z Y T-Z T-Y W H
-            this.drawTexture(matrixStack,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 13, m + 1);
+            context.drawTexture(texture,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 13, m + 1);
         } else {
-            this.drawTexture(matrixStack,i + 153, j + 19 + 1 - 3, 218, 99 - 1 - 50, 14, 51);
+            context.drawTexture(texture,i + 153, j + 19 + 1 - 3, 218, 99 - 1 - 50, 14, 51);
         }
 
         switch (sc.delegate.get(1))
         {
             case 0:
-                this.drawTexture(matrixStack,marginHorizontal+9, marginVertical+9, 176, 128, 12, 12);
+                context.drawTexture(texture,marginHorizontal+9, marginVertical+9, 176, 128, 12, 12);
                 break;
             case 1:
-                this.drawTexture(matrixStack,marginHorizontal+9, marginVertical+9, 176, 141, 12, 12);
+                context.drawTexture(texture,marginHorizontal+9, marginVertical+9, 176, 141, 12, 12);
                 break;
             case 2:
-                this.drawTexture(matrixStack,marginHorizontal+9, marginVertical+9, 176, 154, 12, 12);
+                context.drawTexture(texture,marginHorizontal+9, marginVertical+9, 176, 154, 12, 12);
                 break;
         }
         switch (sc.delegate.get(4))
         {
             case 0:
-                this.drawTexture(matrixStack,marginHorizontal+25, marginVertical+9, 192, 128, 12, 12);
+                context.drawTexture(texture,marginHorizontal+25, marginVertical+9, 192, 128, 12, 12);
                 break;
             case 1:
-                this.drawTexture(matrixStack,marginHorizontal+25, marginVertical+9, 192, 141, 12, 12);
+                context.drawTexture(texture,marginHorizontal+25, marginVertical+9, 192, 141, 12, 12);
                 break;
             case 2:
-                this.drawTexture(matrixStack,marginHorizontal+25, marginVertical+9, 192, 154, 12, 12);
+                context.drawTexture(texture,marginHorizontal+25, marginVertical+9, 192, 154, 12, 12);
                 break;
         }
 
         int l = ((GasCentrifugeScreenHandler)this.sc).getCookProgressionScaled();
-        this.drawTexture(matrixStack,i + 63, j + 34, 176, 14, l + 1, 16);
+        context.drawTexture(texture,i + 63, j + 34, 176, 14, l + 1, 16);
     }
 
     @Override

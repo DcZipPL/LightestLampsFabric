@@ -84,7 +84,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
      * inventory and the other inventory(s).
      */
     @Override
-    public ItemStack transferSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMove(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasStack()) {
