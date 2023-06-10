@@ -8,6 +8,7 @@ import tk.dczippl.lightestlamp.items.*;
 
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 
+@SuppressWarnings("unused")
 public class ModItems
 {
     public static final Item.Settings globalSettings = new Item.Settings().maxCount(64).group(ModMiscs.LAMPS_TAB);

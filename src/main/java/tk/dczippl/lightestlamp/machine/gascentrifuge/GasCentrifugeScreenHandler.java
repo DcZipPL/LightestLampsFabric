@@ -35,7 +35,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         this.furnaceInventory = furnaceInventoryIn;
         this.delegate = delegate;
         pos = BlockPos.ORIGIN;
-        this.world = playerInventoryIn.player.world;
+        this.world = playerInventoryIn.player.getWorld();
         this.player = playerInventoryIn.player;
         this.addSlot(new Slot(furnaceInventoryIn, 0, 16, 35));
         this.addSlot(new Slot(furnaceInventoryIn, 1, 41, 35));

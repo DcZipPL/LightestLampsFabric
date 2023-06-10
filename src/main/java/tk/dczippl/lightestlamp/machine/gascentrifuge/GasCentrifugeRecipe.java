@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import tk.dczippl.lightestlamp.init.ModItems;
@@ -21,7 +20,7 @@ import static tk.dczippl.lightestlamp.LightestLampsMod.GLOWSTONE_SMALL_DUSTS;
 
 public class GasCentrifugeRecipe
 {
-    protected static List<GasCentrifugeRecipe> recipes = new ArrayList<GasCentrifugeRecipe>();
+    protected static List<GasCentrifugeRecipe> recipes = new ArrayList<>();
     public static final GasCentrifugeRecipe basic = new GasCentrifugeRecipe(
             new ItemStack(ModItems.BASIC_FILTER), new ItemStack(Items.GLOWSTONE),new ItemStack(ModItems.NEON_DUST),new ItemStack(ModItems.ARGON_DUST),new ItemStack(ModItems.KRYPTON_PILE),ItemStack.EMPTY);
     public static final GasCentrifugeRecipe neon = new GasCentrifugeRecipe(
@@ -34,8 +33,6 @@ public class GasCentrifugeRecipe
             new ItemStack(ModItems.XENON_FILTER), new ItemStack(Items.GLOWSTONE),new ItemStack(ModItems.KRYPTON_PILE,2),new ItemStack(ModItems.XENON_DUST),new ItemStack(ModItems.XENON_PILE,2),new ItemStack(ModItems.RADON_PILE,1));
     public static final GasCentrifugeRecipe radon = new GasCentrifugeRecipe(
             new ItemStack(ModItems.RADON_FILTER), new ItemStack(Items.GLOWSTONE),new ItemStack(ModItems.XENON_PILE,2),new ItemStack(ModItems.RADON_PILE,3),ItemStack.EMPTY,ItemStack.EMPTY);
-    /*public static final GasCentrifugeRecipe bromine = new GasCentrifugeRecipe(
-            new ItemStack(ModItems.BROMINE_FILTER), new ItemStack(Items.GLOWSTONE),ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY);*/
 
     public GasCentrifugeRecipe(ItemStack top_input, ItemStack bottom_input, ItemStack right_up_output, ItemStack left_up_output, ItemStack right_bottom_output, ItemStack left_bottom_output)
     {

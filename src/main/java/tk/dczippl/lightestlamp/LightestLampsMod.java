@@ -6,7 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
-import net.minecraft.registry.Registry;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -29,7 +29,7 @@ public class LightestLampsMod implements ModInitializer
 
     public LightestLampsMod(){}
 
-    public static final TagKey<Item> GLOWSTONE_SMALL_DUSTS = TagKey.of(Registry.ITEM_KEY, new Identifier("c", "glowstone_small_dusts"));
+    public static final TagKey<Item> GLOWSTONE_SMALL_DUSTS = TagKey.of(Registries.ITEM.getKey(), new Identifier("c", "glowstone_small_dusts"));
     
     /**
      * Runs the mod initializer.

@@ -15,6 +15,7 @@ import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 import static net.minecraft.block.Blocks.*;
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 
+@SuppressWarnings("unused")
 public class ModBlocks
 {
     public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock(),false);
@@ -51,11 +52,10 @@ public class ModBlocks
     public static final Block KRYPTON_ROD_BLOCK = registerBlock("krypton_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(14)));
     public static final Block XENON_ROD_BLOCK = registerBlock("xenon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(14)));
     public static final Block RADON_ROD_BLOCK = registerBlock("radon_rod_block", new PillarBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
-    public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.of(Material.WOOL).sounds(BlockSoundGroup.WOOL)
+    public static final Block VANTA_BLACK = registerBlock("vanta_black", new Block(FabricBlockSettings.copyOf(BLACK_WOOL)
             .hardness(1f).resistance(1)));
     public static final Block LANTHANUM_ORE = registerBlock("lanthanum_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).requiresTool()));
     public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).requiresTool()));
-    //public static final Block LUMINATIUM_BLOCK = registerBlock("luminatium_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
 
     //Glowstones
     public static final Block NEON_BLOCK = registerBlock("neon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));

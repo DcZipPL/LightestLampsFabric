@@ -21,7 +21,7 @@ public class ExtractorOutputSlot extends OutputSlot
     @Override
     protected void onCrafted(ItemStack parItemStack)
     {
-        if (!thePlayer.world.isClient)
+        if (!thePlayer.getWorld().isClient)
         {
             int expEarned = getNumOutput();
             float expFactor = 0.0F;
