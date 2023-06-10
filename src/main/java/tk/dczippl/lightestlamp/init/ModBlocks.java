@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.SimpleRegistry;
 import net.minecraft.sound.BlockSoundGroup;
@@ -68,14 +69,14 @@ public class ModBlocks
     public static final Block OCC = registerBlock("occ", new OmegaChunkCleanerBlock());
 
     public static Block registerBlock(String id, Block block) {
-        SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
-        return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
+        Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
+        return Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
     }
     
     public static Block registerBlock(String id, Block block, boolean hasItem) {
         if (hasItem)
-            SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
-        return SimpleRegistry.register(Registry.BLOCK, new Identifier(MOD_ID,id), block);
+            Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings().group(ModMiscs.LAMPS_TAB)));
+        return Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
     }
 
     public static void init() {

@@ -1,6 +1,8 @@
 package tk.dczippl.lightestlamp.init;
 
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.items.*;
 
@@ -46,7 +48,7 @@ public class ModItems
     public static final Item RAW_LANTHANUM = registerItem(new Item(globalSettings), "raw_lanthanum");
     
     public static Item registerItem(Item item,String id) {
-        return SimpleRegistry.register(Registry.ITEM, new Identifier(MOD_ID,id), item);
+        return Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), item);
     }
 
     public static void init() {

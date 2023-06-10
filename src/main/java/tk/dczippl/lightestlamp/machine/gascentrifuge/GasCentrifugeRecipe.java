@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
@@ -83,7 +84,7 @@ public class GasCentrifugeRecipe
         
         int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
 
-        Optional<RegistryEntryList.Named<Item>> glowstone_small_dusts = Registry.ITEM.getEntryList(GLOWSTONE_SMALL_DUSTS);
+        Optional<RegistryEntryList.Named<Item>> glowstone_small_dusts = Registries.ITEM.getEntryList(GLOWSTONE_SMALL_DUSTS);
         glowstone_small_dusts.ifPresent(registryEntries -> addItemTagBurnTime(map, registryEntries.getStorage().right().orElseGet(ArrayList::new).stream().map(RegistryEntry::value).toList(), 10 * multiplier));
         
         addItemBurnTime(map, ModItems.GLOW_LICHEN_FIBER,5*multiplier);
