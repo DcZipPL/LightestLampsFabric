@@ -3,6 +3,7 @@ package tk.dczippl.lightestlamp;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
@@ -18,6 +19,8 @@ import tk.dczippl.lightestlamp.plugins.Config;
 import tk.dczippl.lightestlamp.plugins.EnergyIntegration;
 import tk.dczippl.lightestlamp.util.WorldGenerator;
 import tk.dczippl.lightestlamp.util.Networking;
+
+import static tk.dczippl.lightestlamp.init.ModMiscs.LAMPS_TAB;
 
 @SuppressWarnings("NullableProblems")
 public class LightestLampsMod implements ModInitializer
@@ -62,13 +65,16 @@ public class LightestLampsMod implements ModInitializer
                 }
             });
         });
-        
-        //ModFluids.init();
+
         ModBlocks.init();
         ModItems.init();
         ModBlockEntities.init();
         WorldGenerator.register();
     
         EnergyIntegration.register();
+
+        ItemGroupEvents.modifyEntriesEvent(LAMPS_TAB).register(content -> {
+            content.add(CUSTOM_ITEM);
+        });
     }
 }

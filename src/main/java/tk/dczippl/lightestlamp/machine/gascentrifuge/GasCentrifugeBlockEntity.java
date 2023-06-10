@@ -243,7 +243,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
                     ItemStack itemstack1 = itemstacks1[i];
                     if (itemstack1.isEmpty()) {
                         output0[i] =  true;
-                    } else if (!itemstack1.isItemEqual(itemstack)) {
+                    } else if (!ItemStack.canCombine(itemstack1, itemstack)) {
                         output0[i] =  false;
                     } else if (itemstack1.getCount() + itemstack.getCount() <= this.getMaxCountPerStack() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxCount()) {
                         // Forge fix: make furnace respect stack sizes in furnace recipes
@@ -400,7 +400,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     @Override
     public void setStack(int slot, ItemStack stack) {
         ItemStack itemstack = this.items.get(slot);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemsEqual(stack, itemstack); // areItemStackTagsEqual
+        boolean flag = !stack.isEmpty() && ItemStack.canCombine(stack, itemstack);
         this.items.set(slot, stack);
         if (stack.getCount() > this.getMaxCountPerStack()) {
             stack.setCount(this.getMaxCountPerStack());
