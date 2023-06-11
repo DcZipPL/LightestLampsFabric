@@ -3,20 +3,25 @@ package tk.dczippl.lightestlamp;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.PlacedFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tk.dczippl.lightestlamp.init.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import tk.dczippl.lightestlamp.plugins.Config;
 import tk.dczippl.lightestlamp.plugins.EnergyIntegration;
-import tk.dczippl.lightestlamp.util.WorldGenerator;
 import tk.dczippl.lightestlamp.util.Networking;
 
 @SuppressWarnings("NullableProblems")
@@ -26,6 +31,7 @@ public class LightestLampsMod implements ModInitializer
 
     // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final RegistryKey<PlacedFeature> LANTHANUM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(MOD_ID,"lanthanum_ore"));
 
     public LightestLampsMod(){}
 
@@ -63,11 +69,12 @@ public class LightestLampsMod implements ModInitializer
             });
         });
 
+        BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, LANTHANUM_ORE_PLACED_KEY);
+
         ModBlocks.init();
         ModItems.init();
         ModBlockEntities.init();
         ModMiscs.init();
-        WorldGenerator.register();
     
         EnergyIntegration.register();
     }
