@@ -94,8 +94,7 @@
   "tooltip.lightestlamp.type.antimatter": "Antymateria",
   "tooltip.lightestlamp.type.alchemical": "Odpychanie",
   "tooltip.lightestlamp.inverted": "Zawsze Aktywny",
-  "tooltip.lightestlamp.penetration": "Przebijanie światła",
-  "tooltip.lightestlamp.speed_grow": "Roślinne Lśnienie",
+  "tooltip.lightestlamp.penetration": "Przebijanie światła"
   "tooltip.lightestlamp.lamp.title": "Jak używać Lightest Lamps.",
   "tooltip.lightestlamp.basic_filter": "Podstawowy",
   "tooltip.lightestlamp.neon_filter": "Neonowy",
@@ -104,28 +103,8 @@
   "tooltip.lightestlamp.xenon_filter": "Ksenonowy",
   "tooltip.lightestlamp.radon_filter": "Radonowy",
   "tooltip.lightestlamp.bromine_filter": "Bromowy",
-  "tooltip.lightestlamp.chemlib.detected": "Zalecane żeby zamienić tą sztabkę na wersje ChemLib w stole wytwarzania",
   "tooltip.lightestlamp.lamp.wip": "Podczas Tworzenia [Nie działa jeszcze]",
-  "tooltip.lightestlamp.book.link": "Lightest Lamps Wiki: https://github.com/DcZipPL/lightestlampsmod/wiki",
-  "tooltip.lightestlamp.book.title0": "Block Types",
-  "tooltip.lightestlamp.book.title1": "Moon shards",
-  "tooltip.lightestlamp.book.title2": "Centrifuge Modes",
-  "tooltip.lightestlamp.book.title3": "Centrifuge Recipes",
-  "tooltip.lightestlamp.book.title4": "More: https://github.com/DcZipPL/lightestlampsmod/wiki",
-
   "container.gascentrifuge": "Wirówka Gazowa",
 
-  "jei.lightestlamp.instructions.moonshard": "Lśniący Odłamek Księżyca wypada z każdego potwora podczas pełni.",
-  "jei.lightestlamp.gascentrifuge": "Wirówka Gazowa",
-
-  "gas.lightestlamp.bromine_vapour": "Bromine Vapor",
-  "crop.lightestlamp.glowing_dust": "Świecący Proszek",
-
-  "effect.lightestlamp.bromine_poison": "Zatrucie Bromowe",
-
-  "death.attack.bromine": "%s zatruł się bromem",
-
-  "fluid.lightestlamp.bromine_fluid": "Brom",
-
-  "itemGroup.lamps": "Lampy"
+  "lightestlamp.lamps": "Lightest Lamps"
 }

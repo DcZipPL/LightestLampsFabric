@@ -134,15 +134,8 @@
   "jei.lightestlamp.instructions.moonshard": "满月期间，任何怪物被击杀都可能掉落月亮碎片。",
   "jei.lightestlamp.instructions.mesh": "镧筛网 + 下界合金锭（在锻造台上）",
   "jei.lightestlamp.gascentrifuge": "气体离心机",
- 
-  "gas.lightestlamp.bromine_vapour": "溴蒸气",
-  "crop.lightestlamp.glowing_dust": "发光粉",
- 
-  "effect.lightestlamp.bromine_poison": "溴中毒",
- 
-  "death.attack.bromine": "%s 被溴毒死",
- 
-  "fluid.lightestlamp.bromine_fluid": "溴",
 
-  "itemGroup.lamps": "灯具"
+  "crop.lightestlamp.glowing_dust": "发光粉",
+
+  "lightestlamp.lamps": "灯具"
 }
