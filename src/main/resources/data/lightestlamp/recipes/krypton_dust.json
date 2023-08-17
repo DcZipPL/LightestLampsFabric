@@ -2,16 +2,16 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "lightestlamp:krypton_small_dust"
+            "item": "lightestlamp:krypton_pile"
         },
         {
-            "item": "lightestlamp:krypton_small_dust"
+            "item": "lightestlamp:krypton_pile"
         },
         {
-            "item": "lightestlamp:krypton_small_dust"
+            "item": "lightestlamp:krypton_pile"
         },
         {
-            "item": "lightestlamp:krypton_small_dust"
+            "item": "lightestlamp:krypton_pile"
         }
     ],
     "result": {
