@@ -2,7 +2,6 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -20,6 +19,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.plugins.Config;
+import tk.dczippl.lightestlamp.util.slot.FilterSlot;
 
 public class GasCentrifugeScreenHandler extends ScreenHandler
 {
@@ -38,7 +38,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
         pos = BlockPos.ORIGIN;
         this.world = playerInventoryIn.player.getWorld();
         this.player = playerInventoryIn.player;
-        this.addSlot(new Slot(furnaceInventoryIn, 0, 16, 35));
+        this.addSlot(new FilterSlot(furnaceInventoryIn, 0, 16, 35));
         this.addSlot(new Slot(furnaceInventoryIn, 1, 41, 35));
         this.addSlot(new FurnaceOutputSlot(playerInventoryIn.player, furnaceInventoryIn, 2, 99, 19));
         this.addSlot(new FurnaceOutputSlot(playerInventoryIn.player, furnaceInventoryIn, 3, 127, 19));

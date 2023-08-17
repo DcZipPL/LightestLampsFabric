@@ -29,10 +29,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import team.reborn.energy.api.base.SimpleEnergyStorage;
 import tk.dczippl.lightestlamp.init.ModBlockEntities;
-import tk.dczippl.lightestlamp.init.ModItems;
 import tk.dczippl.lightestlamp.init.ModMiscs;
 import tk.dczippl.lightestlamp.items.FilterItem;
-import tk.dczippl.lightestlamp.plugins.Config;
 
 import java.util.Map;
 import java.util.Random;
@@ -61,8 +59,6 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
     {
         return new GasCentrifugeScreenHandler(ModMiscs.CENTRIFUGE_SH,id, player, this, this.dataDelegate);
     }
-
-    /*public FluidTank tank = new FluidTank(4000);*/
 
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_DOWN = new int[]{2, 3, 4, 5};

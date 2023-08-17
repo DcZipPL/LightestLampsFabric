@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import tk.dczippl.lightestlamp.init.ModBlocks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GlowstoneCentrifugeCategory implements DisplayCategory<GlowstoneCentrifugeDisplay> {
