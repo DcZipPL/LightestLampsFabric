@@ -20,16 +20,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "tk.dczippl.lightestlamp.LightestLampsMod"
+		"dev.prefex.lightestlamp.LightestLampsMod"
     ],
     "client": [
-      "tk.dczippl.lightestlamp.LightestLampsClientMod"
+		"dev.prefex.lightestlamp.LightestLampsClientMod"
     ],
     "modmenu": [
-      "tk.dczippl.lightestlamp.plugins.ModMenuIntegration"
+		"dev.prefex.lightestlamp.plugins.ModMenuIntegration"
     ],
     "rei_client": [
-      "tk.dczippl.lightestlamp.plugins.rei.LLREIPlugin"
+		"dev.prefex.lightestlamp.plugins.rei.LLREIPlugin"
     ]
   },
 

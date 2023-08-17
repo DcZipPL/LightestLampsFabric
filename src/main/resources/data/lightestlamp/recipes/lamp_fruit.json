@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+   
+    "pattern":
+    [
+        "V",
+        "G"
+    ],
+   
+    "key":
+    {
+        "G":
+        {
+            "tag": "c:glowstone_dusts"
+        },
+        "V":
+        {
+            "item": "minecraft:vine"
+        }
+    },
+   
+    "result":
+    {
+        "item": "lightestlamp:lamp_fruit",
+        "count": 1
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "lightestlamp:block/lamp_fruit",
+  "textures": {
+    "layer0": "lightestlamp:block/lamp_fruit"
+  }
+}
