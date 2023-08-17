@@ -2,14 +2,14 @@ package tk.dczippl.lightestlamp.init;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import tk.dczippl.lightestlamp.blocks.*;
 import tk.dczippl.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
+
+import java.util.ArrayList;
 
 import static net.minecraft.block.Blocks.*;
 import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
@@ -17,6 +17,8 @@ import static tk.dczippl.lightestlamp.LightestLampsMod.MOD_ID;
 @SuppressWarnings("unused")
 public class ModBlocks
 {
+    public static final ArrayList<ItemStack> ITEMS = new ArrayList<>();
+
     public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock(),false);
     public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock(),false);
     public static final Block CLEAR_LAMP = registerBlock("clear_lamp", new RedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
@@ -68,16 +70,18 @@ public class ModBlocks
     public static final Block OCC = registerBlock("occ", new OmegaChunkCleanerBlock());
 
     public static Block registerBlock(String id, Block block) {
-        Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings()));
+        BlockItem blockItem = Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings()));
+        ITEMS.add(new ItemStack(blockItem));
         return Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
     }
     
     public static Block registerBlock(String id, Block block, boolean hasItem) {
+        Block registered = Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
         if (hasItem) {
-            Item blockItem = Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), new BlockItem(block, new Item.Settings()));
-            ModItems.ITEMS.add(new ItemStack(blockItem));
+            Item blockItem = Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), new BlockItem(registered, new Item.Settings()));
+            ITEMS.add(new ItemStack(blockItem));
         }
-        return Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
+        return registered;
     }
 
     public static void init() {
