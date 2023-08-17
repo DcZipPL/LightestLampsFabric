@@ -2,6 +2,7 @@ package tk.dczippl.lightestlamp.machine.gascentrifuge;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -78,50 +79,58 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     public boolean canUse(PlayerEntity player) {
         return this.furnaceInventory.canPlayerUse(player);
     }
-    
+
+    protected boolean isFilter(ItemStack itemStack) {
+        return true;
+    }
+
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
      */
     @Override
-    public ItemStack quickMove(PlayerEntity playerIn, int index) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot != null && slot.hasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-            if (index == 2) {
-                if (!this.insertItem(itemstack1, 3, 39, true)) {
+    public ItemStack quickMove(PlayerEntity playerIn, int slotIndex) {
+        ItemStack copiedStack = ItemStack.EMPTY;
+        Slot sourceSlot = this.slots.get(slotIndex);
+        if (sourceSlot != null && sourceSlot.hasStack()) {
+            ItemStack sourceStack = sourceSlot.getStack();
+            copiedStack = sourceStack.copy();
+            if (slotIndex >= 2 && slotIndex < 6) {
+                if (!this.insertItem(sourceStack, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onQuickTransfer(itemstack1, itemstack);
-            } else if (index != 1 && index != 0) {
-                if (index >= 3 && index < 30) {
-                    if (!this.insertItem(itemstack1, 30, 39, false)) {
+                sourceSlot.onQuickTransfer(sourceStack, copiedStack);
+            } else if (slotIndex != 1 && slotIndex != 0) {
+                if (this.isFilter(sourceStack)) {
+                    if (!this.insertItem(sourceStack, 0, 2, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index >= 30 && index < 39 && !this.insertItem(itemstack1, 3, 30, false)) {
+                } else if (slotIndex >= 6 && slotIndex < 33) {
+                    if (!this.insertItem(sourceStack, 33, 42, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (slotIndex >= 33 && slotIndex < 42 && !this.insertItem(sourceStack, 3, 30, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(itemstack1, 3, 39, false)) {
+            } else if (!this.insertItem(sourceStack, 6, 42, false)) {
                 return ItemStack.EMPTY;
             }
 
-            if (itemstack1.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
+            if (sourceStack.isEmpty()) {
+                sourceSlot.setStack(ItemStack.EMPTY);
             } else {
-                slot.markDirty();
+                sourceSlot.markDirty();
             }
 
-            if (itemstack1.getCount() == itemstack.getCount()) {
+            if (sourceStack.getCount() == copiedStack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTakeItem(playerIn, itemstack1);
+            sourceSlot.onTakeItem(player, sourceStack);
         }
 
-        return itemstack;
+        return copiedStack;
     }
 
     @Environment(EnvType.CLIENT)
