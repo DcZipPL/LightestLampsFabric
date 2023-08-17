@@ -113,7 +113,6 @@
 	"tooltip.lightestlamp.always_active": "Always Active",
 	"tooltip.lightestlamp.inverted": "Redstone Inverted",
 	"tooltip.lightestlamp.penetration": "Light Penetration",
-	"tooltip.lightestlamp.speed_grow": "Grow Glow",
 	"tooltip.lightestlamp.rods_only": "Can only use Rods!",
 	"tooltip.lightestlamp.lamp.title": "How Use Lightest Lamps.",
 	"tooltip.lightestlamp.basic_filter": "Basic",
@@ -153,5 +152,5 @@
 
 	"fluid.lightestlamp.bromine_fluid": "Bromine",
 
-	"itemGroup.lightestlamp.lamps": "Lamps"
+	"lightestlamp.lamps": "Lightest Lamps"
 }
