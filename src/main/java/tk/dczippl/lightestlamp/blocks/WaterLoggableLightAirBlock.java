@@ -20,7 +20,7 @@ import static net.minecraft.state.property.Properties.WATERLOGGED;
 public class WaterLoggableLightAirBlock extends Block implements Waterloggable
 {
     public WaterLoggableLightAirBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing());
+        super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing().noCollision().notSolid().replaceable());
         this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
     }
 
