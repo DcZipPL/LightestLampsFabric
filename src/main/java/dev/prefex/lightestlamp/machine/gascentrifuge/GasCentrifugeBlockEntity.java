@@ -2,7 +2,8 @@ package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import dev.prefex.lightestlamp.init.ModBlockEntities;
 import dev.prefex.lightestlamp.init.ModMiscs;
-import dev.prefex.lightestlamp.plugins.Config;
+import dev.prefex.lightestlamp.plugins.ModConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.annotation.Nullable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -30,13 +31,15 @@ import dev.prefex.lightestlamp.items.FilterItem;
 
 import java.util.Random;
 
+import static dev.prefex.lightestlamp.LightestLampsMod.CONFIG;
+
 @SuppressWarnings("UnstableApiUsage")
 public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory
 {
     public GasCentrifugeBlockEntity(BlockPos blockPos, BlockState state) {
         super(ModBlockEntities.CENTRIFUGE_BE, blockPos, state);
         items = DefaultedList.ofSize(6, ItemStack.EMPTY);
-        if (Config.power_as_default) powerMode = 1;
+        if (CONFIG.power_as_default) powerMode = 1;
     }
     
     public final SimpleEnergyStorage energyStorage = new SimpleEnergyStorage(1600, 128, 0);
@@ -203,9 +206,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
             be.markDirty();
         }
     }
-    
+
     private float getEfficiency() {
-        return !Config.vanilla_mode ? (powerMode == 0 ? 0.2f : powerMode == 1 ? 1f : 2f) : 1f;
+        return !CONFIG.vanilla_mode ? (powerMode == 0 ? 0.2f : powerMode == 1 ? 1f : 2f) : 1f;
     }
     
     private int getCookTimeTotal()

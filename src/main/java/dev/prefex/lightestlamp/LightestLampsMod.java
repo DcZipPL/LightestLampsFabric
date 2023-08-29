@@ -7,7 +7,7 @@ import dev.prefex.lightestlamp.init.ModMiscs;
 import dev.prefex.lightestlamp.plugins.EnergyIntegration;
 import dev.prefex.lightestlamp.util.Networking;
 import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -22,18 +22,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
-import dev.prefex.lightestlamp.plugins.Config;
+import dev.prefex.lightestlamp.plugins.ModConfig;
 
 @SuppressWarnings("NullableProblems")
 public class LightestLampsMod implements ModInitializer
 {
     public static final String MOD_ID = "lightestlamp";
 
-    // Directly reference a log4j logger.
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static ModConfig CONFIG;
     public static final RegistryKey<PlacedFeature> LANTHANUM_ORE_PLACED_KEY = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(MOD_ID,"lanthanum_ore"));
 
     public LightestLampsMod(){}
@@ -45,7 +42,9 @@ public class LightestLampsMod implements ModInitializer
      */
     @Override
     public void onInitialize() {
-        AutoConfig.register(Config.class, JanksonConfigSerializer::new);
+        AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
+
+        CONFIG = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
         
         ServerPlayNetworking.registerGlobalReceiver(Networking.TOGGLEBUTTONS_CHANNEL, (client, handler, ctx, buf, responseSender) -> {
             // Read packet data on the event loop
@@ -62,7 +61,7 @@ public class LightestLampsMod implements ModInitializer
                         else
                             gbe.setRedstoneMode(gbe.getRedstoneMode() + 1);
                     } else {
-                        if (Config.vanilla_mode) gbe.setPowerMode(0);
+                        if (AutoConfig.getConfigHolder(ModConfig.class).getConfig().vanilla_mode) gbe.setPowerMode(0);
                         if (gbe.getPowerMode()>=2)
                             gbe.setPowerMode(0);
                         else

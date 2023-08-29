@@ -1,7 +1,7 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import dev.prefex.lightestlamp.init.ModMiscs;
-import dev.prefex.lightestlamp.plugins.Config;
+import dev.prefex.lightestlamp.plugins.ModConfig;
 import dev.prefex.lightestlamp.util.slot.FilterSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,6 +20,8 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+
+import static dev.prefex.lightestlamp.LightestLampsMod.CONFIG;
 
 public class GasCentrifugeScreenHandler extends ScreenHandler
 {
@@ -143,7 +145,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
     @Environment(EnvType.CLIENT)
     public int getBurnLeftScaled()
     {
-        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
+        int multiplier = CONFIG.glowstone_multiplier >= 2 ? CONFIG.glowstone_multiplier : 2;
         return MathHelper.clamp((int)((this.delegate.get(0) / (delegate.get(6)+0.01f))*18),0,80);
     }
 

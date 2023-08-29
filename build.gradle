@@ -12,12 +12,9 @@ base {
 }
 
 loom {
-	splitEnvironmentSourceSets()
-
 	mods {
 		"lightest-lamps" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
 		}
 	}
 
@@ -59,7 +56,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	optionalDependency "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
 
 	modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}") // Fix refmap crash
 

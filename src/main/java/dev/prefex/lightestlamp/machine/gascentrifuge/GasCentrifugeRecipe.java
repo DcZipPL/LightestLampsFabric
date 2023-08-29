@@ -1,6 +1,8 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import com.google.common.collect.Maps;
+import dev.prefex.lightestlamp.plugins.ModConfig;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,13 +11,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
 import dev.prefex.lightestlamp.init.ModItems;
-import dev.prefex.lightestlamp.plugins.Config;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static dev.prefex.lightestlamp.LightestLampsMod.CONFIG;
 import static dev.prefex.lightestlamp.LightestLampsMod.GLOWSTONE_SMALL_DUSTS;
 
 public class GasCentrifugeRecipe
@@ -75,11 +77,11 @@ public class GasCentrifugeRecipe
     public ItemStack left_up_output;
     public ItemStack right_bottom_output;
     public ItemStack left_bottom_output;
-    
+
     public static Map<Item, Integer> getBurnTimes() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
         
-        int multiplier = Config.glowstone_multiplier >= 2 ? Config.glowstone_multiplier : 2;
+        int multiplier = CONFIG.glowstone_multiplier >= 2 ? CONFIG.glowstone_multiplier : 2;
 
         Optional<RegistryEntryList.Named<Item>> glowstone_small_dusts = Registries.ITEM.getEntryList(GLOWSTONE_SMALL_DUSTS);
         glowstone_small_dusts.ifPresent(registryEntries -> addItemTagBurnTime(map, registryEntries.getStorage().right().orElseGet(ArrayList::new).stream().map(RegistryEntry::value).toList(), 10 * multiplier));
