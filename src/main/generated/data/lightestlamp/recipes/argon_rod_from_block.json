@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "lightestlamp:argon_rod_block"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "lightestlamp:argon_rod"
+  }
+}

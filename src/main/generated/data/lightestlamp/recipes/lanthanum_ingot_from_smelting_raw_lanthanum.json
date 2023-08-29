@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 0.7,
+  "group": "lightestlamp:raw_lanthanum_smelting",
+  "ingredient": {
+    "item": "lightestlamp:raw_lanthanum"
+  },
+  "result": "lightestlamp:lanthanum_ingot"
+}

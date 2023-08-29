@@ -3,13 +3,18 @@
    
     "pattern":
     [
+        " B ",
         "CBC",
-        "CBC",
-        "CBC"
+        " S "
     ],
    
     "key":
     {
+        "S":
+        {
+            "item": "lightestlamp:stickandbowl",
+            "data":32767
+        },
         "C":
         {
             "item": "minecraft:coal"

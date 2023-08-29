@@ -48,7 +48,7 @@ public class ModItems
     public static final Item XENON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(92),"tooltip.lightestlamp.xenon_filter"), "xenon_centrifuge_filter");
     public static final Item RADON_FILTER = registerItem(new FilterItem(new Item.Settings().maxCount(1).maxDamage(62),"tooltip.lightestlamp.radon_filter"), "radon_centrifuge_filter");
     public static final Item LANTHANUM_DUST = registerItem(new Item(globalSettings), "lanthanum_dust");
-    public static final Item LANTHANUM_SMALL_DUST = registerItem(new Item(globalSettings), "lanthanum_small_dust");
+    public static final Item LANTHANUM_PILE = registerItem(new Item(globalSettings), "lanthanum_small_dust");
     public static final Item LANTHANUM_INGOT = registerItem(new Item(globalSettings), "lanthanum_ingot");
     public static final Item LANTHANUM_NUGGET = registerItem(new Item(globalSettings), "lanthanum_nugget");
     public static final Item RAW_LANTHANUM = registerItem(new Item(globalSettings), "raw_lanthanum");

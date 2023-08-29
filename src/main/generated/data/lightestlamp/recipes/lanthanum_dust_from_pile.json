@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
+  "category": "misc",
   "key": {
     "#": {
-      "item": "lightestlamp:xenon_dust"
+      "item": "lightestlamp:lanthanum_small_dust"
     }
   },
   "pattern": [
@@ -11,7 +11,7 @@
     "##"
   ],
   "result": {
-    "item": "lightestlamp:xenon_block"
+    "item": "lightestlamp:lanthanum_dust"
   },
   "show_notification": true
 }

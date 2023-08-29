@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "lightestlamp:lanthanum_ore_blasting",
+  "ingredient": {
+    "item": "lightestlamp:lanthanum_ore"
+  },
+  "result": "lightestlamp:lanthanum_ingot"
+}

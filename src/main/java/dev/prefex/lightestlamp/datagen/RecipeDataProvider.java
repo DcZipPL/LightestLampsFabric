@@ -25,6 +25,7 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 
 	@Override
 	public void generate(Consumer<RecipeJsonProvider> exporter) {
+		// Netherite Mesh
 		addSmithingCriteria(
 			SmithingTransformRecipeJsonBuilder.create(
 							Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
@@ -38,6 +39,8 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 		).offerTo(exporter, Registries.ITEM.getId(ModItems.NETHERITE_MESH));
 
 		createGlowstoneRecipes(exporter);
+		createLanthanumRecipes(exporter);
+
 		createFilterRecipe(exporter, Items.STRING, ModItems.BASIC_FILTER);
 		createFilterRecipe(exporter, Items.PHANTOM_MEMBRANE, ModItems.NEON_FILTER);
 		createFilterRecipe(exporter, ModItems.GLOW_LICHEN_FIBER, ModItems.ARGON_FILTER);
@@ -47,22 +50,23 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 
 		// Vantablack
 		addShapedCriteria(
-				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.VANTA_BLACK)
+				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.VANTA_BLACK, 8)
 						.pattern("CC")
 						.pattern("CC")
-						.input('#', ModItems.CARBON_NANOTUBE),
+						.input('C', ModItems.CARBON_NANOTUBE),
 				ModItems.LANTHANUM_NUGGET
 		).offerTo(exporter, Registries.ITEM.getId(ModBlocks.VANTA_BLACK.asItem()));
 
-		// Lanthanum
-		RecipeProvider.offerSmelting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 400, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_smelting");
-		RecipeProvider.offerBlasting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 200, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_blasting");
-
-		RecipeProvider.offerSmelting(exporter, List.of(ModBlocks.LANTHANUM_ORE), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 400, Registries.ITEM.getId(ModBlocks.LANTHANUM_ORE.asItem()) + "_smelting");
-		RecipeProvider.offerBlasting(exporter, List.of(ModBlocks.LANTHANUM_ORE), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 200, Registries.ITEM.getId(ModBlocks.LANTHANUM_ORE.asItem()) + "_blasting");
-
-		RecipeProvider.offerSmelting(exporter, List.of(ModItems.LANTHANUM_DUST), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.0F, 200, Registries.ITEM.getId(ModItems.LANTHANUM_DUST) + "_smelting");
-		RecipeProvider.offerBlasting(exporter, List.of(ModItems.LANTHANUM_DUST), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.0F, 100, Registries.ITEM.getId(ModItems.LANTHANUM_DUST) + "_blasting");
+		// Lanthanum Mesh
+		addShapedCriteria(
+				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BORON_MESH)
+						.pattern("###")
+						.pattern("#I#")
+						.pattern("###")
+						.input('#', ModItems.LANTHANUM_NUGGET)
+						.input('I', ModItems.LANTHANUM_INGOT),
+				ModItems.LANTHANUM_INGOT
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.BORON_MESH));
 	}
 
 	private void createFilterRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible filter, ItemConvertible output) {
@@ -76,6 +80,70 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 				ModItems.LANTHANUM_NUGGET,
 				filter
 		).offerTo(exporter, Registries.ITEM.getId(output.asItem()));
+	}
+
+	private void createLanthanumRecipes(Consumer<RecipeJsonProvider> exporter) {
+		// Lanthanum smelting
+		RecipeProvider.offerSmelting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 400, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_smelting");
+		RecipeProvider.offerBlasting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 200, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_blasting");
+
+		RecipeProvider.offerSmelting(exporter, List.of(ModBlocks.LANTHANUM_ORE), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 400, Registries.ITEM.getId(ModBlocks.LANTHANUM_ORE.asItem()) + "_smelting");
+		RecipeProvider.offerBlasting(exporter, List.of(ModBlocks.LANTHANUM_ORE), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 200, Registries.ITEM.getId(ModBlocks.LANTHANUM_ORE.asItem()) + "_blasting");
+
+		RecipeProvider.offerSmelting(exporter, List.of(ModItems.LANTHANUM_DUST), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.0F, 200, Registries.ITEM.getId(ModItems.LANTHANUM_DUST) + "_smelting");
+		RecipeProvider.offerBlasting(exporter, List.of(ModItems.LANTHANUM_DUST), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.0F, 100, Registries.ITEM.getId(ModItems.LANTHANUM_DUST) + "_blasting");
+
+		// TODO: Add smelting of Raw Lanthanum to Lanthanum Block
+
+		// Lanthanum Dust to Piles
+		addShapelessCriteria(
+				ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LANTHANUM_PILE, 4)
+						.input(ModItems.LANTHANUM_DUST),
+				ModItems.LANTHANUM_DUST
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.LANTHANUM_PILE) + "_from_dust");
+
+		// Lanthanum Piles to Dust
+		addShapedCriteria(
+				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LANTHANUM_DUST)
+						.pattern("##")
+						.pattern("##")
+						.input('#', ModItems.LANTHANUM_PILE),
+				ModItems.LANTHANUM_PILE
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.LANTHANUM_DUST) + "_from_pile");
+
+		// Lanthanum Ingot to Nuggets
+		addShapelessCriteria(
+				ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LANTHANUM_NUGGET, 9)
+						.input(ModItems.LANTHANUM_INGOT),
+				ModItems.LANTHANUM_INGOT
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.LANTHANUM_NUGGET) + "_from_ingot");
+
+		// Lanthanum Nuggets to Ingot
+		addShapedCriteria(
+				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.LANTHANUM_INGOT)
+						.pattern("###")
+						.pattern("###")
+						.pattern("###")
+						.input('#', ModItems.LANTHANUM_NUGGET),
+				ModItems.LANTHANUM_NUGGET
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.LANTHANUM_INGOT) + "_from_nugget");
+
+		// Raw Lanthanum Block to Raw Lanthanum
+		addShapelessCriteria(
+				ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.RAW_LANTHANUM, 9)
+						.input(ModBlocks.RAW_LANTHANUM_BLOCK),
+				ModBlocks.RAW_LANTHANUM_BLOCK
+		).offerTo(exporter, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_from_block");
+
+		// Raw Lanthanum to Raw Lanthanum Block
+		addShapedCriteria(
+				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.RAW_LANTHANUM_BLOCK)
+						.pattern("###")
+						.pattern("###")
+						.pattern("###")
+						.input('#', ModItems.RAW_LANTHANUM),
+				ModItems.RAW_LANTHANUM
+		).offerTo(exporter, Registries.ITEM.getId(ModBlocks.RAW_LANTHANUM_BLOCK.asItem()));
 	}
 
 	private void createGlowstoneRecipes(Consumer<RecipeJsonProvider> exporter) {
