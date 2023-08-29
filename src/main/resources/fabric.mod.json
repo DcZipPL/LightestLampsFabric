@@ -19,6 +19,9 @@
 
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "dev.prefex.lightestlamp.datagen.DataGeneration"
+    ],
     "main": [
 		"dev.prefex.lightestlamp.LightestLampsMod"
     ],

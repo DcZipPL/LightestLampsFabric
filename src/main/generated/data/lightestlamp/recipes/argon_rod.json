@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "lightestlamp:argon_dust"
+    },
+    "R": {
+      "item": "lightestlamp:empty_rod"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#R#",
+    " # "
+  ],
+  "result": {
+    "item": "lightestlamp:argon_rod"
+  },
+  "show_notification": true
+}

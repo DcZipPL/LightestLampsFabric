@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "lightestlamp:lanthanum_nugget"
+    },
+    "F": {
+      "item": "lightestlamp:glow_lichen_fiber"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#F#",
+    " # "
+  ],
+  "result": {
+    "item": "lightestlamp:argon_centrifuge_filter"
+  },
+  "show_notification": true
+}
