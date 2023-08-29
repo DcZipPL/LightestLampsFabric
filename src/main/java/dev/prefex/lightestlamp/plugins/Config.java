@@ -2,10 +2,11 @@ package dev.prefex.lightestlamp.plugins;
 
 import dev.prefex.lightestlamp.LightestLampsMod;
 import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config.Gui.Background;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @me.shedaniel.autoconfig.annotation.Config(name = "lightest-lamps")
-@me.shedaniel.autoconfig.annotation.Config.Gui.Background(LightestLampsMod.MOD_ID+":textures/block/xenon_block.png")
+@Background(LightestLampsMod.MOD_ID+":textures/block/xenon_block.png")
 public class Config implements ConfigData
 {
     @Comment("Glowstone Centrifuge: Glowstone fuel multiplier (Bigger multiplier less fuel used) Min: 2, Max: 20, IntValue")

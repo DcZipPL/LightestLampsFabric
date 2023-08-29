@@ -1,15 +1,27 @@
 plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.3-SNAPSHOT'
 	id 'maven-publish'
 	id "com.modrinth.minotaur" version "2.+"
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"lightest-lamps" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -17,11 +29,9 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-}
 
-repositories {
 	maven { url "https://maven.shedaniel.me/" }
-	maven { url "https://maven.terraformersmc.com/" }
+	maven { url "https://maven.terraformersmc.com/releases/" }
 	maven {
 		name = "BuildCraft"
 		url = "https://mod-buildcraft.com/maven"
@@ -34,7 +44,6 @@ repositories {
 		name = 'Ladysnake Mods'
 		url = 'https://ladysnake.jfrog.io/artifactory/mods'
 	}
-	maven { url "https://maven.shedaniel.me/" }
 	maven {
 		name = "Modmuss50"
 		url = "https://maven.modmuss50.me/"
@@ -50,7 +59,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	optionalDependency("me.shedaniel.cloth:cloth-config-fabric:11.0.99")
+	optionalDependency "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 
 	modApi("dev.architectury:architectury-fabric:${rootProject.architectury_version}") // Fix refmap crash
 
@@ -60,21 +69,25 @@ dependencies {
 	optionalDependency "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	//modRuntime "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	optionalDependency ("TechReborn:TechReborn-1.20:${project.TechReborn_version}")
-	include modApi('teamreborn:energy:2.2.0')
+	optionalDependency "TechReborn:TechReborn-1.20:${project.TechReborn_version}"
 
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	include modApi("teamreborn:energy:${project.energy_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+		exclude group: "net.fabricmc", module: "fabric-loader"
+	}
+
+	// Uncomment the following line to enable the deprecated Fabric API modules.
+	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
+
+	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 }
 
 def optionalDependency(String dep) {
 	dependencies.modLocalRuntime (dep) {
 		exclude group: "net.fabricmc.fabric-api"
-		exclude module: "nbt-crafting"
 	}
 	dependencies.modCompileOnly (dep) {
 		exclude group: "net.fabricmc.fabric-api"
-		exclude module: "nbt-crafting"
 	}
 }
 
@@ -87,13 +100,6 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// ensure that the encoding is set to UTF-8, no matter what the system default is
-	// this fixes some edge cases with special characters not displaying correctly
-	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-	// If Javadoc is generated, this must be specified in that task too.
-	it.options.encoding = "UTF-8"
-
-	// Minecraft 1.19 upwards uses Java 17.
 	it.options.release = 17
 }
 
@@ -102,11 +108,14 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
 
@@ -114,13 +123,7 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
+			from components.java
 		}
 	}
 
