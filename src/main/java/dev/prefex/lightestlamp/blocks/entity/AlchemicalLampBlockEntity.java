@@ -10,12 +10,12 @@ import net.minecraft.world.World;
 
 public class AlchemicalLampBlockEntity extends BlockEntity
 {
-    public AlchemicalLampBlockEntity(BlockPos pos, BlockState state)
-    {
-        super(ModBlockEntities.ALCHEMICALLAMP_TE,pos,state);
-    }
-    
-    public static void tick(World world, BlockPos pos, BlockState state, AlchemicalLampBlockEntity blockEntity) {
-        BlockUtil.repelEntitiesInBoxFromPoint(world, new Box(pos.add(-8, -8, -8), pos.add(8, 8, 8)), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, false);
-    }
+	public AlchemicalLampBlockEntity(BlockPos pos, BlockState state)
+	{
+		super(ModBlockEntities.ALCHEMICALLAMP_TE,pos,state);
+	}
+	
+	public static void tick(World world, BlockPos pos, BlockState state, AlchemicalLampBlockEntity blockEntity) {
+		BlockUtil.repelEntitiesInBoxFromPoint(world, new Box(pos.add(-8, -8, -8), pos.add(8, 8, 8)), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, false);
+	}
 }

@@ -14,24 +14,24 @@ import java.util.List;
 
 public class FilterItem extends Item
 {
-    private String tooltip;
+	private String tooltip;
 
-    public FilterItem(Item.Settings settings, String tooltip)
-    {
-        super(settings);
-        this.tooltip = tooltip;
-    }
+	public FilterItem(Item.Settings settings, String tooltip)
+	{
+		super(settings);
+		this.tooltip = tooltip;
+	}
 
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(this.tooltip).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		tooltip.add(Text.translatable(this.tooltip).setStyle(Style.EMPTY.withColor(TextColor.fromFormatting(Formatting.GRAY))));
 
-        super.appendTooltip(stack, world, tooltip, context);
-    }
+		super.appendTooltip(stack, world, tooltip, context);
+	}
 
-    @Override
-    public boolean isDamageable()
-    {
-        return true;
-    }
+	@Override
+	public boolean isDamageable()
+	{
+		return true;
+	}
 }

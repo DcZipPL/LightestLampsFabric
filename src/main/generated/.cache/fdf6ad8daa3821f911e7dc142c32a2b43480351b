@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-29T21:38:34.4025814	Lightest Lamps/Recipes
+// 1.20.1	2023-08-29T21:49:09.619929	Lightest Lamps/Recipes
 9a098e75f035da73583797db694af7d52c7d36e2 data\lightestlamp\recipes\krypton_dust_from_pile.json
 b95daa36ec69b7df424adce88cc010ebb8451cb2 data\lightestlamp\recipes\xenon_pile_from_dust.json
 392412d2b35982f338726bead1754d6203d6acec data\lightestlamp\advancements\recipes\misc\neon_rod_from_block.json
@@ -6,7 +6,7 @@ b95daa36ec69b7df424adce88cc010ebb8451cb2 data\lightestlamp\recipes\xenon_pile_fr
 0f065216a3c84497dd82aac3d85892557fd5efd3 data\lightestlamp\advancements\recipes\misc\lanthanum_ingot_from_blasting_raw_lanthanum.json
 8503b378d0070132e7491f5a59bcd35ccf772767 data\lightestlamp\advancements\recipes\misc\argon_pile_from_dust.json
 7afbfd4f803fa3e446aeced29cf7028ae34edc58 data\lightestlamp\recipes\lanthanum_ingot_from_blasting_lanthanum_dust.json
-3a0ab04dc846094ca720188475a6b03bd72b931a data\lightestlamp\recipes\vanta_black.json
+e0d25bdc56cc30144863a09feb4c3a9949503bf0 data\lightestlamp\recipes\vanta_black.json
 3dd8f2e3719d8e8f196509b43799506f7b99a5c0 data\lightestlamp\recipes\xenon_rod.json
 f4d303d073aefdefe767bb58967035f7d7dc339d data\lightestlamp\recipes\radon_block.json
 30655e6c120f494abc72e49c5e65b21042f791eb data\lightestlamp\recipes\neon_rod_from_block.json

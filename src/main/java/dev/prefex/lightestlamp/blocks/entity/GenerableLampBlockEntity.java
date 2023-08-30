@@ -375,16 +375,16 @@ public class GenerableLampBlockEntity extends BlockEntity{
 						}
 					});
 
-            /*if (!updated)
-            {
-                updated = true;
-                BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
-                    if (isAir(world, pos1))
-                    {
-                        world.notifyBlockUpdate(pos1, world.getBlockState(pos1), world.getBlockState(pos1), 3);
-                    }
-                });
-            }*/
+			/*if (!updated)
+			{
+				updated = true;
+				BlockPos.iterate(pos.offset(Direction.UP, 18).offset(Direction.NORTH,18).offset(Direction.WEST,18), pos.offset(Direction.DOWN,18).offset(Direction.SOUTH,18).offset(Direction.EAST,18)).forEach((pos1) -> {
+					if (isAir(world, pos1))
+					{
+						world.notifyBlockUpdate(pos1, world.getBlockState(pos1), world.getBlockState(pos1), 3);
+					}
+				});
+			}*/
 
 					be.cooldown = 0;
 				}

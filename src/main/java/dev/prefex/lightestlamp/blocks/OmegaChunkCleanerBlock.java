@@ -12,25 +12,25 @@ import org.jetbrains.annotations.Nullable;
 
 public class OmegaChunkCleanerBlock extends BlockWithEntity
 {
-    public OmegaChunkCleanerBlock()
-    {
-        super(AbstractBlock.Settings.copy(Blocks.STRUCTURE_BLOCK));
-    }
+	public OmegaChunkCleanerBlock()
+	{
+		super(AbstractBlock.Settings.copy(Blocks.STRUCTURE_BLOCK));
+	}
 
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new OmegaChunkCleanerBlockEntity(pos, state);
-    }
-    
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.OCC_BE, OmegaChunkCleanerBlockEntity::tick);
-    }
+	@Nullable
+	@Override
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new OmegaChunkCleanerBlockEntity(pos, state);
+	}
+	
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return checkType(type, ModBlockEntities.OCC_BE, OmegaChunkCleanerBlockEntity::tick);
+	}
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.INVISIBLE;
-    }
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.INVISIBLE;
+	}
 }

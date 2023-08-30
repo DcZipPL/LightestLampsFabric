@@ -9,14 +9,14 @@ import net.minecraft.world.BlockView;
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class LightAirBlock extends AirBlock
 {
-    public LightAirBlock()
-    {
-        super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing().noCollision().notSolid().replaceable());
-    }
+	public LightAirBlock()
+	{
+		super(FabricBlockSettings.copyOf(Blocks.AIR).air().luminance(15).nonOpaque().dropsNothing().noCollision().notSolid().replaceable());
+	}
 
-    VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+	VoxelShape rs = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return rs;
-    }
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return rs;
+	}
 }

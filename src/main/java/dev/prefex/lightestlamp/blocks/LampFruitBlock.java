@@ -23,53 +23,53 @@ import static net.minecraft.state.property.Properties.WATERLOGGED;
 @SuppressWarnings({"NullableProblems", "deprecation"})
 public class LampFruitBlock extends Block implements Waterloggable
 {
-    public LampFruitBlock()
-    {
-        super(FabricBlockSettings.copyOf(JUNGLE_LEAVES).luminance(__ -> 12));
-        this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
-    }
+	public LampFruitBlock()
+	{
+		super(FabricBlockSettings.copyOf(JUNGLE_LEAVES).luminance(__ -> 12));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
+	}
 
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
-    {
-        return Block.createCuboidShape(0,0,0,0,0,0);
-    }
+	@Override
+	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context)
+	{
+		return Block.createCuboidShape(0,0,0,0,0,0);
+	}
 
-    @Override
-    public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos)
-    {
-        return Block.createCuboidShape(4,2,4,12,14,12);
-    }
+	@Override
+	public VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos)
+	{
+		return Block.createCuboidShape(4,2,4,12,14,12);
+	}
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return Block.createCuboidShape(4,2,4,12,14,12);
-    }
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return Block.createCuboidShape(4,2,4,12,14,12);
+	}
 
-    @Nullable
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER);
-    }
+	@Nullable
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER);
+	}
 
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		if (state.get(WATERLOGGED)) {
+			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+		}
 
-        return state;
-    }
+		return state;
+	}
 
-    public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
+	public FluidState getFluidState(BlockState state) {
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+	}
 
-    public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
-        return true;
-    }
+	public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
+		return true;
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(WATERLOGGED);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(WATERLOGGED);
+	}
 }

@@ -5,12 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 
 public abstract class BlockWithEEntity extends BlockWithEntity {
-    protected BlockWithEEntity(Settings settings) {
-        super(settings);
-    }
+	protected BlockWithEEntity(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
 }

@@ -12,27 +12,27 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockUtil {
-    public static void repelEntitiesInBoxFromPoint(World world, Box effectBox, double x, double y, double z, boolean ignore) {
-        List<Entity> list = world.getNonSpectatingEntities(Entity.class, effectBox);
+	public static void repelEntitiesInBoxFromPoint(World world, Box effectBox, double x, double y, double z, boolean ignore) {
+		List<Entity> list = world.getNonSpectatingEntities(Entity.class, effectBox);
 
-        for (Entity ent : list) {
-            if ((ent instanceof LivingEntity) || (ent instanceof ProjectileEntity)) {
-                if (!ignore && !(ent instanceof MobEntity || ent instanceof ProjectileEntity)) {
-                    continue;
-                } else {
-                    if (ent instanceof ArrowEntity && ((ArrowEntity) ent).isOnGround())
-                    {
-                        continue;
-                    }
-                    Vec3d p = new Vec3d(x, y, z);
-                    Vec3d t = ent.getPos();
-                    double distance = p.distanceTo(t) + 0.1D;
+		for (Entity ent : list) {
+			if ((ent instanceof LivingEntity) || (ent instanceof ProjectileEntity)) {
+				if (!ignore && !(ent instanceof MobEntity || ent instanceof ProjectileEntity)) {
+					continue;
+				} else {
+					if (ent instanceof ArrowEntity && ((ArrowEntity) ent).isOnGround())
+					{
+						continue;
+					}
+					Vec3d p = new Vec3d(x, y, z);
+					Vec3d t = ent.getPos();
+					double distance = p.distanceTo(t) + 0.1D;
 
-                    Vec3d r = new Vec3d(t.x - p.x, t.y - p.y, t.z - p.z);
+					Vec3d r = new Vec3d(t.x - p.x, t.y - p.y, t.z - p.z);
 
-                    ent.setVelocity((r.x / 1.5D / distance + ent.getVelocity().x), (r.y / 1.5D / distance + ent.getVelocity().y), (r.z / 1.5D / distance + ent.getVelocity().z));
-                }
-            }
-        }
-    }
+					ent.setVelocity((r.x / 1.5D / distance + ent.getVelocity().x), (r.y / 1.5D / distance + ent.getVelocity().y), (r.z / 1.5D / distance + ent.getVelocity().z));
+				}
+			}
+		}
+	}
 }
