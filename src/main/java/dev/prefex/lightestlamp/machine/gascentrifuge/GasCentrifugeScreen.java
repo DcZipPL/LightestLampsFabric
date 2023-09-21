@@ -33,7 +33,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 
 	@Override
 	public void render(DrawContext context, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(context);
+		this.renderBackground(context, mouseX, mouseY, partialTicks);
 		super.render(context, mouseX, mouseY, partialTicks);
 		this.drawMouseoverTooltip(context, mouseX, mouseY);
 	}

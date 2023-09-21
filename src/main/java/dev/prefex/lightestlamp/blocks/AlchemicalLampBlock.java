@@ -37,7 +37,7 @@ public class AlchemicalLampBlock extends BlockWithEEntity
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, ModBlockEntities.ALCHEMICALLAMP_TE, AlchemicalLampBlockEntity::tick);
+		return validateTicker(type, ModBlockEntities.ALCHEMICALLAMP_TE, AlchemicalLampBlockEntity::tick);
 	}
 
 	@Override

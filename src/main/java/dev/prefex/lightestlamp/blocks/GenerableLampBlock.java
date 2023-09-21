@@ -58,7 +58,7 @@ public class GenerableLampBlock extends BlockWithEEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, ModBlockEntities.GENERAL_LAMP_BE, GenerableLampBlockEntity::tick);
+		return validateTicker(type, ModBlockEntities.GENERAL_LAMP_BE, GenerableLampBlockEntity::tick);
 	}
 	
 	@Override

@@ -24,7 +24,7 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 	}
 
 	@Override
-	public void generate(Consumer<RecipeJsonProvider> exporter) {
+	public void generate(RecipeExporter exporter) {
 		// Netherite Mesh
 		addSmithingCriteria(
 			SmithingTransformRecipeJsonBuilder.create(
@@ -69,7 +69,7 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 		).offerTo(exporter, Registries.ITEM.getId(ModItems.BORON_MESH));
 	}
 
-	private void createFilterRecipe(Consumer<RecipeJsonProvider> exporter, ItemConvertible filter, ItemConvertible output) {
+	private void createFilterRecipe(RecipeExporter exporter, ItemConvertible filter, ItemConvertible output) {
 		addShapedCriteria(
 				ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, output)
 						.pattern(" # ")
@@ -82,7 +82,7 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 		).offerTo(exporter, Registries.ITEM.getId(output.asItem()));
 	}
 
-	private void createLanthanumRecipes(Consumer<RecipeJsonProvider> exporter) {
+	private void createLanthanumRecipes(RecipeExporter exporter) {
 		// Lanthanum smelting
 		RecipeProvider.offerSmelting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 400, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_smelting");
 		RecipeProvider.offerBlasting(exporter, List.of(ModItems.RAW_LANTHANUM), RecipeCategory.MISC, ModItems.LANTHANUM_INGOT, 0.7F, 200, Registries.ITEM.getId(ModItems.RAW_LANTHANUM) + "_blasting");
@@ -146,7 +146,7 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 		).offerTo(exporter, Registries.ITEM.getId(ModBlocks.RAW_LANTHANUM_BLOCK.asItem()));
 	}
 
-	private void createGlowstoneRecipes(Consumer<RecipeJsonProvider> exporter) {
+	private void createGlowstoneRecipes(RecipeExporter exporter) {
 		ArrayList<Quintet<Item, Item, Item, Item, Item>> glowstoneDusts = Lists.newArrayList(
 				new Quintet<>(ModItems.NEON_DUST, ModItems.NEON_PILE, ModBlocks.NEON_BLOCK.asItem(), ModItems.NEON_ROD, ModBlocks.NEON_ROD_BLOCK.asItem()),
 				new Quintet<>(ModItems.ARGON_DUST, ModItems.ARGON_PILE, ModBlocks.ARGON_BLOCK.asItem(), ModItems.ARGON_ROD, ModBlocks.ARGON_ROD_BLOCK.asItem()),

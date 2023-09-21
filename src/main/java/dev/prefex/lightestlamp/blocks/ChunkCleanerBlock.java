@@ -26,7 +26,7 @@ public class ChunkCleanerBlock extends BlockWithEntity
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, ModBlockEntities.CC_BE, ChunkCleanerBlockEntity::tick);
+		return validateTicker(type, ModBlockEntities.CC_BE, ChunkCleanerBlockEntity::tick);
 	}
 
 	@Override
