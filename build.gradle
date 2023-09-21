@@ -61,20 +61,62 @@ repositories {
 		name = "dblsaiko"
 		url = "https://maven.dblsaiko.net/"
 	}
+	// for reach entity attributes, required by Magna
+	maven {
+		url = "https://maven.jamieswhiteshirt.com/libs-release/"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
 	maven {
 		name = 'Ladysnake Mods'
-		url = 'https://ladysnake.jfrog.io/artifactory/mods'
+		url = 'https://maven.ladysnake.org/releases'
+		content {
+			includeGroup 'io.github.ladysnake'
+			includeGroupByRegex 'io\\.github\\.onyxstudios.*'
+		}
 	}
 	maven {
 		name = "Modmuss50"
 		url = "https://maven.modmuss50.me/"
+	}
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
+	maven {
+		name 'Jitpack'
+		url 'https://jitpack.io'
+		content {
+			includeGroup "com.github.Technici4n"
+			includeGroup "com.github.Draylar.omega-config"
+		}
+	}
+	maven {
+		name = "Technici4n"
+		url = "https://raw.githubusercontent.com/Technici4n/Technici4n-maven/master/"
+		content {
+			includeGroup "net.fabricmc.fabric-api"
+			includeGroup "dev.technici4n"
+			includeGroup "dev.latvian.mods"
+		}
 	}
 }
 
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	mappings loom.layered {
+		mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+		mappings file("compat-mappings.tiny")
+	}
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -97,6 +139,16 @@ dependencies {
 	include modApi("teamreborn:energy:${project.energy_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 		exclude group: "net.fabricmc", module: "fabric-loader"
+	}
+
+	include modImplementation("com.github.Technici4n:magna:${project.magna_version}") {
+		exclude(group: "io.github.prospector")
+		exclude(group: "me.shedaniel.cloth")
+		exclude(group: "net.fabricmc.fabric-api")
+	}
+
+	modImplementation ("maven.modrinth:modern-industrialization:1.7.3") {
+		exclude group: "net.fabricmc.fabric-api"
 	}
 
 	// Uncomment the following line to enable the deprecated Fabric API modules.

@@ -1,5 +1,11 @@
 package dev.prefex.lightestlamp.datagen;
 
+import aztech.modern_industrialization.MIFluids;
+import aztech.modern_industrialization.fluid.MIFluid;
+import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
+import aztech.modern_industrialization.machines.recipe.CentrifugeMachineRecipeType;
+import aztech.modern_industrialization.recipe.json.MIRecipeJson;
+import aztech.modern_industrialization.recipe.json.compat.IRCompressRecipeJson;
 import com.google.common.collect.Lists;
 import dev.prefex.lightestlamp.init.ModBlocks;
 import dev.prefex.lightestlamp.init.ModItems;
@@ -13,10 +19,13 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+
+import static dev.prefex.lightestlamp.LightestLampsMod.MOD_ID;
 
 public class RecipeDataProvider extends FabricRecipeProvider {
 	RecipeDataProvider(FabricDataOutput generator) {
@@ -25,6 +34,12 @@ public class RecipeDataProvider extends FabricRecipeProvider {
 
 	@Override
 	public void generate(Consumer<RecipeJsonProvider> exporter) {
+		// Compat
+		MIRecipeJson<?> centrifuge_recipe = MIRecipeJson.create(MIMachineRecipeTypes.CENTRIFUGE, 10, 800);
+		centrifuge_recipe.addItemInput(ModItems.ARGON_DUST, 12)
+				.addItemOutput(ModItems.LANTHANUM_DUST, 1)
+				.addFluidOutput(MIFluids.ARGON, 500).offerTo(exporter, new Identifier(MOD_ID, "argon_fluid").toString());
+
 		// Netherite Mesh
 		addSmithingCriteria(
 			SmithingTransformRecipeJsonBuilder.create(
