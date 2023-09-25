@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_krypton_pile",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_krypton_pile"
     ]
   ],
   "rewards": {

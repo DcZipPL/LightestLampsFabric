@@ -34,9 +34,9 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_empty_rod",
-      "has_neon_dust",
-      "has_the_recipe"
+      "has_neon_dust"
     ]
   ],
   "rewards": {

@@ -34,9 +34,9 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_lanthanum_nugget",
-      "has_lanthanum_mesh",
-      "has_the_recipe"
+      "has_lanthanum_mesh"
     ]
   ],
   "rewards": {

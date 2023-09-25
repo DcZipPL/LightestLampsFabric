@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_radon_rod",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_radon_rod"
     ]
   ],
   "rewards": {

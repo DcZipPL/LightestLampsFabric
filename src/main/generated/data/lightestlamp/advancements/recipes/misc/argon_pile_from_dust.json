@@ -22,8 +22,8 @@
   },
   "requirements": [
     [
-      "has_argon_dust",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_argon_dust"
     ]
   ],
   "rewards": {
