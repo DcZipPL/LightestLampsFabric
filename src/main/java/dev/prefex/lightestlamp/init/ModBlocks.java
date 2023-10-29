@@ -18,6 +18,7 @@ import static dev.prefex.lightestlamp.LightestLampsMod.MOD_ID;
 public class ModBlocks
 {
 	public static final ArrayList<ItemStack> ITEMS = new ArrayList<>();
+	public static final ArrayList<Block> BLOCKS = new ArrayList<>(); // TODO: Use reflection to get all blocks
 
 	public static final Block LIGHT_AIR = registerBlock("light_air", new LightAirBlock(),false);
 	public static final Block WATERLOGGABLE_LIGHT_AIR = registerBlock("waterloggable_light_air", new WaterLoggableLightAirBlock(),false);
@@ -58,6 +59,7 @@ public class ModBlocks
 			.hardness(1f).resistance(1)));
 	public static final Block LANTHANUM_ORE = registerBlock("lanthanum_ore", new Block(FabricBlockSettings.copyOf(IRON_ORE).requiresTool()));
 	public static final Block RAW_LANTHANUM_BLOCK = registerBlock("raw_lanthanum_block", new Block(FabricBlockSettings.copyOf(RAW_IRON_BLOCK).requiresTool()));
+	public static final Block LANTHANUM_BLOCK = registerBlock("lanthanum_block", new Block(FabricBlockSettings.copyOf(IRON_BLOCK).requiresTool()));
 
 	//Glowstones
 	public static final Block NEON_BLOCK = registerBlock("neon_block", new Block(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15)));
@@ -71,13 +73,16 @@ public class ModBlocks
 	public static final Block OCC = registerBlock("occ", new OmegaChunkCleanerBlock());
 
 	public static Block registerBlock(String id, Block block) {
+		Block registered = Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
 		BlockItem blockItem = Registry.register(Registries.ITEM, new Identifier(MOD_ID,id), new BlockItem(block, new Item.Settings()));
+		BLOCKS.add(registered);
 		ITEMS.add(new ItemStack(blockItem));
-		return Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
+		return registered;
 	}
 	
 	public static Block registerBlock(String id, Block block, boolean hasItem) {
 		Block registered = Registry.register(Registries.BLOCK, new Identifier(MOD_ID,id), block);
+		BLOCKS.add(registered);
 		if (hasItem) {
 			Item blockItem = Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), new BlockItem(registered, new Item.Settings()));
 			ITEMS.add(new ItemStack(blockItem));

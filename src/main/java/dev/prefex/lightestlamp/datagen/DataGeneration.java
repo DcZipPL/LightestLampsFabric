@@ -10,5 +10,6 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 		// This is where providers are added
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(RecipeDataProvider::new);
+		pack.addProvider(ModModelProvider::new);
 	}
 }
