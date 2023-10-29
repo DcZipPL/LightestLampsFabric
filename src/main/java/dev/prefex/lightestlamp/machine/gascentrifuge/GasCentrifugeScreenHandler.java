@@ -142,6 +142,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}
 
+	// TODO: Re-add this
 	@Environment(EnvType.CLIENT)
 	public int getBurnLeftScaled()
 	{
