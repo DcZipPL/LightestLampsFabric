@@ -20,7 +20,7 @@ public class BlockUtil {
 				if (!ignore && !(ent instanceof MobEntity || ent instanceof ProjectileEntity)) {
 					continue;
 				} else {
-					if (ent instanceof ArrowEntity && ((ArrowEntity) ent).isOnGround())
+					if (ent instanceof ArrowEntity && ent.isOnGround())
 					{
 						continue;
 					}

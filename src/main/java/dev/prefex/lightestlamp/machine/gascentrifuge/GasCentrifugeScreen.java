@@ -18,12 +18,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("NullableProblems")
 @Environment(EnvType.CLIENT)
 public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandler>
 {
 	public static final Identifier texture = new Identifier(LightestLampsMod.MOD_ID,"textures/gui/container/glowstone_centrifuge.png");
-	private GasCentrifugeScreenHandler sc;
+	private final GasCentrifugeScreenHandler sc;
 
 	public GasCentrifugeScreen(GasCentrifugeScreenHandler screenContainer, PlayerInventory inv, Text titleIn)
 	{
@@ -60,19 +59,18 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 		int marginHorizontal = (this.width - this.backgroundWidth) / 2;
 		int marginVertical = (this.height - this.backgroundHeight) / 2;
 
-		HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9,0);
+		HoverChecker checker = new HoverChecker(marginHorizontal+9,marginHorizontal+20,marginVertical+20,marginVertical+9);
 		if (checker.checkHover(mouseX,mouseY, true))
 		{
 			context.drawTooltip(textRenderer, Collections.singletonList(Text.translatable(redstone_tooltip)),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
 		}
-		checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9,0);
+		checker = new HoverChecker(marginHorizontal+25,marginHorizontal+36,marginVertical+20,marginVertical+9);
 		if (checker.checkHover(mouseX,mouseY, true))
 		{
 			context.drawTooltip(textRenderer, formatUTooltip(power_tooltip),mouseX-marginHorizontal+4,mouseY-marginVertical+4);
 		}
 	}
 
-	@SuppressWarnings("SimplifyStreamApiCallChains")
 	private List<Text> formatUTooltip(String utooltip) {
 		return Arrays.stream(I18n.translate(utooltip).replace("Format error: ","*").split("¬")).map(
 				s -> Text.literal(s).setStyle(Style.EMPTY.withColor(
@@ -92,13 +90,13 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 		int i = x;
 		int j = y;
 
-		if (((GasCentrifugeScreenHandler)this.sc).func_217061_l()) {
-			int k = ((GasCentrifugeScreenHandler)this.sc).getBurnLeftScaled();
+		if (this.sc.func_217061_l()) { // GasCentrifugeScreenHandler
+			int k = this.sc.getBurnLeftScaled(); // GasCentrifugeScreenHandler
 			//Z Y T-Z T-Y W H
 			context.drawTexture(texture,i + 41 + 17 - k, j + 54, 194 - k, 100, k + 1,  5);
 		}
 		if (sc.delegate.get(4)!=0){
-			int m = (int)((GasCentrifugeScreenHandler)this.sc).getPowerScaled();
+			int m = (int) this.sc.getPowerScaled(); // GasCentrifugeScreenHandler
 			//Z Y T-Z T-Y W H
 			context.drawTexture(texture,i + 154, j + 19 + 50 - m + 1 - 3, 177, 99 - m - 1, 13, m + 1);
 		} else {
@@ -130,7 +128,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 				break;
 		}
 
-		int l = ((GasCentrifugeScreenHandler)this.sc).getCookProgressionScaled();
+		int l = this.sc.getCookProgressionScaled(); // GasCentrifugeScreenHandler
 		context.drawTexture(texture,i + 63, j + 34, 176, 14, l + 1, 16);
 	}
 
@@ -173,7 +171,7 @@ public class GasCentrifugeScreen extends HandledScreen<GasCentrifugeScreenHandle
 	public class HoverChecker{
 		double buttonX0,buttonX1,buttonY0,buttonY1;
 
-		public HoverChecker(double buttonX0, double buttonX1,double buttonY0, double buttonY1,int id){
+		public HoverChecker(double buttonX0, double buttonX1,double buttonY0, double buttonY1){
 			this.buttonX0 = buttonX0;
 			this.buttonX1 = buttonX1;
 			this.buttonY0 = buttonY0;

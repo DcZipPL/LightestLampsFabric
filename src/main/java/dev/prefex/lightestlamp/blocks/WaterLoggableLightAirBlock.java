@@ -46,7 +46,7 @@ public class WaterLoggableLightAirBlock extends Block implements Waterloggable
 	}
 
 	public FluidState getFluidState(BlockState state) {
-		return (Boolean)state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}
 
 	public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {

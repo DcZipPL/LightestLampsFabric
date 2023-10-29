@@ -10,6 +10,5 @@ public enum LampType {
 	OCEAN_BETWEEN,
 	ZETA,
 	ETA,
-	OMEGA,
-	ANTI
+	OMEGA
 }

@@ -157,7 +157,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 			--be.burnTime;
 		}
 
-		if (!be.world.isClient) {
+		if (!world.isClient) {
 			ItemStack itemstack = be.items.get(1);
 			if (be.isBurning() || !itemstack.isEmpty() && !be.items.get(0).isEmpty()) {
 				if (!be.isBurning() && be.canSmelt()) {
@@ -215,6 +215,7 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 	}
 
 	protected boolean canSmelt() {
+		if (world == null) return false;
 		if (!this.items.get(0).isEmpty()) {
 			ItemStack[] itemstacks = GasCentrifugeRecipe.getRecipeOutputs(items.get(0));
 			if (itemstacks[0].isEmpty()&&itemstacks[1].isEmpty()&&itemstacks[2].isEmpty()&&itemstacks[3].isEmpty())
@@ -406,11 +407,9 @@ public class GasCentrifugeBlockEntity extends LockableContainerBlockEntity imple
 	 */
 	@Override
 	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
-			return false;
-		} else {
-			return player.squaredDistanceTo((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-		}
+		if (world == null) return false;
+		if (this.world.getBlockEntity(this.pos) != this) return false;
+		else return player.squaredDistanceTo((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public boolean isFilter(ItemStack stack){
