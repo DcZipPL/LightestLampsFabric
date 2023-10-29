@@ -1,8 +1,6 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import com.google.common.collect.Maps;
-import dev.prefex.lightestlamp.plugins.ModConfig;
-import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

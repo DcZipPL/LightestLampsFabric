@@ -140,7 +140,7 @@ public class OmegaChunkCleanerBlockEntity extends BlockEntity
 			});*/
 			world.setBlockState(pos, Blocks.AIR.getDefaultState());
 			world.removeBlockEntity(pos);
-			//Recalc Light in nearby chunks
+			//Re-calc Light in nearby chunks
 
 			be.cooldown = 0;
 		}

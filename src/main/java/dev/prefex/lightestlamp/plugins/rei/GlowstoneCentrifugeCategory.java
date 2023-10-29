@@ -44,7 +44,7 @@ public class GlowstoneCentrifugeCategory implements DisplayCategory<GlowstoneCen
 	@SuppressWarnings("unchecked")
 	@Override
 	public CategoryIdentifier<? extends GlowstoneCentrifugeDisplay> getCategoryIdentifier() {
-		return (CategoryIdentifier<? extends GlowstoneCentrifugeDisplay>) LLREIPlugin.ID;
+		return LLREIPlugin.ID;
 	}
 	
 	@Override

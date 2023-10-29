@@ -36,6 +36,7 @@ public class ModBlocks
 	public static final Block DEEP_OCEAN_LANTERN = registerBlock("deep_ocean_lantern", new GenerableLampBlock(LampType.OCEAN_BETWEEN,true));
 	public static final Block ABYSSAL_LANTERN = registerBlock("abyssal_lantern", new GenerableLampBlock(LampType.ZETA,true));
 	public static final Block ALCHEMICAL_LAMP = registerBlock("alchemical_lamp", new AlchemicalLampBlock());
+	public static final Block BLINKING_LAMP = registerBlock("blinking_lamp", new BlinkingLampBlock());
 	//public static final Block TRAFFIC_LAMP = registerBlock("traffic_lamp", new DescRedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(15),"tooltip.lightestlamp.analog"));
 	//public static final Block SOUL_LAMP = registerBlock("soul_lamp", new DescRedstoneLampBlock(FabricBlockSettings.copyOf(GLOWSTONE).luminance(13),"tooltip.lightestlamp.soul_lamp"));
 	//public static final Block SPOTLIGHT = registerBlock("spotlight", new SpotlightBlock());

@@ -1,7 +1,6 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import dev.prefex.lightestlamp.init.ModMiscs;
-import dev.prefex.lightestlamp.plugins.ModConfig;
 import dev.prefex.lightestlamp.util.slot.FilterSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -142,6 +141,7 @@ public class GasCentrifugeScreenHandler extends ScreenHandler
 		return j != 0 && i != 0 ? i * 24 / j : 0;
 	}
 
+	// TODO: Re-add this
 	@Environment(EnvType.CLIENT)
 	public int getBurnLeftScaled()
 	{

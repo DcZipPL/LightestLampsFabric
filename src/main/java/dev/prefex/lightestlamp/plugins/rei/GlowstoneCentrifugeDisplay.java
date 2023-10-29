@@ -25,7 +25,7 @@ public class GlowstoneCentrifugeDisplay extends BasicDisplay {
 	}
 	
 	/**
-	 * Gets the display display category identifier
+	 * Gets the display category identifier
 	 *
 	 * @return the identifier of the category
 	 */

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import dev.prefex.lightestlamp.items.*;
 
 import java.util.ArrayList;
 

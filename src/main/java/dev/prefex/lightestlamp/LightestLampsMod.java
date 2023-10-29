@@ -25,7 +25,6 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import dev.prefex.lightestlamp.plugins.ModConfig;
 
-@SuppressWarnings("NullableProblems")
 public class LightestLampsMod implements ModInitializer
 {
 	public static final String MOD_ID = "lightestlamp";
