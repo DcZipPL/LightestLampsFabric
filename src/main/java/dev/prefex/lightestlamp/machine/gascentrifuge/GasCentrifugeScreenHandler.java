@@ -1,7 +1,6 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import dev.prefex.lightestlamp.init.ModMiscs;
-import dev.prefex.lightestlamp.plugins.ModConfig;
 import dev.prefex.lightestlamp.util.slot.FilterSlot;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
