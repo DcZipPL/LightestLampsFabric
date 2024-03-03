@@ -1,4 +1,4 @@
-// 1.20.2	2023-10-29T15:17:48.7813934	Lightest Lamps/Recipes
+// 1.20.2	2024-03-03T01:40:39.4975742	Lightest Lamps/Recipes
 9a098e75f035da73583797db694af7d52c7d36e2 data\lightestlamp\recipes\krypton_dust_from_pile.json
 b95daa36ec69b7df424adce88cc010ebb8451cb2 data\lightestlamp\recipes\xenon_pile_from_dust.json
 cdbb65369fa08c4d11d1b48c44cb50c5fcd89d67 data\lightestlamp\advancements\recipes\misc\neon_rod_from_block.json
@@ -58,8 +58,8 @@ f875ae4226f0506e8a1f8e357f15956352d67ef1 data\lightestlamp\advancements\recipes\
 02b1b62544bf2337467852c50f4387ec0ff2c015 data\lightestlamp\advancements\recipes\misc\neon_dust_from_pile.json
 2d89b3fc1e9d5b3ef802b0841fec3b13e0fea31b data\lightestlamp\recipes\neon_dust_from_pile.json
 93e3e587556b5cce027bf93d3b8ff56fb6c5073f data\lightestlamp\advancements\recipes\building_blocks\neon_rod_block.json
-3dd9ea6a14229989e6227147623114205549bb2c data\lightestlamp\recipes\xenon_centrifuge_filter.json
 dcea82042419ab1d0ea23c5e1a7797409f9c8b4c data\lightestlamp\recipes\argon_centrifuge_filter.json
+3dd9ea6a14229989e6227147623114205549bb2c data\lightestlamp\recipes\xenon_centrifuge_filter.json
 66191bfd827b9cee6e320fea666fa219bda6ef2f data\lightestlamp\recipes\neon_rod.json
 a5656f8415fb4ae29982064721cd69685e95f7a8 data\lightestlamp\advancements\recipes\misc\lanthanum_small_dust_from_dust.json
 a2d25e05236d7726e3636997ae11ea3600482527 data\lightestlamp\advancements\recipes\misc\xenon_centrifuge_filter.json

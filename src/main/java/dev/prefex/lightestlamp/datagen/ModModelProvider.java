@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.TexturedModel;
 import net.minecraft.registry.Registries;
 
 public class ModModelProvider extends FabricModelProvider {
@@ -18,7 +19,7 @@ public class ModModelProvider extends FabricModelProvider {
 	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 		ModBlocks.BLOCKS.forEach(block -> {
 			if (block instanceof PillarBlock){
-				blockStateModelGenerator.registerAxisRotated((PillarBlock) block, Registries.BLOCK.getId(block));
+				blockStateModelGenerator.registerAxisRotated(block, TexturedModel.CUBE_COLUMN);
 			}
 			else if (block == ModBlocks.CLEAR_LAMP
 					|| block == ModBlocks.ALPHA_LAMP

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "lightestlamp:block/radon_rod_block_top",
+    "side": "lightestlamp:block/radon_rod_block_side"
+  }
+}

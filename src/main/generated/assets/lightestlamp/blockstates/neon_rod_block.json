@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "lightestlamp:neon_rod_block",
+      "model": "lightestlamp:block/neon_rod_block",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "lightestlamp:neon_rod_block"
+      "model": "lightestlamp:block/neon_rod_block"
     },
     "axis=z": {
-      "model": "lightestlamp:neon_rod_block",
+      "model": "lightestlamp:block/neon_rod_block",
       "x": 90
     }
   }

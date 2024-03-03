@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "lightestlamp:krypton_rod_block",
+      "model": "lightestlamp:block/krypton_rod_block",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "lightestlamp:krypton_rod_block"
+      "model": "lightestlamp:block/krypton_rod_block"
     },
     "axis=z": {
-      "model": "lightestlamp:krypton_rod_block",
+      "model": "lightestlamp:block/krypton_rod_block",
       "x": 90
     }
   }
