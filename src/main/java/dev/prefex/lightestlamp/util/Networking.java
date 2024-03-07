@@ -1,11 +1,11 @@
 package dev.prefex.lightestlamp.util;
 
+import dev.prefex.lightestlamp.LightestLampsMod;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import dev.prefex.lightestlamp.LightestLampsMod;
 
 public class Networking
 {

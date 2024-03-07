@@ -1,5 +1,6 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
+import dev.prefex.lightestlamp.blocks.BlockWithEEntity;
 import dev.prefex.lightestlamp.init.ModBlockEntities;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.loader.api.FabricLoader;
@@ -22,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import dev.prefex.lightestlamp.blocks.BlockWithEEntity;
 
 import static net.minecraft.block.Blocks.IRON_BLOCK;
 import static net.minecraft.state.property.Properties.FACING;

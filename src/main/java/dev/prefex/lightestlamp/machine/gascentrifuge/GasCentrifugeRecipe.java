@@ -1,6 +1,7 @@
 package dev.prefex.lightestlamp.machine.gascentrifuge;
 
 import com.google.common.collect.Maps;
+import dev.prefex.lightestlamp.init.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,7 +9,6 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryEntryList;
-import dev.prefex.lightestlamp.init.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;

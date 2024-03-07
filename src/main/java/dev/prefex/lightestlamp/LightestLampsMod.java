@@ -4,7 +4,9 @@ import dev.prefex.lightestlamp.init.ModBlockEntities;
 import dev.prefex.lightestlamp.init.ModBlocks;
 import dev.prefex.lightestlamp.init.ModItems;
 import dev.prefex.lightestlamp.init.ModMiscs;
+import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import dev.prefex.lightestlamp.plugins.EnergyIntegration;
+import dev.prefex.lightestlamp.plugins.ModConfig;
 import dev.prefex.lightestlamp.util.Networking;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
@@ -22,8 +24,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
-import dev.prefex.lightestlamp.plugins.ModConfig;
 
 public class LightestLampsMod implements ModInitializer
 {

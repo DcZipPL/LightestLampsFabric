@@ -1,12 +1,12 @@
 package dev.prefex.lightestlamp.plugins;
 
+import dev.prefex.lightestlamp.init.ModBlockEntities;
+import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import team.reborn.energy.api.EnergyStorage;
-import dev.prefex.lightestlamp.init.ModBlockEntities;
-import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlockEntity;
 
 public class EnergyIntegration {
 	private static boolean registered = false;

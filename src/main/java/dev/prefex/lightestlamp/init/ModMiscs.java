@@ -1,6 +1,7 @@
 package dev.prefex.lightestlamp.init;
 
 import dev.prefex.lightestlamp.LightestLampsMod;
+import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeScreenHandler;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.item.ItemGroup;
@@ -9,7 +10,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeScreenHandler;
 
 public class ModMiscs {
 

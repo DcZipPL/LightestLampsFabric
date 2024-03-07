@@ -7,7 +7,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.TexturedModel;
-import net.minecraft.registry.Registries;
 
 public class ModModelProvider extends FabricModelProvider {
 

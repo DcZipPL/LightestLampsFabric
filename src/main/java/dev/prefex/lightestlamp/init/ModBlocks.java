@@ -1,18 +1,22 @@
 package dev.prefex.lightestlamp.init;
 
 import dev.prefex.lightestlamp.blocks.*;
+import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.RedstoneLampBlock;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import dev.prefex.lightestlamp.machine.gascentrifuge.GasCentrifugeBlock;
 
 import java.util.ArrayList;
 
-import static net.minecraft.block.Blocks.*;
 import static dev.prefex.lightestlamp.LightestLampsMod.MOD_ID;
+import static net.minecraft.block.Blocks.*;
 
 @SuppressWarnings("unused")
 public class ModBlocks

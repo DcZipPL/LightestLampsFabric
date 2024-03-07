@@ -16,7 +16,6 @@ import net.minecraft.registry.Registries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class RecipeDataProvider extends FabricRecipeProvider {
 	RecipeDataProvider(FabricDataOutput generator) {
